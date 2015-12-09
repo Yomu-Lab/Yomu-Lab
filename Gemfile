@@ -39,7 +39,8 @@ gem 'turbolinks',           '2.3.0'
 gem 'words_counted'
 
 group :production do
-	gem 'pg'
+  gem 'pg'
+  gem 'rails_12factor'
 end
 
 
