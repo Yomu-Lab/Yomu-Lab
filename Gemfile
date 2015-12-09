@@ -36,7 +36,7 @@ gem 'omniauth-google-oauth2', github: 'zquestz/omniauth-google-oauth2'
 gem 'active_model_serializers', '0.10.0.rc3'
 
 gem 'turbolinks',           '2.3.0'
-gem 'words_counted'
+#gem 'words_counted'
 
 group :production do
   gem 'pg'
