@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="96px" height="91px" viewBox="0 0 96 91" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2 (9964) - http://www.bohemiancoding.com/sketch -->
+    <title>benefits-2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="benefits-2" sketch:type="MSLayerGroup" transform="translate(0.000000, -3.000000)">
+            <g id="Group" transform="translate(2.000000, 5.000000)" stroke="#4DD865" stroke-width="4" sketch:type="MSShapeGroup">
+                <path d="M74.332,47.794 L90.1376,36.036 C92.2012,34.4824 91.1368,31.2012 88.5648,31.146 L58.4196,30.536 L48.5232,2.3728 C47.67,-0.0568 44.2396,-0.038 43.3972,2.3728 L33.5028,30.536 L3.3536,31.146 C0.7804,31.2012 -0.2828,34.4796 1.7808,36.036 L25.786,54.0456 L17.064,82.5636 C16.3068,85.0276 19.1004,87.0532 21.2028,85.5984 L43.8556,70.0012" id="Shape"></path>
+                <path d="M68.1652,54.312 L68.1652,85.6988" id="Shape"></path>
+                <path d="M52.472,70.0052 L83.8588,70.0052" id="Shape"></path>
+            </g>
+            <rect id="Rectangle-path" sketch:type="MSShapeGroup" x="0.1172" y="0.9996" width="96" height="96"></rect>
+        </g>
+    </g>
+</svg>

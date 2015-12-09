@@ -1,0 +1,26 @@
+development:
+  adapter: mysql2
+  database: yomi_dev
+  #pool: 5
+  timeout: 5000
+  username: root
+  password: root
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  adapter: mysql2
+  database: yomi_qa
+  #pool: 5
+  timeout: 5000
+  username: root
+  password: root
+
+production:
+  adapter: mysql2
+  database: yomi_prod
+  #pool: 5
+  timeout: 5000
+  username: root
+  password: root
