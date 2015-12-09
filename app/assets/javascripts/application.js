@@ -16,5 +16,9 @@
 //= require turbolinks
 //= require waypoints.min
 //= require waypoints-sticky.min
+//= require bootstrap.min
+//= require jquery-lang.min
+//= require jquery.magnific-popup.min
 //= require main
+//= require gmap
 //= require_tree .
