@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="299px" height="120px" viewBox="0 0 299 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2 (9964) - http://www.bohemiancoding.com/sketch -->
+    <title>logo_name_white</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="logo_name_white" sketch:type="MSArtboardGroup">
+            <g id="Logo" sketch:type="MSLayerGroup" transform="translate(12.000000, 12.000000)">
+                <g id="Page-1" sketch:type="MSShapeGroup">
+                    <g id="thin-0509_globus_world_travel_regional">
+                        <g id="Group" transform="translate(15.000000, 6.000000)" stroke="#FFFFFF" stroke-width="4">
+                            <circle id="Oval" cx="31.4656" cy="33.4844" r="30.6512"></circle>
+                            <path d="M61.966,6.7676 C72.638,18.9572 75.358,36.912 67.444,52.1588 C57.1308,72.0284 32.6612,79.7772 12.7908,69.4632 C8.0852,67.0208 4.0596,63.7844 0.7928,60.0032" id="Shape"></path>
+                            <path d="M22.3668,9.8364 C22.3668,9.8364 14.796,15.9732 19.7444,16.6676 C23.4008,17.1812 24.334,16.0504 24.334,16.0504 L27.8028,13.812 C27.8028,13.812 25.764,18.4072 25.7976,19.2316 C25.8308,20.0572 26.3416,22.63 28.2076,20.3676 C31.6384,16.2092 32.4916,14.978 34.2188,15.8744 C35.946,16.7708 40.2096,17.2512 38.4032,21.6212 C36.5964,25.992 37.1432,23.16 34.3044,23.0716 C31.466,22.9824 28.9388,26.5172 30.7936,28.0564 C32.6484,29.5964 36.3844,33.958 36.3844,33.958 C36.3844,33.958 39.826,37.2236 33.796,47.6136 C33.796,47.6136 30.9148,53.3876 33.7128,53.1092 C36.5108,52.8308 46.8604,46.8952 47.4244,42.9192 C47.9884,38.9428 48.0868,38.532 50.8812,38.4828 C53.6756,38.4336 55.9756,37.7812 56.734,36.098" id="Shape"></path>
+                            <path d="M6.9608,29.0704 C6.9608,29.0704 11.3412,22.1876 12.1976,24.0944 C13.0536,26.002 13.6892,26.332 14.3012,28.2656 C14.9136,30.1984 19.9896,33.756 17.3224,34.4488 C14.6552,35.1416 14.288,35.182 12.6212,36.3928 C10.954,37.6048 7.7492,40.6716 7.7492,40.6716" id="Shape"></path>
+                            <path d="M60.966,8.7676 L71.0104,0.034" id="Shape"></path>
+                            <path d="M31.9452,80.59 L31.9452,88" id="Shape"></path>
+                            <path d="M17.9452,88 L45.9452,88" id="Shape"></path>
+                        </g>
+                        <rect id="Rectangle-path" x="1" y="0" width="96" height="96"></rect>
+                    </g>
+                </g>
+            </g>
+            <text id="YOMU-LAB" sketch:type="MSTextLayer" font-family="Helvetica Neue" font-size="36" font-weight="260" fill="#FFFFFF">
+                <tspan x="122" y="70">Y</tspan>
+                <tspan x="143.996" y="70" font-size="30">OMU</tspan>
+                <tspan x="211.406" y="70"> L</tspan>
+                <tspan x="240.746" y="70" font-size="30">AB</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
