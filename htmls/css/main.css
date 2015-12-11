@@ -92,6 +92,17 @@
     float: none;
     margin: 0 auto;
   }
+  .alert{
+    color:#fff;
+    margin-bottom: 15px;
+    padding: 15px;
+  }
+  .alert-error {    
+    background: #ee1f25;
+  }
+  .alert-success {   
+    background: #66be60;
+  }
 
 /* ==========================================================================
    2.Hero section
@@ -906,6 +917,41 @@
 
   .language-switcher .dropdown-menu { top: 126%; }
 
+   /* Sign up style */
+  #signup_Login {padding-top: 20px}
+  #signupheader {padding-bottom: 10px}
+  #signupheader p {font-size: 13px}
+  #signupheader p a {color:#279bb8;}
+  #signupheader p a:hover {text-decoration: underline;}
+  #signup_Login .form-control {border-color:#9b9c9d;}
+  #signup_Login .form-control:focus {border-color:#36bb4d;}    
+  #errorMsg {margin-bottom: 20px}
+  #signupfooter {border-top: 1px solid #999898; padding-top: 20px}
+  #signup_Login .notetext {font-size: 15px; padding-top: 10px}
+  #signup_Login .btn {text-transform: capitalize;}
+
+  /* Tell your friends */
+  #tellyourfriendsHeader {padding: 20px 0}
+  #tellyourfriends .sharetwithriends {padding-bottom: 30px}
+  #tellyourfriends .sharetwithriends p {color:#000; margin-bottom: 5px}
+  #tellyourfriends .sharetwithriends p.small {font-size: 12px; margin-bottom: 10px}
+  #tellyourfriends .sharetofriendsForm {margin-bottom: 20px}
+  #tellyourfriends .sharetofriendsForm .sharelinkBox {background:#e1dad9; padding: 12px; font-size: 13px; border:none; white-space: nowrap;}
+  #tellyourfriends .sharetofriendsForm .btn {padding: 12px 0; font-size: 13px; text-transform: capitalize;}
+  #tellyourfriends .sharetofriendsForm .sharelinkcopy {padding:0 0 0 5px}
+  #tellyourfriends .signedupFriends {padding-top: 30px; border-top: 1px solid #999898; padding-bottom: 25px}
+  #tellyourfriends .signedupFriends p {color:#000;}
+  #tellyourfriends .packages p {font-size: 14px}  
+  #tellyourfriends .packages .status {height: 30px; padding-top: 11px; margin-bottom: 15px; margin-top: 8px; position: relative;}
+  #tellyourfriends .packages .status .check {position: absolute; height: 100%; width: 100%; top: 0; left: 0}
+  #tellyourfriends .packages .status .check .checkmark {background: #66be60; border-radius: 50%; height: 28px; width: 28px; margin:0 auto; text-align: center; line-height: 28px; color: #fff; font-weight: normal;}
+  #tellyourfriends .packages .statusLine {background:#999898; height: 7px;}
+  #tellyourfriends .packages .package.active .status {color:#484849;}
+  #tellyourfriends .packages .package.active .statusLine {background: #66be60}
+  #tellyourfriendsFooter {padding-top: 30px}
+  #tellyourfriendsFooter p {font-size: 12px; color: #000; margin-bottom: 5px}
+  #tellyourfriendsFooter p a {color:#279bb8;}
+  #tellyourfriendsFooter p a:hover {text-decoration: underline;}
 /* ==========================================================================
    19.Small devices (tablets, 768px and up)
    ========================================================================== */
@@ -966,6 +1012,7 @@
     .sub-form .btn { padding: 1em 2em; }
 
     .language-switcher { right: 80px; }
+     
   }
 
 /* ==========================================================================
@@ -1055,6 +1102,7 @@
   @media (max-width: 460px) {
 
     .video-tour .play-btn img { width: 45%; }
+
   }
 
   /* custom */
@@ -1081,16 +1129,4 @@
 
   .buy-button, .signup-button { padding-bottom: 1.5em; }
 
-  /* Sign up style */
-  #signup_Login {padding-top: 20px}
-  #signupheader {padding-bottom: 10px}
-  #signupheader p {font-size: 13px}
-  #signupheader p a {color:#279bb8;}
-  #signupheader p a:hover {text-decoration: underline;}
-  #signup_Login .form-control {border-color:#9b9c9d;}
-  #signup_Login .form-control:focus {border-color:#36bb4d;}    
-  #errorMsg {margin-bottom: 20px}
-  #signupfooter {border-top: 1px solid #999898; padding-top: 20px}
-  #signup_Login .notetext {font-size: 15px; padding-top: 10px}
-  #signup_Login .btn {text-transform: capitalize;}
-
+ 
