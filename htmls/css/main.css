@@ -952,6 +952,31 @@
   #tellyourfriendsFooter p {font-size: 12px; color: #000; margin-bottom: 5px}
   #tellyourfriendsFooter p a {color:#279bb8;}
   #tellyourfriendsFooter p a:hover {text-decoration: underline;}
+
+   /* Language Level */
+  #langLevel {padding-top: 20px}
+  #langLevelHeader {padding-bottom: 10px}
+  #langLevelHeader p {font-size: 13px}  
+  #langLevel .form-control {border-color:#9b9c9d;}
+  #langLevel .form-control:focus {border-color:#36bb4d;}    
+  #langLevel .btn {text-transform: capitalize;}
+
+  /* Article Pages */
+  #articleHeader {border-bottom: 1px solid #f1f2f1; padding: 5px 0}
+  #articleHeader #logo {margin: 0}
+  #articleHeader .frame {border-radius: 50%; overflow: hidden; width: 32px; height: 32px; display: inline-block; position: relative; top:10px;}
+  #articleHeader aside {color:#c4c4c4;}
+  #articlesRows {padding-top: 80px}
+  #articlesRows h3 {font-weight: normal; padding-bottom: 10px; color:#000}
+  #articlesRows .articleRow {margin-bottom: 70px}
+  #articlesRows .articlelist li {margin-bottom: 10px; color: #000}
+  #articlesRows .articlelist li .checkmark {background: #66be60; border-radius: 50%; height: 25px; width: 25px; text-align: center; line-height: 25px; color: #fff; font-weight: normal; display: none;}
+  #articlesRows .articlelist li.read {color:#c4c4c4;}
+  #articlesRows .articlelist li.read .checkmark {display: block;}
+
+  #sendfeedbackLink a {font-size: 12px; color: #9d9f9f; text-decoration: underline;}
+  #sendfeedbackLink a:hover {text-decoration: none;}
+
 /* ==========================================================================
    19.Small devices (tablets, 768px and up)
    ========================================================================== */
