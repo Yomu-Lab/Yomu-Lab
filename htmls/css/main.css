@@ -976,7 +976,7 @@
 
   #sendfeedbackLink a {font-size: 12px; color: #9d9f9f; text-decoration: underline;}
   #sendfeedbackLink a:hover {text-decoration: none;}
-
+ 
 
   /* DropDown menus */
   #dropdownMenu {cursor: pointer; padding-bottom: 11px}
@@ -985,6 +985,23 @@
   #dropdownMenuTop .dropdown-menu  > li {text-align: right;}
   #dropdownMenuTop .dropdown-menu > li > a {padding:5px 10px; color: #c4c4c4}
   #dropdownMenuTop .dropdown-menu > li > a:hover {color:#000;}
+
+  /* Article Details */
+  #articleDetails {padding-top: 25px}
+  #articleInfo {color:#9d9f9f; font-size: 12px}
+  #articleInfo a {color:#9d9f9f;}
+  #articleInfo .source a {text-decoration: underline;}
+  #articleInfo .source a:hover {text-decoration: none;}
+  #articleDetails #articleHeading {padding: 10px 0 30px; color: #000}
+  #articleDetails #articleBody p {margin-bottom: 30px; color: #000; line-height: 30px}
+  #articleDetails .actionpanel .btn {text-transform: capitalize; margin-right: 10px; padding: 6px 12px; font-size: 13px}
+  #articleDetails .actionpanel .btn-default.disabled {background: #ccc}
+  #articleDetails .actionpanel span {color:#9d9f9f; font-size: 13px}
+  #articleDetails #articleBody .wordDef {text-decoration: underline; cursor: pointer;}
+  #articleReadFooter {padding-top: 50px; font-size: 12px; color: #9d9f9f;}   
+  #articleReadFooter .switch, #articleReadFooter .actionLabel {display: table-cell; vertical-align: middle;}
+  #articleReadFooter .actionLabel {padding-right: 10px; font-weight: normal;}
+  #articleReadFooter .switch {padding-right: 20px}
 
 /* ==========================================================================
    19.Small devices (tablets, 768px and up)
@@ -1134,9 +1151,9 @@
   }
 
   @media (max-width: 460px) {
-
     .video-tour .play-btn img { width: 45%; }
-
+    #articleDetails .actionpanel span {display: block; margin-top: 10px}
+    #articleReadFooter #sendfeedbackLink {margin-top: 10px}
   }
 
   /* custom */
