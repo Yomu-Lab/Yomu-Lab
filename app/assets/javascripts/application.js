@@ -21,4 +21,5 @@
 //= require jquery.magnific-popup.min
 //= require main
 //= require gmap
+//= require common
 //= require_tree .
