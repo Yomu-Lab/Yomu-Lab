@@ -1,11 +1,21 @@
 Rails.application.routes.draw do
   #devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 
-  resources :home, only: :index do
-    collection do
-      get :thank_you, as: :thank_you
-    end
-  end
+  # resources :home, only: :index do
+  #   collection do
+  #     get :thank_you, as: :thank_you
+  #   end
+  # end
+
+
+
+  resources :home
+
+  match '/Index'   => "home#index",     via: [:get]
+  match '/Login'   => "home#login",     via: [:get]
+  match '/SignUp'  => "home#sign_up",   via: [:get]
+  match '/TellYourFriends' => "home#tell_your_friends",   via: [:get]
+
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

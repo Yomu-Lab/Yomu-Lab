@@ -179,6 +179,8 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -320,6 +322,7 @@ DEPENDENCIES
   pry
   pry-rescue
   pry-stack_explorer
+  quiet_assets
   rails (= 4.2.2)
   rails-erd
   rails_12factor
@@ -337,4 +340,4 @@ DEPENDENCIES
   web-console (= 2.0.0.beta3)
 
 BUNDLED WITH
-   1.10.3
+   1.10.6
