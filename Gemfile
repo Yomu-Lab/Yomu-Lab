@@ -69,3 +69,10 @@ group :test do
   gem "shoulda-matchers"
   gem 'simplecov', :require => false
 end
+
+# => AngularJs Devise
+source "https://rails-assets.org" do
+  gem "rails-assets-angular-devise"
+end
+
+gem 'devise'

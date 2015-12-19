@@ -1,20 +1,23 @@
-
 <!-- Sign up -->
-<section id="signup_Login">
+<section id="signup_Login" ng-controller="YomuLabsCtrl">
   <div class="container">
     <header id="signupheader">
-      <p class="text-center"><a href="#"><img class="logo-head" alt="logo" src="assets/logo_icon_nobg.svg" height="50" width="50" /></a></p>
+      <p class="text-center">
+        <a href="#">
+          <img class="logo-head" alt="logo" src="assets/logo_icon_nobg.svg" height="50" width="50" />
+        </a>
+      </p>
       <p class="small text-center">Don’t have a Yomu Lab account? <a href="/SignUp">Sign up here</a></p>
     </header>
 
     <div class="col-sm-6 col-md-4 col-centered">
-      <p id="errorMsg" class="error small"></p>
-      <form>
+      <p id="errorMsg" class="error small">gsdfgsdfg</p>
+      <form ng-submit="submitLogin(loginForm)" role="form" ng-init="loginForm = {}" class="ng-pristine ng-valid-email ng-invalid ng-invalid-required" novalidate>
         <div class="form-group">
-          <input type="text" placeholder="Email" class="form-control" />
+          <input type="text" placeholder="Email" class="form-control" ng-model="loginForm.email" value="rpatil@mailinator.com" />
         </div>
         <div class="form-group">
-          <input type="text" placeholder="Password" class="form-control" />
+          <input type="text" placeholder="Password" class="form-control" ng-model="loginForm.password" required="required" value="12345678"/>
         </div>
         <div class="form-group">
           <div class="clearfix"><span class="pull-left"><input type="checkbox" /> Remember me</span>
@@ -27,7 +30,8 @@
       </form>
       <footer id="signupfooter">
         <p class="text-center">Or Log In with</p>
-        <p class="text-center"> <!-- Facebook -->
+        <p class="text-center">
+          <!-- Facebook -->
           <a href="https://www.facebook.com/sharer/sharer.php?u=" title="Share on Facebook" target="_blank" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
           <!-- Google+ -->
           <a href="https://plus.google.com/share?url=" title="Share on Google+" target="_blank" class="btn btn-googleplus"><i class="fa fa-google-plus"></i> Google+</a>
@@ -38,3 +42,26 @@
     </div>
   </div>
 </section>
+
+<!--
+
+<form ng-submit="submitLogin(loginForm)" role="form" ng-init="loginForm = {}" class="ng-pristine ng-valid-email ng-invalid ng-invalid-required">
+  <fieldset ng-disabled="user.signedIn">
+    <div class="form-group">
+      <label>email</label>
+      <input type="email" name="email" ng-model="loginForm.email" class="form-control ng-pristine ng-valid ng-valid-email ng-touched">
+    </div>
+    <div class="form-group">
+      <label>nickname</label>
+      <input type="text" name="nickname" ng-model="loginForm.nickname" class="form-control ng-pristine ng-untouched ng-valid">
+      <p class="help-block">Users can use alternate authentication keys. See<a href="https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address#tell-devise-to-use-username-in-the-authentication_keys"> here </a>for more info.</p>
+    </div>
+    <div class="form-group">
+      <label>password</label>
+      <input type="password" name="password" ng-model="loginForm.password" required="required" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required">
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">Sign in</button>
+  </fieldset>
+</form>
+
+-->

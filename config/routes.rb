@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   #devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 
   # resources :home, only: :index do
@@ -7,7 +8,9 @@ Rails.application.routes.draw do
   #   end
   # end
 
-
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
 
   resources :home
 
