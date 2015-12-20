@@ -1,90 +1,94 @@
-<div class="alert alert-error text-center" role="alert">
-  <span>Thank you for signing up. Please confirm your email.</span>
-</div>
-<!-- Tell Your Friends -->
-<section id="tellyourfriends">
- <div class="container">
-  <header id="tellyourfriendsHeader"> 
-    <p class="text-center">
-      <a href="#"><img class="logo-head" alt="logo" src="assets/logo_icon_nobg.svg" height="50" width="50" /></a>
-    </p>
-  </header>    
-  <section>
-    <div class="sharetwithriends">
-      <p class="text-center">Tell your friends and get up to 80 free articles after beta period!</p>
-      <p class="small text-center">Share your unique link via Facebook, Twitte, Google Plus or email</p>
-      <div class="col-md-6 col-centered">
-        <form class="form-inline sharetofriendsForm clearfix"> 
-          <input class="sharelinkBox text-center col-md-10 col-xs-9" type="text" value="http://www.yomulab.com/signup?prelaunch_ref=f42j43er4">
-          <div class="col-md-2 col-xs-3 sharelinkcopy">
-            <button type="button" class="btn btn-default btn-block">Copy</button>
-          </div>
-        </form>
-      </div>
-      <p class="text-center">
-        <!-- Facebook -->
-        <a href="https://www.facebook.com/sharer/sharer.php?u=" title="Share on Facebook" target="_blank" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
-        <!-- Google+ -->
-        <a href="https://plus.google.com/share?url=" title="Share on Google+" target="_blank" class="btn btn-googleplus"><i class="fa fa-google-plus"></i> Google+</a>
-      </p>
-      </div>
-      <div class="col-md-5 signedupFriends col-centered">
-        <p class="text-center">You currently have 3 friends who have signed up</p>
-      </div>
-      <div class="col-md-12 col-centered packages clearfix">
-        <div class="col-md-2 package active">
-          <p class="text-center">Sign Up</p>
-          <div class="status">
-            <div class="check"><div class="checkmark"><i class="fa fa-check"></i></div></div>
-            <div class="statusLine"></div>
-          </div>
-          <p class="text-center">5 free articles</p>
-        </div>
-        <div class="col-md-2 package">
-          <p class="text-center">5 friends</p>
-          <div class="status">
-            <div class="check hide"><div class="checkmark"><i class="fa fa-check"></i></div></div>
-            <div class="statusLine"></div>
-          </div>
-          <p class="text-center">10 free articles</p>
-        </div>
-        <div class="col-md-2 package">
-          <p class="text-center">10 friends</p>
-          <div class="status">
-            <div class="check hide"><div class="checkmark"><i class="fa fa-check"></i></div></div>
-            <div class="statusLine"></div>
-          </div>
-          <p class="text-center">25 free articles</p>
-        </div>
-        <div class="col-md-2 package">
-          <p class="text-center">25 friends</p>
-          <div class="status">
-            <div class="check hide"><div class="checkmark"><i class="fa fa-check"></i></div></div>
-            <div class="statusLine"></div>
-          </div>
-          <p class="text-center">40 free articles</p>
-        </div>
-        <div class="col-md-2 package">
-          <p class="text-center">40 friends</p>
-          <div class="status">
-            <div class="check hide"><div class="checkmark"><i class="fa fa-check"></i></div></div>
-            <div class="statusLine"></div>
-          </div>
-          <p class="text-center">55 free articles</p>
-        </div>
-        <div class="col-md-2 package">
-          <p class="text-center">60 friends</p>
-          <div class="status">
-            <div class="check hide"><div class="checkmark"><i class="fa fa-check"></i></div></div>
-            <div class="statusLine"></div>
-          </div>
-          <p class="text-center">80 free articles</p>
-        </div>
-      </div>
-    </section>
-    <footer id="tellyourfriendsFooter">
-      <p class="text-center">You will receive credit for new accounts only. We reserve the right to end the promotion at any time and to disqualify entries suspected of frauds.</p>
-      <p class="text-center">Questions? <a href="#">Email</a> us.</p>
-    </footer>
+<div ng-controller="DashboardCtrl">
+
+  <div class="alert alert-error text-center" role="alert">
+    <span>{{ confirmation_msg }} --------------</span>
+    <!-- <span>Thank you for signing up. Please confirm your email.</span> -->
   </div>
-</section>
+  <!-- Tell Your Friends -->
+  <section id="tellyourfriends">
+   <div class="container">
+    <header id="tellyourfriendsHeader"> 
+      <p class="text-center">
+        <a href="#"><img class="logo-head" alt="logo" src="assets/logo_icon_nobg.svg" height="50" width="50" /></a>
+      </p>
+    </header>    
+    <section>
+      <div class="sharetwithriends">
+        <p class="text-center">Tell your friends and get up to 80 free articles after beta period!</p>
+        <p class="small text-center">Share your unique link via Facebook, Twitte, Google Plus or email</p>
+        <div class="col-md-6 col-centered">
+          <form class="form-inline sharetofriendsForm clearfix"> 
+            <input class="sharelinkBox text-center col-md-10 col-xs-9" type="text" value="http://www.yomulab.com/signup?prelaunch_ref=f42j43er4">
+            <div class="col-md-2 col-xs-3 sharelinkcopy">
+              <button type="button" class="btn btn-default btn-block">Copy</button>
+            </div>
+          </form>
+        </div>
+        <p class="text-center">
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/sharer/sharer.php?u=" title="Share on Facebook" target="_blank" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
+          <!-- Google+ -->
+          <a href="https://plus.google.com/share?url=" title="Share on Google+" target="_blank" class="btn btn-googleplus"><i class="fa fa-google-plus"></i> Google+</a>
+        </p>
+        </div>
+        <div class="col-md-5 signedupFriends col-centered">
+          <p class="text-center">You currently have 3 friends who have signed up</p>
+        </div>
+        <div class="col-md-12 col-centered packages clearfix">
+          <div class="col-md-2 package active">
+            <p class="text-center">Sign Up</p>
+            <div class="status">
+              <div class="check"><div class="checkmark"><i class="fa fa-check"></i></div></div>
+              <div class="statusLine"></div>
+            </div>
+            <p class="text-center">5 free articles</p>
+          </div>
+          <div class="col-md-2 package">
+            <p class="text-center">5 friends</p>
+            <div class="status">
+              <div class="check hide"><div class="checkmark"><i class="fa fa-check"></i></div></div>
+              <div class="statusLine"></div>
+            </div>
+            <p class="text-center">10 free articles</p>
+          </div>
+          <div class="col-md-2 package">
+            <p class="text-center">10 friends</p>
+            <div class="status">
+              <div class="check hide"><div class="checkmark"><i class="fa fa-check"></i></div></div>
+              <div class="statusLine"></div>
+            </div>
+            <p class="text-center">25 free articles</p>
+          </div>
+          <div class="col-md-2 package">
+            <p class="text-center">25 friends</p>
+            <div class="status">
+              <div class="check hide"><div class="checkmark"><i class="fa fa-check"></i></div></div>
+              <div class="statusLine"></div>
+            </div>
+            <p class="text-center">40 free articles</p>
+          </div>
+          <div class="col-md-2 package">
+            <p class="text-center">40 friends</p>
+            <div class="status">
+              <div class="check hide"><div class="checkmark"><i class="fa fa-check"></i></div></div>
+              <div class="statusLine"></div>
+            </div>
+            <p class="text-center">55 free articles</p>
+          </div>
+          <div class="col-md-2 package">
+            <p class="text-center">60 friends</p>
+            <div class="status">
+              <div class="check hide"><div class="checkmark"><i class="fa fa-check"></i></div></div>
+              <div class="statusLine"></div>
+            </div>
+            <p class="text-center">80 free articles</p>
+          </div>
+        </div>
+      </section>
+      <footer id="tellyourfriendsFooter">
+        <p class="text-center">You will receive credit for new accounts only. We reserve the right to end the promotion at any time and to disqualify entries suspected of frauds.</p>
+        <p class="text-center">Questions? <a href="#">Email</a> us.</p>
+      </footer>
+    </div>
+  </section>
+</div>

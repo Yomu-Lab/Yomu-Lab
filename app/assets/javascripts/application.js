@@ -29,5 +29,7 @@
 //= require jquery-cookie
 //= require jquery.ajaxchimp.min
 //= require main
+//= require globalServices
+
 
 //= require common
