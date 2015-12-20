@@ -88,13 +88,28 @@
 
   b,
   strong { font-weight: 600; }
+  .col-centered {
+    float: none;
+    margin: 0 auto;
+  }
+  .alert{
+    color:#fff;
+    margin-bottom: 15px;
+    padding: 15px;
+  }
+  .alert-error {    
+    background: #ee1f25;
+  }
+  .alert-success {   
+    background: #66be60;
+  }
 
 /* ==========================================================================
    2.Hero section
    ========================================================================== */
 
    .hero-section {
-    background: url(../images/bg.jpg) center center no-repeat scroll;
+    background: url("/assets/bg.jpg") center center no-repeat scroll;
     background-size: cover;
     padding: 0 0 4.5em;
     position: relative;
@@ -166,7 +181,9 @@
     margin: .75em 0 0;
     font-size: 18px;
   }
-
+  .btn.submitbtn {
+    padding: 6px 12px
+  }
 /* ==========================================================================
    3.Navbar
    ========================================================================== */
@@ -378,7 +395,7 @@
     position: relative;
     height: 400px;
     overflow: hidden;
-    background: #333 url(../images/bg-video-preview.jpg) center center no-repeat scroll;
+    background: #333 url("/assets/bg-video-preview.jpg") center center no-repeat scroll;
     background-size: cover;
     -webkit-perspective: 1000;
     perspective: 1000;
@@ -445,7 +462,7 @@
    ========================================================================== */
 
    .pricing {
-    background: url(../images/bg-pricing.jpg) center center no-repeat scroll;
+    background: url("/assets/bg-pricing.jpg") center center no-repeat scroll;
     background-size: cover;
     position: relative;
   }
@@ -697,7 +714,7 @@
    ========================================================================== */
 
    .twitter-feed {
-    background: url(../images/bg-twitter.jpg) center center no-repeat scroll;
+    background: url("assets/bg-twitter.jpg") center center no-repeat scroll;
     background-size: cover;
     position: relative;
   }
@@ -746,7 +763,7 @@
 
   .map-head h3 {
     height: 30px;
-    background: url(../images/logo-nav.png) 47px center no-repeat;
+    background: url("assets/logo-nav.png") 47px center no-repeat;
     background-size: 110px auto;
     text-indent: -999em;
     margin: 12px 0 14px;
@@ -900,6 +917,100 @@
 
   .language-switcher .dropdown-menu { top: 126%; }
 
+   /* Sign up style */
+  #signup_Login {padding-top: 20px}
+  #signupheader {padding-bottom: 10px}
+  #signupheader p {font-size: 13px}
+  #signupheader p a {color:#279bb8;}
+  #signupheader p a:hover {text-decoration: underline;}
+  #signup_Login .form-control {border-color:#9b9c9d;}
+  #signup_Login .form-control:focus {border-color:#36bb4d;}    
+  #errorMsg {margin-bottom: 20px}
+  #signupfooter {border-top: 1px solid #999898; padding-top: 20px}
+  #signup_Login .notetext {font-size: 15px; padding-top: 10px}
+  #signup_Login .btn {text-transform: capitalize;}
+
+  /* Tell your friends */
+  #tellyourfriendsHeader {padding: 20px 0}
+  #tellyourfriends .sharetwithriends {padding-bottom: 30px}
+  #tellyourfriends .sharetwithriends p {color:#000; margin-bottom: 5px}
+  #tellyourfriends .sharetwithriends p.small {font-size: 12px; margin-bottom: 10px}
+  #tellyourfriends .sharetofriendsForm {margin-bottom: 20px}
+  #tellyourfriends .sharetofriendsForm .sharelinkBox {background:#e1dad9; padding: 12px; font-size: 13px; border:none; white-space: nowrap;}
+  #tellyourfriends .sharetofriendsForm .btn {padding: 12px 0; font-size: 13px; text-transform: capitalize;}
+  #tellyourfriends .sharetofriendsForm .sharelinkcopy {padding:0 0 0 5px}
+  #tellyourfriends .signedupFriends {padding-top: 30px; border-top: 1px solid #999898; padding-bottom: 25px}
+  #tellyourfriends .signedupFriends p {color:#000;}
+  #tellyourfriends .packages p {font-size: 14px}  
+  #tellyourfriends .packages .status {height: 30px; padding-top: 11px; margin-bottom: 15px; margin-top: 8px; position: relative;}
+  #tellyourfriends .packages .status .check {position: absolute; height: 100%; width: 100%; top: 0; left: 0}
+  #tellyourfriends .packages .status .check .checkmark {background: #66be60; border-radius: 50%; height: 28px; width: 28px; margin:0 auto; text-align: center; line-height: 28px; color: #fff; font-weight: normal;}
+  #tellyourfriends .packages .statusLine {background:#999898; height: 7px;}
+  #tellyourfriends .packages .package.active .status {color:#484849;}
+  #tellyourfriends .packages .package.active .statusLine {background: #66be60}
+  #tellyourfriendsFooter {padding-top: 30px}
+  #tellyourfriendsFooter p {font-size: 12px; color: #000; margin-bottom: 5px}
+  #tellyourfriendsFooter p a {color:#279bb8;}
+  #tellyourfriendsFooter p a:hover {text-decoration: underline;}
+
+   /* Language Level */
+  #langLevel {padding-top: 20px}
+  #langLevelHeader {padding-bottom: 10px}
+  #langLevelHeader p {font-size: 13px}  
+  #langLevel .form-control {border-color:#9b9c9d;}
+  #langLevel .form-control:focus {border-color:#36bb4d;}    
+  #langLevel .btn {text-transform: capitalize;}
+
+  /* Article Pages */
+  #articleHeader {border-bottom: 1px solid rgba(0, 0, 0, 0.15); padding: 5px 0}
+  #articleHeader #logo {margin: 0}
+  #articleHeader .frame {border-radius: 50%; overflow: hidden; width: 32px; height: 32px; display: inline-block; position: relative; top:10px;}
+  #articleHeader aside {color:#c4c4c4;}
+  #articlesRows {padding-top: 80px}
+  #articlesRows h3 {font-weight: normal; padding-bottom: 10px; color:#000}
+  #articlesRows .articleRow {margin-bottom: 70px}
+  #articlesRows .articlelist li {margin-bottom: 10px; color: #000}
+  #articlesRows .articlelist li .checkmark {background: #66be60; border-radius: 50%; height: 25px; width: 25px; text-align: center; line-height: 25px; color: #fff; font-weight: normal; display: none;}
+  #articlesRows .articlelist li.read {color:#c4c4c4;}
+  #articlesRows .articlelist li.read .checkmark {display: block;}  
+
+  #sendfeedbackLink a {font-size: 12px; color: #9d9f9f; text-decoration: underline;}
+  #sendfeedbackLink a:hover {text-decoration: none;}
+ 
+
+  /* DropDown menus */
+  #dropdownMenu {cursor: pointer; padding-bottom: 11px}
+  #dropdownMenuTop .dropdown-menu {left: auto; right: 0; top:109%; min-width: 122px; border-radius: 0; border-top: 0; box-shadow: none;}
+  #dropdownMenuTop .dropdown-menu .divider {border: 10px solid #fff; border-width: 0 10px; margin: 0}
+  #dropdownMenuTop .dropdown-menu  > li {text-align: right;}
+  #dropdownMenuTop .dropdown-menu > li > a {padding:5px 10px; color: #c4c4c4}
+  #dropdownMenuTop .dropdown-menu > li > a:hover {color:#000;}
+
+  /* Article Details */
+  #articleDetails {padding-top: 25px}
+  #articleInfo {color:#9d9f9f; font-size: 12px}
+  #articleInfo a {color:#9d9f9f;}
+  #articleInfo .source a {text-decoration: underline;}
+  #articleInfo .source a:hover {text-decoration: none;}
+  #articleDetails #articleHeading {padding: 10px 0 30px; color: #000}
+  #articleDetails #articleBody {position: relative;}
+  #articleDetails #articleBody .articleContent p {margin-bottom: 30px; color: #000; line-height: 30px}
+  #articleDetails .actionpanel .btn {text-transform: capitalize; margin-right: 10px; padding: 6px 12px; font-size: 13px}
+  #articleDetails .actionpanel .btn-default.disabled {background: #ccc}
+  #articleDetails .actionpanel span {color:#9d9f9f; font-size: 13px}
+  #articleDetails #articleBody .wordDef {text-decoration: underline; cursor: pointer;}
+  #articleReadFooter {padding-top: 50px; font-size: 12px; color: #9d9f9f;}   
+  #articleReadFooter .switch, #articleReadFooter .actionLabel {display: table-cell; vertical-align: middle;}
+  #articleReadFooter .actionLabel {padding-right: 10px; font-weight: normal;}
+  #articleReadFooter .switch {padding-right: 20px}
+
+  #definationBox {position: absolute; width: 100%; left: 0; background: #f1f2f1; padding: 10px; border:1px solid #ddd;}
+  #definationBox h3 {font-size: 16px; margin-top:0; color:#f37875;}
+  #definationBox p {font-size: 13px; color: #000; margin: 0}
+  #definationBox span.label {width: 104px; display: inline-block; padding-right: 10px; font-weight: bold}
+  #definationBox .closebtn {font-size: 12px; color: #bbb; cursor: pointer; text-decoration: underline;}
+  #definationBox .closebtn:hover {text-decoration: none;}
+
 /* ==========================================================================
    19.Small devices (tablets, 768px and up)
    ========================================================================== */
@@ -960,6 +1071,7 @@
     .sub-form .btn { padding: 1em 2em; }
 
     .language-switcher { right: 80px; }
+     
   }
 
 /* ==========================================================================
@@ -1047,8 +1159,9 @@
   }
 
   @media (max-width: 460px) {
-
     .video-tour .play-btn img { width: 45%; }
+    #articleDetails .actionpanel span {display: block; margin-top: 10px}
+    #articleReadFooter #sendfeedbackLink {margin-top: 10px}
   }
 
   /* custom */
@@ -1075,3 +1188,4 @@
 
   .buy-button, .signup-button { padding-bottom: 1.5em; }
 
+ 

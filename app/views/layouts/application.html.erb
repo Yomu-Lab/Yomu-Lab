@@ -1,14 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="yomu_lab">
+
 <head>
-  <title>YomuLab</title>
+  <title>Yomu Lab</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Yomu Lab">
+  <!-- Favicon Icon -->
+  <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,700" rel="stylesheet">
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
 
-<%= yield %>
+<body ng-app="YomuLabsCtrl">
+
+  <%= yield %>
 
 </body>
 </html>
