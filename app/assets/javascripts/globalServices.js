@@ -71,19 +71,3 @@
   }]);
 
 })();
-
-
-    // this.preferred_language = function(navigator){
-    //   console.log("navigator.language="+navigator.language);
-    //   return navigator.language;
-    // };
-
-    /*
-    this.getApiURL = function(query) {
-      return (this.server.baseURL + query);
-    };
-
-    this.setLocale = function(locale) {
-      this.locale = locale;
-    };
-    */

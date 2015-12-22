@@ -55,6 +55,7 @@ yomu_lab.controller('DashboardCtrl',['$scope', '$http', '$window', 'yomuLabApp',
     current_user = yomuLabApp.get_user_details(authentication_token);
     console.log("current_user-email="+current_user.email);
   }
+  $scope.init();
 
   $scope.init();
 
@@ -105,6 +106,7 @@ yomu_lab.controller('LogOutCtrl',['$scope', '$http', '$window', 'Auth',function(
 //     // Intercept 401 Unauthorized everywhere
 //     // Enables `devise:unauthorized` interceptor
 //     AuthInterceptProvider.interceptAuth(true);
+
 // });
 
 /*

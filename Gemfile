@@ -34,6 +34,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2', github: 'zquestz/omniauth-google-oauth2'
 gem 'active_model_serializers', '0.10.0.rc3'
+gem 'omniauth-facebook'
 
 gem 'turbolinks',           '2.3.0'
 #gem 'words_counted'

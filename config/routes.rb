@@ -10,10 +10,13 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     sessions: 'users/sessions', :omniauth_callbacks => "callbacks"
+    #sessions: 'users/sessions', omniauth_callbacks: 'omniauth_callbacks'
   }
 
-#  resources :home
+  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
+
+  resources :home
   match '/Index'   => "home#index",     via: [:get]
   match '/Login'   => "home#login",     via: [:get]
   match '/SignUp'  => "home#sign_up",   via: [:get]
