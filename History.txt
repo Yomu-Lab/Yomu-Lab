@@ -1,0 +1,20 @@
+
+
+=begin
+raw_info=
+  email="cute.backup@gmail.com" 
+  email_verified="true" 
+  family_name="Patil" 
+  given_name="Rahul" 
+  kind="plus#personOpenIdConnect" 
+  locale="en" 
+  name="Rahul Patil" 
+  picture="https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50" 
+
+
+  info=
+  email="cute.backup@gmail.com" 
+  first_name="Rahul" 
+
+  last_name="Patil" name="Rahul Patil"> provider="google_oauth2" uid="109252910613801325073"
+=end

@@ -18,8 +18,31 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body ng-app="YomuLabsCtrl">
+<!-- <body ng-app="YomuLabsCtrl"> -->
+<body>
+<!--
+<% #if user_signed_in? %>
+  <%#=current_user.first_name %> <%#=current_user.last_name %> : <%#=current_user.email %>
+<% #else %>
+  NO USER
+<% #end %>
 
+<% #if user_signed_in? %>
+  <li>
+    <a data-method="delete" href="/users/sign_out" rel="nofollow"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+  </li>
+<%#= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+<%# else %>
+  <li>
+    <%#= link_to('Login', new_user_session_path)  %>  
+  </li>
+<% #end %>
+-->
+
+<% if flash[:notice].present? %>
+  <h1> Flash Notice <%=flash[:notice]%></h1>
+  <h2> Flash token <%=flash[:token]%></h2>
+  <% end %>
   <%= yield %>
 
 </body>
