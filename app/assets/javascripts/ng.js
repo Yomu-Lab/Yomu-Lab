@@ -34,7 +34,7 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', 'Auth', 'yomu
     });
 
     $scope.$on('devise:login', function(event, currentUser) {
-      var landingUrl = "http://" + $window.location.host + "/TellYourFriends";
+      var landingUrl = "http://" + $window.location.host + "/home/tell_your_friends";
       $window.location.href = landingUrl;       // after a login, a hard refresh, a new tab
     });
 
@@ -56,9 +56,6 @@ yomu_lab.controller('DashboardCtrl',['$scope', '$http', '$window', 'yomuLabApp',
     console.log("current_user-email="+current_user.email);
   }
   $scope.init();
-
-  $scope.init();
-
 }]);
 
 
@@ -78,61 +75,3 @@ yomu_lab.controller('LogOutCtrl',['$scope', '$http', '$window', 'Auth',function(
   }
 
 }]);
-
-
-// yomu_lab.config(function(AuthProvider, AuthInterceptProvider) {
-//     // Customize login
-//     AuthProvider.loginMethod('GET');
-//     AuthProvider.loginPath('/users/sign_in.json');
-
-//     // Customize logout
-//     AuthProvider.logoutMethod('POST');
-//     AuthProvider.logoutPath('/user/logout.json');
-
-//     // Customize register
-//     AuthProvider.registerMethod('PATCH');
-//     AuthProvider.registerPath('/user/sign_up.json');
-
-//     // Customize the resource name data use namespaced under
-//     // Pass false to disable the namespace altogether.
-//     //AuthProvider.resourceName('customer');
-
-//     // Customize user parsing
-//     // NOTE: **MUST** return a truth-y expression
-//     // AuthProvider.parse(function(response) {
-//     //     return response.data.user;
-//     // });
-
-//     // Intercept 401 Unauthorized everywhere
-//     // Enables `devise:unauthorized` interceptor
-//     AuthInterceptProvider.interceptAuth(true);
-
-// });
-
-/*
-#<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true 
-  expires_at=1455882525 token="CAAClN0T3eJwBAAQzzY3zgMBjCYbYKWHWgbE2TLBjQYZA9wopgPGKFF2dBTTYpt7JtvUIDR3jnNXWLRVlZAMzGypHnfCkXfHl5g4F2jnbQ17HpoBTeZB7ZA1XdrktguXq1FNvQ4j022UpTK8CfR0HCdZAwEXpLiLcAqcw496UkOMsVbYVVJLhwPWZBvJJc4FxZB2n6KJZA1GTcAZDZD"> 
-  extra=#<OmniAuth::AuthHash 
-    raw_info=#<OmniAuth::AuthHash 
-      email="rahulpatil_scs@yahoo.co.in" 
-      first_name="Rahul" 
-      id="1063036573715640" 
-      last_name="Patil">> 
-
-      info=#<OmniAuth::AuthHash::InfoHash 
-        email="rahulpatil_scs@yahoo.co.in" 
-        first_name="Rahul" 
-        image="http://graph.facebook.com/1063036573715640/picture" 
-        last_name="Patil"> 
-    provider="facebook" 
-    uid="1063036573715640">
-
-
-    (byebug) auth.provider
-"facebook"
-(byebug) auth.uid
-"1063036573715640"
-(byebug) 
-(byebug) auth.info.email
-"rahulpatil_scs@yahoo.co.in"
-*/
