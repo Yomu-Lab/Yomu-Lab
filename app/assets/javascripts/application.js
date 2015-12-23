@@ -20,7 +20,6 @@
 //= require ng
 //= require retina.min
 //= require tweetie.min
-//= require turbolinks
 //= require waypoints.min
 //= require waypoints-sticky.min
 //= require bootstrap.min
