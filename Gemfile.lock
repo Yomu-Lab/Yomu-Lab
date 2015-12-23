@@ -1,4 +1,16 @@
 GIT
+  remote: git://github.com/heroku/rails3_serve_static_assets.git
+  revision: 84910ceb4ca2851d650e66d3b22f5008acf253f8
+  specs:
+    rails3_serve_static_assets (0.0.1)
+
+GIT
+  remote: git://github.com/heroku/rails_log_stdout.git
+  revision: f9a92758f2d5dca5a88bf899a83256302f16ab6c
+  specs:
+    rails_log_stdout (0.0.1)
+
+GIT
   remote: git://github.com/zquestz/omniauth-google-oauth2.git
   revision: e505783c33d51c0b0db1c8e595539b4fde30d6d6
   specs:
@@ -329,7 +341,9 @@ DEPENDENCIES
   rails (= 4.2.2)
   rails-assets-angular-devise!
   rails-erd
+  rails3_serve_static_assets!
   rails_12factor
+  rails_log_stdout!
   rspec-rails (~> 2.14)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
