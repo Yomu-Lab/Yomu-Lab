@@ -9,7 +9,7 @@ Devise.setup do |config|
   # config.secret_key = '666f413816f34afb376459e47e9781164b7faad5532f08ad758da4247135fd9472de9fc10f4cda4ca31a2bec08fe18f35146efece61e9bf71c120203847df326'
 
   # => Omniauth Verification 
-  config.omniauth :facebook, "327554610669430", "cc67fb7616c240499fb1c2f95acf930f"
+  #config.omniauth :facebook, "327554610669430", "cc67fb7616c240499fb1c2f95acf930f"
   #config.omniauth :twitter, "KEY", "SECRET"
 
 
@@ -19,6 +19,9 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+
+  config.omniauth :facebook, "181656798853276", "fd4d0f8646b3b55d12906bc65a55c127", scope: 'email,public_profile', info_fields: 'email, first_name, last_name'
+  config.omniauth :google_oauth2, "234954652765-bduggs2ogm0lelpi0iet15klbrqiv4ov.apps.googleusercontent.com", "9o-Js2n5y8yzM7coaK25RGVB"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'

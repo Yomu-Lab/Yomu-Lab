@@ -10,17 +10,16 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require angular.min
 //= require jquery
 //= require jquery_ujs
 //= require jquery-2.1.4.min
-//= require angular.min
 //= require angular-filter
 //= require angular-route.min
 //= require devise
 //= require ng
 //= require retina.min
 //= require tweetie.min
-//= require turbolinks
 //= require waypoints.min
 //= require waypoints-sticky.min
 //= require bootstrap.min

@@ -12,6 +12,9 @@ class ApplicationController < ActionController::Base
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
   end
 
+  def generate_authentication_token
+    return Devise.friendly_token
+  end
 
   def ensure_signup_complete
     # Ensure we don't go into an infinite loop

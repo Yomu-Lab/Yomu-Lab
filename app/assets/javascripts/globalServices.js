@@ -54,20 +54,19 @@
           console.log("get_logged_in_user - Error");
         });
     };
-    // this.preferred_language = function(navigator){
-    //   console.log("navigator.language="+navigator.language);
-    //   return navigator.language;
-    // };
 
-    /*
-    this.getApiURL = function(query) {
-      return (this.server.baseURL + query);
-    };
+    this.get_user_details = function(authentication_token){
+      console.log("get_user_details - enter");
+      return $http.get("/home/current_user_details/"+authentication_token+".json").
+        success( function(data, status, header, config){
+          //var logged_in_user = data;
+          return data.current_user;
+        }).
+        error( function(data, status, header, config){
+          console.log("current_user_details - Error");
+        });     
 
-    this.setLocale = function(locale) {
-      this.locale = locale;
     };
-    */
 
   }]);
 

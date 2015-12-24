@@ -1,7 +1,7 @@
-<div ng-controller="DashboardCtrl">
+<div ng-controller="DashboardCtrl" ng-init="init('<%=@authentication_token%>')">
 
   <div class="alert alert-error text-center" role="alert">
-    <span>{{ confirmation_msg }} --------------</span>
+    <span>{{ confirmation_msg }}</span>
     <!-- <span>Thank you for signing up. Please confirm your email.</span> -->
   </div>
   <!-- Tell Your Friends -->
@@ -9,7 +9,7 @@
    <div class="container">
     <header id="tellyourfriendsHeader"> 
       <p class="text-center">
-        <a href="#"><img class="logo-head" alt="logo" src="assets/logo_icon_nobg.svg" height="50" width="50" /></a>
+        <a href="#"><img class="logo-head" alt="logo" src="/assets/logo_icon_nobg.svg" height="50" width="50" /></a>
       </p>
     </header>    
     <section>

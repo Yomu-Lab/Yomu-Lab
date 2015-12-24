@@ -46,6 +46,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string   :open_id
       t.boolean  :password_manually_set
       t.integer  :level
+      t.string   :provider
+      t.string   :uid
 
       t.timestamps null: false
     end
@@ -54,5 +56,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
     add_index :users, :reset_password_token, unique: true
     add_index :users, :confirmation_token,   unique: true
     add_index :users, :unlock_token,         unique: true
+    add_index :users, :authentication_token, unique: true
   end
 end
