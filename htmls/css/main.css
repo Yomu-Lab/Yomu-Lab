@@ -952,8 +952,22 @@
   #tellyourfriendsFooter p {font-size: 12px; color: #000; margin-bottom: 5px}
   #tellyourfriendsFooter p a {color:#279bb8;}
   #tellyourfriendsFooter p a:hover {text-decoration: underline;}
-
-   /* Language Level */
+  #friendsListModal .sendBtn {padding: 6px 12px; text-transform: capitalize;}
+  #friendsListModal ul.friendsList li {border: 1px solid #fff; padding: 2px; margin: 0 0 10px 0;}
+  #friendsListModal ul.friendsList li label {cursor: pointer; font-size: 13px}
+  #friendsListModal ul.friendsList li img {border: 1px solid #ccc}
+  #friendsListModal ul.friendsList li:nth-child(odd) {
+      float: right;
+  } 
+  #friendsListModal ul.friendsList li:hover {border:1px solid #66be60;}
+  #friendsListModal .modal-dialog {
+    overflow-y: initial !important
+  }
+  #friendsListModal .modal-body {
+       height: 500px;  
+       width: 100% !important
+  }
+   /* Language Level */  
   #langLevel {padding-top: 20px}
   #langLevelHeader {padding-bottom: 10px}
   #langLevelHeader p {font-size: 13px}  
@@ -1023,6 +1037,18 @@
   #feedbackFooter .notetext {font-size: 15px}
   #feedbackContent .submitbtn {padding-left: 30px; padding-right: 30px; text-transform: capitalize;}
   #feedbackContent .thankyoumessage {margin-bottom: 50px}
+
+  /*** Admin Dashboard ***/
+  #adminDashboard {padding-top: 10px}
+  #adminDashboard h2 {font-weight: normal; color: #000}
+  #adminDashboard #createArticle {text-transform: capitalize; padding: 6px 12px; font-size: 13px}
+  #dashboardTable th {background: #b7b6b6; font-size: 13px; color: #fff; text-align: center; padding: 5px 8px}
+  #dashboardTable td {padding: 5px 8px; font-size: 13px; color: #000; text-align: center;}
+  #dashboardTable td .btn-link { background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    color: #000;
+    font-size: 13px;
+    padding: 0;
+    text-transform: capitalize;}
 /* ==========================================================================
    19.Small devices (tablets, 768px and up)
    ========================================================================== */

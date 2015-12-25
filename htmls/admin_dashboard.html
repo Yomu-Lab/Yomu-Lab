@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,700" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yomu Lab</title>
+  <meta name="description" content="Yomu Lab">
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/magnific-popup.css" rel="stylesheet">  
+  <link href="css/main.css" rel="stylesheet">
+  <link href="css/social-sharing.css" rel="stylesheet">
+</head>
+<body>
+
+ <!-- Sign up -->
+ <header id="articleHeader">
+   <div class="col-md-6 col-sm-10  col-centered clearfix">
+     <h1 id="logo" class="pull-left"><a href="#"><img class="logo-head" alt="logo" src="img/logo_icon_nobg.svg" height="50" width="50" /></a></h1>
+     <aside class="pull-right">
+      <div class="dropdown" id="dropdownMenuTop">
+       <div class="dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><div class="frame"><img alt="avtar" src="img/avtar.jpg" /></div> Jason</div>
+       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+       <li><a href="#">Admin</a></li>
+       <li role="separator" class="divider"></li>
+        <li><a href="#">Settings</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Log Out</a></li>
+        
+      </ul>
+    </div>
+  </aside> 
+</div>
+</header>
+<section id="adminDashboard">
+  <h2 class="text-center">Admin Dashboard</h2>
+  <div class="col-md-8 col-centered">
+  <p>
+    <button id="createArticle" type="button" class="btn btn-primary">Create Article</button>
+  </p>
+  <div class="table-responsive">
+  <table id="dashboardTable" class="table table-bordered">
+  <tr>
+  <th>No</th>
+  <th>Article</th>
+  <th>Creator</th>
+  <th>Created at</th>
+  <th>Updated at</th> 
+  <th>Published at</th> 
+  <th>Status</th> 
+  <th>Action</th>
+  </tr>
+  <tr><td>1</td> <td>Article Name</td> <td>Anh Nguyen</td> <td>2015-05-20 10:00:00</td> <td>2015-05-20 10:00:00</td> <td></td> <td>Unpublished</td> <td><button type="button" class="btn btn-link">Publish</button></td></tr>
+  <tr><td>2</td> <td>Article Name</td> <td>Anh Nguyen</td> <td>2015-05-20 10:00:00</td> <td>2015-05-20 10:00:00</td> <td></td> <td>Unpublished</td> <td><button type="button" class="btn btn-link">Publish</button></td></tr>
+  <tr><td>3</td> <td>Article Name</td> <td>Anh Nguyen</td> <td>2015-05-20 10:00:00</td> <td>2015-05-20 10:00:00</td> <td></td> <td>Unpublished</td> <td><button type="button" class="btn btn-link">Publish</button></td></tr>
+  <tr><td>4</td> <td>Article Name</td> <td>Anh Nguyen</td> <td>2015-05-20 10:00:00</td> <td>2015-05-20 10:00:00</td> <td></td> <td>Unpublished</td> <td><button type="button" class="btn btn-link">Publish</button></td></tr>
+  <tr><td>5</td> <td>Article Name</td> <td>Anh Nguyen</td> <td>2015-05-20 10:00:00</td> <td>2015-05-20 10:00:00</td> <td></td> <td>Unpublished</td> <td><button type="button" class="btn btn-link">Publish</button></td></tr>
+  <tr><td>6</td> <td>Article Name</td> <td>Anh Nguyen</td> <td>2015-05-20 10:00:00</td> <td>2015-05-20 10:00:00</td> <td></td> <td>Unpublished</td> <td><button type="button" class="btn btn-link">Publish</button></td></tr>
+  <tr><td>7</td> <td>Article Name</td> <td>Anh Nguyen</td> <td>2015-05-20 10:00:00</td> <td>2015-05-20 10:00:00</td> <td></td> <td>Unpublished</td> <td><button type="button" class="btn btn-link">Publish</button></td></tr>
+  <tr><td>8</td> <td>Article Name</td> <td>Anh Nguyen</td> <td>2015-05-20 10:00:00</td> <td>2015-05-20 10:00:00</td> <td></td> <td>Unpublished</td> <td><button type="button" class="btn btn-link">Publish</button></td></tr>
+</table>
+</div>
+  </div>
+
+</section>
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="js/waypoints-sticky.min.js"></script>
+<script src="js/retina.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/jquery-lang.min.js"></script>
+<script>
+  var lang = new Lang('en');
+  lang.dynamic('fr', 'js/langpack/fr.json');
+  lang.dynamic('de', 'js/langpack/de.json');
+</script>
+<script src="js/main.js"></script>
+<script src="js/gmap.js"></script>
+</body>
+</html>

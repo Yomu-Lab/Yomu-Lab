@@ -15,6 +15,7 @@
   <link href="css/magnific-popup.css" rel="stylesheet">  
   <link href="css/main.css" rel="stylesheet">
   <link href="css/social-sharing.css" rel="stylesheet">
+  <link href="css/enscroll.css" rel="stylesheet">
 </head>
 <body>
   <div class="alert alert-error text-center" role="alert">
@@ -43,7 +44,7 @@
 
         </div>
         <p class="text-center"> <!-- Facebook -->
-          <a href="https://www.facebook.com/sharer/sharer.php?u=" title="Share on Facebook" target="_blank" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
+          <a href="javascript:void(0)"  title="Share on Facebook" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
           <!-- Google+ -->
           <a href="https://plus.google.com/share?url=" title="Share on Google+" target="_blank" class="btn btn-googleplus"><i class="fa fa-google-plus"></i> Google+</a></p>
         </div>
@@ -107,7 +108,95 @@
       </footer>
     </div>
   </section>
+  <div id="friendsListModal" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          Select Friend(s)
+        </div>
+        <div class="modal-body scrollbox clearfix">
+          <ul class="friendsList">
+            <li class="col-md-5">
+              <label>
+              <input type="checkbox" class="push-right" />                
+                <img src="img/friend.jpg" alt="photo" />
+                <span>Lorem Ipsum</span>
+              </label>
+            </li>
+            <li class="col-md-5">
+              <label>
+              <input type="checkbox" class="push-right" />                
+                <img src="img/friend.jpg" alt="photo" />
+                <span>Lorem Ipsum</span>
+              </label>
+            </li>
+            <li class="col-md-5">
+              <label>
+              <input type="checkbox" class="push-right" />                
+                <img src="img/friend.jpg" alt="photo" />
+                <span>Lorem Ipsum</span>
+              </label>
+            </li>
+            <li class="col-md-5">
+              <label>
+              <input type="checkbox" class="push-right" />                
+                <img src="img/friend.jpg" alt="photo" />
+                <span>Lorem Ipsum</span>
+              </label>
+            </li>
+            <li class="col-md-5">
+              <label>
+              <input type="checkbox" class="push-right" />                
+                <img src="img/friend.jpg" alt="photo" />
+                <span>Lorem Ipsum</span>
+              </label>
+            </li>
+            <li class="col-md-5">
+              <label>
+              <input type="checkbox" class="push-right" />                
+                <img src="img/friend.jpg" alt="photo" />
+                <span>Lorem Ipsum</span>
+              </label>
+            </li>
+            <li class="col-md-5">
+              <label>
+              <input type="checkbox" class="push-right" />                
+                <img src="img/friend.jpg" alt="photo" />
+                <span>Lorem Ipsum</span>
+              </label>
+            </li>
+            <li class="col-md-5">
+              <label>
+              <input type="checkbox" class="push-right" />                
+                <img src="img/friend.jpg" alt="photo" />
+                <span>Lorem Ipsum</span>
+              </label>
+            </li>
+            <li class="col-md-5">
+              <label>
+              <input type="checkbox" class="push-right" />                
+                <img src="img/friend.jpg" alt="photo" />
+                <span>Lorem Ipsum</span>
+              </label>
+            </li>
+            <li class="col-md-5">
+              <label>
+              <input type="checkbox" class="push-right" />                
+                <img src="img/friend.jpg" alt="photo" />
+                <span>Lorem Ipsum</span>
+              </label>
+            </li>
 
+          </ul>
+        </div>
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-primary sendBtn">Send</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
   <script src="js/jquery-2.1.4.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/waypoints.min.js"></script>
@@ -115,6 +204,7 @@
   <script src="js/retina.min.js"></script>
   <script src="js/jquery.magnific-popup.min.js"></script>
   <script src="js/jquery-lang.min.js"></script>
+  <script src="js/enscroll-0.6.1.min.js"></script>
   <script>
     var lang = new Lang('en');
     lang.dynamic('fr', 'js/langpack/fr.json');
@@ -122,5 +212,17 @@
   </script>
   <script src="js/main.js"></script>
   <script src="js/gmap.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      $(".btn-facebook").click(function(){
+        $("#friendsListModal").modal();
+      });
+      $('.scrollbox').enscroll({
+          showOnHover: true,
+          verticalTrackClass: 'track3',
+          verticalHandleClass: 'handle3'
+      });
+    });
+  </script>
 </body>
 </html>
