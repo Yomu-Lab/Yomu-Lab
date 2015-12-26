@@ -60,8 +60,8 @@ yomu_lab.controller('YomuLabsSignUpCtrl', ['$scope', '$http', '$window', '$cooki
   $scope.submit_sign_up_details = function(sign_up_form){    
     // Empty the Error Message Box
     $scope.message_box = "";
-    //$scope.message_box = check_input_for_signup(sign_up_form);
-    //if ( $scope.message_box != "" ){ return false; }
+    $scope.message_box = check_input_for_signup(sign_up_form);
+    if ( $scope.message_box != "" ){ return false; }
 
     var logged_in_user = "";
 
