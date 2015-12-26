@@ -952,8 +952,22 @@
   #tellyourfriendsFooter p {font-size: 12px; color: #000; margin-bottom: 5px}
   #tellyourfriendsFooter p a {color:#279bb8;}
   #tellyourfriendsFooter p a:hover {text-decoration: underline;}
-
-   /* Language Level */
+  #friendsListModal .sendBtn {padding: 6px 12px; text-transform: capitalize;}
+  #friendsListModal ul.friendsList li {border: 1px solid #fff; padding: 2px; margin: 0 0 10px 0;}
+  #friendsListModal ul.friendsList li label {cursor: pointer; font-size: 13px}
+  #friendsListModal ul.friendsList li img {border: 1px solid #ccc}
+  #friendsListModal ul.friendsList li:nth-child(odd) {
+      float: right;
+  } 
+  #friendsListModal ul.friendsList li:hover {border:1px solid #66be60;}
+  #friendsListModal .modal-dialog {
+    overflow-y: initial !important
+  }
+  #friendsListModal .modal-body {
+       height: 500px;  
+       width: 100% !important
+  }
+   /* Language Level */  
   #langLevel {padding-top: 20px}
   #langLevelHeader {padding-bottom: 10px}
   #langLevelHeader p {font-size: 13px}  
@@ -994,7 +1008,7 @@
   #articleInfo .source a:hover {text-decoration: none;}
   #articleDetails #articleHeading {padding: 10px 0 30px; color: #000}
   #articleDetails #articleBody {position: relative;}
-  #articleDetails #articleBody .articleContent p {margin-bottom: 30px; color: #000; line-height: 30px}
+  #articleDetails #articleBody .articleContent p {margin-bottom: 30px; color: #000; line-height: 34px}
   #articleDetails .actionpanel .btn {text-transform: capitalize; margin-right: 10px; padding: 6px 12px; font-size: 13px}
   #articleDetails .actionpanel .btn-default.disabled {background: #ccc}
   #articleDetails .actionpanel span {color:#9d9f9f; font-size: 13px}
@@ -1010,7 +1024,31 @@
   #definationBox span.label {width: 104px; display: inline-block; padding-right: 10px; font-weight: bold}
   #definationBox .closebtn {font-size: 12px; color: #bbb; cursor: pointer; text-decoration: underline;}
   #definationBox .closebtn:hover {text-decoration: none;}
+  .synonyms {position: relative;}
+  .synonyms span {position: absolute; top:-20px; left: 0; font-size: 12px}
+  
+  /** Send Feedback Page **/
+  
+  #sendFeedback {padding-top: 50px}
+  #sendFeedbackHeader {padding-bottom: 50px}
+  #feedbackContent p {font-size: 15px; color: #000}
+  #feedbackContent .textarea {height: 200px}
+  #feedbackFooter {padding-top: 50px}
+  #feedbackFooter .notetext {font-size: 15px}
+  #feedbackContent .submitbtn {padding-left: 30px; padding-right: 30px; text-transform: capitalize;}
+  #feedbackContent .thankyoumessage {margin-bottom: 50px}
 
+  /*** Admin Dashboard ***/
+  #adminDashboard {padding-top: 10px}
+  #adminDashboard h2 {font-weight: normal; color: #000}
+  #adminDashboard #createArticle {text-transform: capitalize; padding: 6px 12px; font-size: 13px}
+  #dashboardTable th {background: #b7b6b6; font-size: 13px; color: #fff; text-align: center; padding: 5px 8px}
+  #dashboardTable td {padding: 5px 8px; font-size: 13px; color: #000; text-align: center;}
+  #dashboardTable td .btn-link { background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    color: #000;
+    font-size: 13px;
+    padding: 0;
+    text-transform: capitalize;}
 /* ==========================================================================
    19.Small devices (tablets, 768px and up)
    ========================================================================== */
