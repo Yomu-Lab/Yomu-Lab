@@ -21,11 +21,11 @@ Devise.setup do |config|
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
   # => YomuLabs  
-  config.omniauth :facebook, "904030749652784", "853580d4fa816c6445be0fb0ffe2915f", scope: 'email,public_profile', info_fields: 'email, first_name, last_name'
+  #config.omniauth :facebook, "904030749652784", "853580d4fa816c6445be0fb0ffe2915f", scope: 'email,public_profile', info_fields: 'email, first_name, last_name'
 
   # => YomuTest
-  #config.omniauth :facebook, "181656798853276", "fd4d0f8646b3b55d12906bc65a55c127", scope: 'email,public_profile', info_fields: 'email, first_name, last_name'
-  #config.omniauth :google_oauth2, "234954652765-bduggs2ogm0lelpi0iet15klbrqiv4ov.apps.googleusercontent.com", "9o-Js2n5y8yzM7coaK25RGVB"
+  config.omniauth :facebook, "181656798853276", "fd4d0f8646b3b55d12906bc65a55c127", scope: 'email,public_profile', info_fields: 'email, first_name, last_name'
+  config.omniauth :google_oauth2, "234954652765-bduggs2ogm0lelpi0iet15klbrqiv4ov.apps.googleusercontent.com", "9o-Js2n5y8yzM7coaK25RGVB"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
