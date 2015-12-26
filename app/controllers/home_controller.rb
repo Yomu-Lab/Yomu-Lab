@@ -59,12 +59,15 @@ class HomeController < ApplicationController
         @user = User.new
         @user.first_name = params[:first_name]
         @user.last_name = params[:last_name]
+        @user.email = params[:email]
         @user.password = params[:password]
         @user.password_confirmation = params[:password_confirmation]
-        @user.save
-        current_user = @user 
-        response_code = "200"
-        response_message = GlobalMessage::SIGNING_UP_CONFIRM_EMAIL
+        @user.authentication_token = generate_authentication_token
+        if @user.save
+          current_user = @user 
+          response_code = "200"
+          response_message = GlobalMessage::SIGNING_UP_CONFIRM_EMAIL
+        end
       end
     rescue ActiveRecord::RecordNotUnique
       current_user = false 
