@@ -15,9 +15,8 @@
 //= require jquery_ujs
 //= require jquery-2.1.4.min
 //= require angular-filter
-//= require angular-route.min
+//= require angular-cookies
 //= require devise
-//= require ng
 //= require retina.min
 //= require tweetie.min
 //= require waypoints.min
@@ -25,10 +24,10 @@
 //= require bootstrap.min
 //= require jquery-lang.min
 //= require jquery.magnific-popup.min
-//= require jquery-cookie
 //= require jquery.ajaxchimp.min
+//= require constant
 //= require main
+//= require common
+//= require ng
 //= require globalServices
 
-
-//= require common

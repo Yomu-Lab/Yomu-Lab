@@ -11,34 +11,26 @@
     </header>
 
     <div class="col-sm-6 col-md-4 col-centered" ng-init="init();">
-      <p id="errorMsg" class="error small" ng-show="error_message != ''">{{error_message}}</p>
-      <form ng-submit="submitLogin(loginForm)" role="form" class="ng-pristine ng-valid-email ng-invalid ng-invalid-required" novalidate>
+      <p id="errorMsg" class="error small" ng-show="error_message != ''">{{message_box}}</p>
+      <form name="login_form" role="form" class="ng-pristine ng-valid-email ng-invalid ng-invalid-required" novalidate>
         <div class="form-group">
-          <input type="text" placeholder="Email" class="form-control" ng-model="loginForm.email" value="rpatil@mailinator.com" />
+          <input type="text" placeholder="Email" class="form-control" ng-model="loginForm.email" name="email" required="required" />
         </div>
         <div class="form-group">
-          <input type="text" placeholder="Password" class="form-control" ng-model="loginForm.password" required="required" value="12345678"/>
+          <input type="password" placeholder="Password" class="form-control" ng-model="loginForm.password" name="password" required="required" />
         </div>
         <div class="form-group">
           <div class="clearfix"><span class="pull-left"><input type="checkbox" /> Remember me</span>
-          <a href="#" class="pull-right">Forgot Password?</a>
+          <a href="#" class="pull-right" ng-click="forgot_password(loginForm);">Forgot Password?</a>
           </div>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-default btn-block submitbtn">Log In</button>
+          <button type="submit" ng-click="submit_credentials(loginForm);" class="btn btn-default btn-block submitbtn">
+            Log In
+          </button>
         </div>
       </form>
-      <footer id="signupfooter">
-        <p class="text-center">Or Log In with</p>
-        <p class="text-center">
-          <!-- Facebook -->
-          <a href="/users/auth/facebook" title="Share on Facebook" target="_blank" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
-          <!-- Google+ -->
-          <a href="/users/auth/google_oauth2" title="Share on Google+" target="_blank" class="btn btn-googleplus"><i class="fa fa-google-plus"></i> Google+</a>
-        </p>
-        <p class="text-center notetext">We will never post to Twitter, Facebook, or<br />
-          Google Plus without your permission.</p>
-      </footer>
+      <%= render "partials/social_sign_footer" %>
     </div>
   </div>
 </section>

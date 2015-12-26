@@ -1,7 +1,7 @@
 <div ng-controller="DashboardCtrl" ng-init="init('<%=@authentication_token%>')">
 
   <div class="alert alert-error text-center" role="alert">
-    <span>{{ confirmation_msg }}</span>
+    <span>{{ message_box }}</span>
     <!-- <span>Thank you for signing up. Please confirm your email.</span> -->
   </div>
   <!-- Tell Your Friends -->
@@ -14,8 +14,9 @@
     </header>    
     <section>
       <div class="sharetwithriends">
+        <p class="text-center" style="color:red;">{{current_user.email}}</p>
         <p class="text-center">Tell your friends and get up to 80 free articles after beta period!</p>
-        <p class="small text-center">Share your unique link via Facebook, Twitte, Google Plus or email</p>
+        <p class="small text-center">Share your unique link via Facebook, Twitter, Google Plus or Email</p>
         <div class="col-md-6 col-centered">
           <form class="form-inline sharetofriendsForm clearfix"> 
             <input class="sharelinkBox text-center col-md-10 col-xs-9" type="text" value="http://www.yomulab.com/signup?prelaunch_ref=f42j43er4">

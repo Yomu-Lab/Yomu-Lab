@@ -1,34 +1,32 @@
-var yomu_lab = angular.module('yomu_lab', ["angular.filter","ngRoute", "Devise" ]);
+var yomu_lab = angular.module('yomu_lab', [ 'Devise', 'ngCookies' ]);
 
-yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', 'Auth', 'yomuLabApp', function($scope, $http, $window, Auth, yomuLabApp) {
+var EMAIL_REGEXP = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+var PASSWORD_LENGTH_MINIMUM = 8;
+
+/*
+* YomuLabs Controller
+*/
+yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', '$cookies', 'yomuLabAppService', 'Auth', function($scope, $http, $window, $cookies, yomuLabAppService, Auth) {
 
   $scope.init = function(){
-    $scope.error_message = "";
+    $scope.message_box = "";
     console.log("init method");
     //loginForm = {};
   }
-  $scope.init();
   
-  $scope.submitLogin = function(loginForm){
-
-    $scope.error_message = check_input_for_login(loginForm);
-
-    if ($scope.error_message != ""){
-      return false;
-    }
-
-    // var credentials = {
-    //     email: 'rpatil@mailinator.com',
-    //     password: '12345678'
-    // };
+  $scope.submit_credentials = function(loginForm){
+    // Empty the Error Message Box
+    $scope.message_box = "";
+    $scope.message_box = check_input_for_login(loginForm, loginForm.email, loginForm.password);
+    if ( $scope.message_box != "" ){ return false; }
     var config = {
       headers: {
         'X-HTTP-Method-Override': 'POST'
       }
     };
-
     Auth.login(loginForm, config).then(function(user) {
-      // Setting a cookie       //$cookies.put('yomu_app_token', user.authentication_token);
+      // Setting a cookie       
+      $cookies.put('yomu_app_token', user.authentication_token);
     }, function(error) {
       console.log("Auth failed");       // Authentication failed...
     });
@@ -40,38 +38,99 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', 'Auth', 'yomu
 
     $scope.$on('devise:new-session', function(event, currentUser) {
       // user logged in by Auth.login({...})
-      yomuLabApp.get_logged_in_user(currentUser.authentication_token);
     });
   }
 
+  $scope.forgot_password = function(loginForm){
+    $scope.message_box = check_input_for_forgot_password(loginForm.email);
+    if ( $scope.message_box != "" ){ return false; }
+  }
 
 }]);
 
-yomu_lab.controller('DashboardCtrl',['$scope', '$http', '$window', 'yomuLabApp', function($scope, $http, $window, yomuLabApp) {
-
-  $scope.init = function(authentication_token){
-    $scope.confirmation_msg = "Thank you for signing up. Please confirm your email.";
-    console.log("Token = "+authentication_token);
-    current_user = yomuLabApp.get_user_details(authentication_token);
-    console.log("current_user-email="+current_user.email);
+/*
+* YomuLabsSignUpCtrl Controller
+*/
+yomu_lab.controller('YomuLabsSignUpCtrl', ['$scope', '$http', '$window', '$cookies', 'yomuLabAppService', 'Auth', function($scope, $http, $window, $cookies, yomuLabAppService, Auth) {
+  $scope.init = function(){
+    $scope.message_box = "";
   }
   $scope.init();
-}]);
 
+  $scope.submit_sign_up_details = function(sign_up_form){    
+    // Empty the Error Message Box
+    $scope.message_box = "";
+    //$scope.message_box = check_input_for_signup(sign_up_form);
+    //if ( $scope.message_box != "" ){ return false; }
 
-yomu_lab.controller('LogOutCtrl',['$scope', '$http', '$window', 'Auth',function($scope, $http, $window, Auth) {
-  
-  $scope.clickLogOut = function(){
+    var logged_in_user = "";
 
-    Auth.logout(config).then(function(oldUser) {
-        alert(oldUser.name + "you're signed out now.");
-    }, function(error) {
-        // An error occurred logging out.
-    });
+    yomuLabAppService.register_new_user(sign_up_form).then(function(data) {
 
-    $scope.$on('devise:logout', function(event, oldCurrentUser) {
-        // ...
+      if (data.data.current_user == false){
+        $cookies.remove("yomu_app_token");
+        $scope.message_box = data.data.response_message;
+      }
+      else{
+
+        logged_in_user = angular.fromJson(data.data.current_user);
+        $scope.message_box = data.data.response_message;
+
+        $scope.current_user = {
+          email: logged_in_user.email,
+          first_name: logged_in_user.first_name,
+          last_name: logged_in_user.last_name,
+          id: logged_in_user.id,
+          level: logged_in_user.level,
+          original_language: logged_in_user.original_language,
+          provider: logged_in_user.provider,
+          target_language: logged_in_user.target_language,
+          ui_language: logged_in_user.ui_language,
+          unconfirmed_email: logged_in_user.unconfirmed_email,
+          authentication_token: logged_in_user.authentication_token
+        };
+
+        $cookies.put('yomu_app_token', $scope.current_user.authentication_token);
+        var landingUrl = "http://" + $window.location.host + "/home/tell_your_friends";
+        $window.location.href = landingUrl;       // after a login, a hard refresh, a new tab
+      }
+    }, function() {
+      console.log("Service give error while creating new user.");
     });
   }
+}]);
+
+yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', '$cookies', 'yomuLabAppService', 'Auth', function($scope, $http, $window, $cookies, yomuLabAppService, Auth) {
+
+  $scope.init = function(token){
+    if (token != ""){
+      $cookies.put('yomu_app_token', token);
+    }
+    var authentication_token = $cookies.get('yomu_app_token');
+    var logged_in_user = "";
+
+    yomuLabAppService.get_user_details(authentication_token).then(function(data) {
+      logged_in_user = angular.fromJson(data.data.current_user);
+      $scope.message_box = data.data.response_message;
+
+      $scope.current_user = {
+        email: logged_in_user.email,
+        first_name: logged_in_user.first_name,
+        last_name: logged_in_user.last_name,
+        id: logged_in_user.id,
+        level: logged_in_user.level,
+        original_language: logged_in_user.original_language,
+        provider: logged_in_user.provider,
+        target_language: logged_in_user.target_language,
+        ui_language: logged_in_user.ui_language,
+        unconfirmed_email: logged_in_user.unconfirmed_email
+      };
+      console.log("current_user-email="+$scope.current_user.email);
+    }, function() {
+      console.log("Service give error while retreiving the Products List for Product Traffic By Demographics.");
+    });
+  }
+
+  $scope.init();
 
 }]);

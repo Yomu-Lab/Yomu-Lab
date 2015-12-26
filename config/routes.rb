@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   
   get 'home/user_details/:authentication_token' => 'home#user_details'
   get 'home/current_user_details/:authentication_token' => 'home#current_user_details'
+  post 'home/register' => 'home#register'
 
   root 'home#index'
 
