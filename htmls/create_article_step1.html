@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,700" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yomu Lab</title>
+  <meta name="description" content="Yomu Lab">
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/magnific-popup.css" rel="stylesheet">  
+  <link href="css/main.css" rel="stylesheet">
+  <link href="css/social-sharing.css" rel="stylesheet">
+</head>
+<body>
+
+ <header id="articleHeader">
+   <div class="col-md-6 col-sm-10 col-centered clearfix">
+     <h1 id="logo" class="pull-left"><a href="#"><img class="logo-head" alt="logo" src="img/logo_icon_nobg.svg" height="50" width="50" /></a></h1>
+     <aside class="pull-right">
+      <div class="dropdown" id="dropdownMenuTop">
+       <div class="dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><div class="frame"><img alt="avtar" src="img/avtar.jpg" /></div> Jason</div>
+       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+         <li><a href="#">Admin</a></li>
+         <li role="separator" class="divider"></li>
+         <li><a href="#">Settings</a></li>
+         <li role="separator" class="divider"></li>
+         <li><a href="#">Log Out</a></li>
+
+       </ul>
+     </div>
+   </aside> 
+ </div>
+</header>
+<section id="adminWrapper">
+
+  <section id="createarticle_step1" class="steps_top_padding">
+    <div class="col-md-7 col-centered">
+      <div id="steps" class="col-centered clearfix">
+        <div class="circleTop">
+        <div class="circle active">1</div>
+          <span>Text</span>
+        </div>
+        <div class="line"></div>
+        <div class="circleTop">
+        <div class="circle">2</div>
+        <span>Annotation</span>
+        </div>
+        <div class="line"></div>
+        <div class="circleTop">
+        <div class="circle">3</div>
+        <span>Translation</span>
+        </div>
+        <div class="line"></div>
+        <div class="circleTop">
+        <div class="circle">4</div>
+        <span>Review</span>
+        </div>
+      </div>
+      <form>
+      <div class="clearfix">
+        <div class="form-group col-md-12">
+          <input type="text" placeholder="Enter your title *" class="form-control" />
+        </div>
+      </div>
+      <div class="clearfix">
+        <div class="form-group col-md-4">
+          <input type="text" placeholder="Enter Source Name" class="form-control" />
+        </div>
+        <div class="form-group col-md-4">
+          <input type="text" placeholder="Enter Source URL" class="form-control" />
+        </div>
+        <div class="form-group col-md-4">
+          <input type="text" placeholder="Enter Level" class="form-control" />
+        </div>
+      </div>
+      <div class="clearfix">
+      <div class="form-group col-md-12">
+        <textarea placeholder="Enter Text *" class="form-control"></textarea>
+      </div>
+      </div>
+      <div class="text-right clearfix">
+      <div class="form-group col-md-12">
+      <button type="submit" class="btn btn-primary stepButton">Next &gt;&gt;</button>
+      </div>
+      </div>
+      </form>
+    </div>
+  </section>
+</section>
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="js/waypoints-sticky.min.js"></script>
+<script src="js/retina.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/jquery-lang.min.js"></script>
+<script>
+  var lang = new Lang('en');
+  lang.dynamic('fr', 'js/langpack/fr.json');
+  lang.dynamic('de', 'js/langpack/de.json');
+</script>
+<script src="js/main.js"></script>
+<script src="js/gmap.js"></script>
+</body>
+</html>
