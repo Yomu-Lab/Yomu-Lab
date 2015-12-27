@@ -145,3 +145,31 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', '$cookies', 
   $scope.init();
 
 }]);
+
+
+yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', '$cookies', 'yomuLabAppService', 'Auth', function($scope, $http, $window, $cookies, yomuLabAppService, Auth) {
+
+  $scope.init = function(){
+    //console.log("YomuLabsDefaultCtrl - init");
+  }
+
+  //$scope.init();
+  $scope.fetch_user_by_token = function(reset_password_token){
+    //console.log("YomuLabsDefaultCtrl - set_token");
+
+    yomuLabAppService.get_user_details_by_reset_password_token(reset_password_token).then(function(data) {
+      logged_in_user = angular.fromJson(data.data.current_user);
+      $scope.current_user_email = logged_in_user.email;
+      $scope.current_user_name = logged_in_user.first_name +" "+logged_in_user.last_name;
+
+      //console.log("current_user-email="+$scope.current_user_email);
+    }, function() {
+      console.log("Service give error while retrieving the user details at reset password token.");
+    });
+
+
+  }
+
+
+
+}]);

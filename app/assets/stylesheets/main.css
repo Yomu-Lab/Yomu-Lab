@@ -109,7 +109,7 @@
    ========================================================================== */
 
    .hero-section {
-    background: url("/assets/bg.jpg") center center no-repeat scroll;
+    background: url(../img/bg.jpg) center center no-repeat scroll;
     background-size: cover;
     padding: 0 0 4.5em;
     position: relative;
@@ -395,7 +395,7 @@
     position: relative;
     height: 400px;
     overflow: hidden;
-    background: #333 url("/assets/bg-video-preview.jpg") center center no-repeat scroll;
+    background: #333 url(../img/bg-video-preview.jpg) center center no-repeat scroll;
     background-size: cover;
     -webkit-perspective: 1000;
     perspective: 1000;
@@ -462,7 +462,7 @@
    ========================================================================== */
 
    .pricing {
-    background: url("/assets/bg-pricing.jpg") center center no-repeat scroll;
+    background: url(../img/bg-pricing.jpg) center center no-repeat scroll;
     background-size: cover;
     position: relative;
   }
@@ -714,7 +714,7 @@
    ========================================================================== */
 
    .twitter-feed {
-    background: url("assets/bg-twitter.jpg") center center no-repeat scroll;
+    background: url(../img/bg-twitter.jpg) center center no-repeat scroll;
     background-size: cover;
     position: relative;
   }
@@ -763,7 +763,7 @@
 
   .map-head h3 {
     height: 30px;
-    background: url("assets/logo-nav.png") 47px center no-repeat;
+    background: url(../img/logo-nav.png) 47px center no-repeat;
     background-size: 110px auto;
     text-indent: -999em;
     margin: 12px 0 14px;
@@ -952,8 +952,22 @@
   #tellyourfriendsFooter p {font-size: 12px; color: #000; margin-bottom: 5px}
   #tellyourfriendsFooter p a {color:#279bb8;}
   #tellyourfriendsFooter p a:hover {text-decoration: underline;}
-
-   /* Language Level */
+  #friendsListModal .sendBtn {padding: 6px 12px; text-transform: capitalize;}
+  #friendsListModal ul.friendsList li {border: 1px solid #fff; padding: 2px; margin: 0 0 10px 0;}
+  #friendsListModal ul.friendsList li label {cursor: pointer; font-size: 13px}
+  #friendsListModal ul.friendsList li img {border: 1px solid #ccc}
+  #friendsListModal ul.friendsList li:nth-child(odd) {
+      float: right;
+  } 
+  #friendsListModal ul.friendsList li:hover {border:1px solid #66be60;}
+  #friendsListModal .modal-dialog {
+    overflow-y: initial !important
+  }
+  #friendsListModal .modal-body {
+       height: 500px;  
+       width: 100% !important
+  }
+   /* Language Level */  
   #langLevel {padding-top: 20px}
   #langLevelHeader {padding-bottom: 10px}
   #langLevelHeader p {font-size: 13px}  
@@ -994,7 +1008,7 @@
   #articleInfo .source a:hover {text-decoration: none;}
   #articleDetails #articleHeading {padding: 10px 0 30px; color: #000}
   #articleDetails #articleBody {position: relative;}
-  #articleDetails #articleBody .articleContent p {margin-bottom: 30px; color: #000; line-height: 30px}
+  #articleDetails #articleBody .articleContent p {margin-bottom: 30px; color: #000; line-height: 34px}
   #articleDetails .actionpanel .btn {text-transform: capitalize; margin-right: 10px; padding: 6px 12px; font-size: 13px}
   #articleDetails .actionpanel .btn-default.disabled {background: #ccc}
   #articleDetails .actionpanel span {color:#9d9f9f; font-size: 13px}
@@ -1010,7 +1024,62 @@
   #definationBox span.label {width: 104px; display: inline-block; padding-right: 10px; font-weight: bold}
   #definationBox .closebtn {font-size: 12px; color: #bbb; cursor: pointer; text-decoration: underline;}
   #definationBox .closebtn:hover {text-decoration: none;}
+  .synonyms {position: relative;}
+  .synonyms span {position: absolute; top:-20px; left: 0; font-size: 12px}
+  
+  /** Send Feedback Page **/
+  
+  #sendFeedback {padding-top: 50px}
+  #sendFeedbackHeader {padding-bottom: 50px}
+  #feedbackContent p {font-size: 15px; color: #000}
+  #feedbackContent .textarea {height: 200px}
+  #feedbackFooter {padding-top: 50px}
+  #feedbackFooter .notetext {font-size: 15px}
+  #feedbackContent .submitbtn {padding-left: 30px; padding-right: 30px; text-transform: capitalize;}
+  #feedbackContent .thankyoumessage {margin-bottom: 50px}
 
+  /*** Admin Wrapper ***/
+  #adminWrapper {min-width: 980px}
+  .steps_top_padding {padding-top: 30px}
+  .stepButton {border: 1px solid #66be60; background: none; color: #66be60; padding: 6px 30px; font-size: 14px; text-transform: capitalize;}
+  .stepButton:hover, .stepButton:focus {border: 1px solid #66be60}
+
+  /*** Admin Dashboard ***/
+  #adminDashboard {padding-top: 10px}
+  #adminDashboard h2 {font-weight: normal; color: #000}
+  #adminDashboard #createArticle {text-transform: capitalize; padding: 6px 12px; font-size: 13px}
+  #dashboardTable th {background: #b7b6b6; font-size: 13px; color: #fff; text-align: center; padding: 5px 8px}
+  #dashboardTable td {padding: 5px 8px; font-size: 13px; color: #000; text-align: center;}
+  #dashboardTable td .btn-link { background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    color: #000;
+    font-size: 13px;
+    padding: 0;
+    text-transform: capitalize;}
+
+  /*** Create Article Step 1 ***/  
+  #createarticle_step1 .form-control {border-color:#9b9c9d;}
+  #createarticle_step1 .form-control:focus {border-color:#36bb4d;} 
+  #createarticle_step1 textarea.form-control {height: 200px; padding-top: 10px}  
+  #steps {width: 578px; margin-bottom: 30px}
+  #steps .circle {border: 1px solid #66be60; color: #66be60; width: 60px; height: 60px; border-radius: 50%; line-height: 60px; text-align: center; font-size: 28px; margin-bottom: 10px}
+  #steps .circle.active {background: #66be60; color:#fff;}
+  #steps .line {height: 1px; background: #999898; margin: 30px 18px 0 18px; width: 72px; float: left;}
+  #steps .circleTop {float: left; text-align: center; font-size: 13px}
+
+  /*** Change Password ***/
+  #changePassword {padding-top: 60px}
+  #changePassword .form-control {border-color:#9b9c9d;}
+  #changePassword .form-control:focus {border-color:#36bb4d;} 
+  #changePassword .form-horizontal .control-label {font-weight: normal; text-align: left; color: #999; padding-top: 16px; padding-right: 0}
+  #changePassword .form-horizontal .control-label.password_label {padding-top: 0}
+  #changePassword .actions {padding-top: 30px}
+  #changePassword .actions .btn {padding: 6px 32px; text-transform: capitalize; font-weight: normal; font-size: 13px}
+  #changePassword .cancelBtn {background: #ababab}
+  #changePassword .cancelBtn:hover {background: #9c9b9b}
+  #changePassword form a {color:#3c57a7; text-decoration: underline;}
+  #changePassword form a:hover {text-decoration: none;}
+  #changePassword form input.error {border-color: #f00}
+  
 /* ==========================================================================
    19.Small devices (tablets, 768px and up)
    ========================================================================== */

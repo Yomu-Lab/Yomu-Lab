@@ -54,7 +54,21 @@
       });      
     };
 
-
+    /*
+    # => Get User Details By Reset Password Token
+    */
+    this.get_user_details_by_reset_password_token = function(token){
+      /*
+      login_form = {
+                      "user": {
+                        "email": login_form.email
+                      }
+                    }
+      */
+      return $http.get("/default/get_user_details_by_reset_password_token/"+token+".json").success(function(data, status) {
+        console.log("get_user_details_by_reset_password_token");
+      });      
+    };
 
 
   }]);
