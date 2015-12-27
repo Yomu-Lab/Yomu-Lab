@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   resources :default
   # match '/ForgotPassword' => 'default#forgot_password', via: [:get]
-  # match '/ResetPassword' => 'default#reset_password', via: [:get]
+  match '/ResetPassword' => 'default#reset_password', via: [:get]
 
   root 'home#index'
 
