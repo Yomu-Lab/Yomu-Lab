@@ -41,9 +41,20 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', '$cookies', '
     });
   }
 
-  $scope.forgot_password = function(loginForm){
+  $scope.forgot_password = function(loginForm){    
+    /*
+      => Check Email Valid Or Not
+    */
     $scope.message_box = check_input_for_forgot_password(loginForm.email);
     if ( $scope.message_box != "" ){ return false; }
+    /*
+      => Reset Password Link - To Email
+    */
+    yomuLabAppService.get_reset_password_link(loginForm).then(function(data) {
+      $scope.message_box = data.data.response_message;
+    }, function() {
+      console.log("Service give error while retrieving password link.");
+    });
   }
 
 }]);
@@ -127,7 +138,7 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', '$cookies', 
       };
       console.log("current_user-email="+$scope.current_user.email);
     }, function() {
-      console.log("Service give error while retreiving the Products List for Product Traffic By Demographics.");
+      console.log("Service give error while retrieving the user details.");
     });
   }
 

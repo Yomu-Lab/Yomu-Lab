@@ -12,13 +12,11 @@ Devise.setup do |config|
   #config.omniauth :facebook, "327554610669430", "cc67fb7616c240499fb1c2f95acf930f"
   #config.omniauth :twitter, "KEY", "SECRET"
 
-
-
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'yomulabs@gmail.com'
 
   # => YomuLabs  
   #config.omniauth :facebook, "904030749652784", "853580d4fa816c6445be0fb0ffe2915f", scope: 'email,public_profile', info_fields: 'email, first_name, last_name'
@@ -222,7 +220,8 @@ Devise.setup do |config|
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
   # config.scoped_views = false
-
+    config.scoped_views = true
+    
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).
   # config.default_scope = :user

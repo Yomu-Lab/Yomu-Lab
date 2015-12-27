@@ -15,10 +15,8 @@
       console.log("get_logged_in_user - enter");
       return $http.get("/home/user_details/"+authentication_token+".json").
         success( function(data, status, header, config){
-
           var logged_in_user = data.current_user;
           console.log("get_logged_in_user - Success"+data);
-
         }).
         error( function(data, status, header, config){
           console.log("get_logged_in_user - Error");
@@ -41,7 +39,24 @@
         console.log("test - "+data);
       });      
     };
+
+    /*
+    # => Register New User
+    */
+    this.get_reset_password_link = function(login_form){
+      login_form = {
+                      "user": {
+                        "email": login_form.email
+                      }
+                    }
+      return $http.post("/users/password", login_form).success(function(data, status) {
+        //console.log("forgot password link");
+      });      
+    };
+
+
+
+
   }]);
 
 // })();
-

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, controllers: {
-    sessions: 'users/sessions', :omniauth_callbacks => "callbacks"
+    sessions: 'users/sessions', :omniauth_callbacks => "callbacks", :passwords =>"users/passwords"
   }
 
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   get 'home/user_details/:authentication_token' => 'home#user_details'
   get 'home/current_user_details/:authentication_token' => 'home#current_user_details'
   post 'home/register' => 'home#register'
+
+  resources :default
+  # match '/ForgotPassword' => 'default#forgot_password', via: [:get]
+  # match '/ResetPassword' => 'default#reset_password', via: [:get]
 
   root 'home#index'
 

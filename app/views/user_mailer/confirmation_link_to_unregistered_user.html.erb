@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @subject %></h1>
+    <p>
+      Dear <%=@user.first_name %> <%=@user.last_name %>,
+      You recently selected <%=@user.email %> as your new Yomu Labs Id. To verify this email address belongs to you, click the link below and then sign in using your Yomu Labs ID and password.
+      <a href="<%=confirmation_url %>">Verify Now</a>
+    </p>
+    <p>
+      Why you received this email.
+      Yomu Labs requests verification whenever an email address is selected as an Yomu Labs ID. Your Yomu Labs cannot be used until you verify it.
+      If you didn’t make this change or if you believe an unauthorized person is attempting to access your account, you can reset your password by going to Yomu Labs ID.
+      <br/>
+      To login to the site, just follow this link: <a href="<%=@url%>">Yomu Labs Sign In</a>
+    </p>
+    <p>
+      Sincerely,<br/>
+      Yomu Labs Support
+    </p>
+  </body>
+</html>
