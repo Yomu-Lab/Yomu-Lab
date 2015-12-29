@@ -65,3 +65,25 @@ function check_input_for_signup(sign_up_form){
   }
   return error_message_value;  
 }
+
+
+function check_input_for_reset_password_token(reset_password_token, reset_password_form){
+  console.log("check_input_for_reset_password_token="+reset_password_form);
+  var error_message_value = "";
+  if ( reset_password_form == undefined ){
+    error_message_value = "Please fill the empty text boxes.";
+  } 
+  else if ( reset_password_form.password == undefined || reset_password_form.password == "" || reset_password_form.password.length == 0 ){
+    error_message_value = "Please enter your password.";
+  }
+  else if ( reset_password_form.password_confirmation == undefined || reset_password_form.password_confirmation == "" || reset_password_form.password_confirmation.length == 0 ){
+    error_message_value = "Please enter your password confirmation.";
+  }
+  else if ( reset_password_form.password.length < PASSWORD_LENGTH_MINIMUM || reset_password_form.password_confirmation.length < PASSWORD_LENGTH_MINIMUM ){
+    error_message_value = "Short passwords are easy to guess. Try one with at least 8 characters.";
+  }
+  else if ( reset_password_form.password != reset_password_form.password_confirmation ){
+    error_message_value = "Both these passwords don't match. Try again?";
+  }
+  return error_message_value;  
+}

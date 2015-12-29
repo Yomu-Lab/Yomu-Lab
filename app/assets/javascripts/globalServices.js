@@ -70,6 +70,21 @@
       });      
     };
 
+    /*
+    # => Set New Password Using By Reset Password Token
+    */
+    this.set_new_password_using_token = function(reset_password_token, reset_password_form){
+      new_password_details = {
+                                "user": {
+                                  "reset_password_token": reset_password_token,
+                                  "password": reset_password_form.password,
+                                  "password_confirmation": reset_password_form.password_confirmation
+                                }
+                              }
+      return $http.put("/users/password/", new_password_details).success(function(data, status) {
+        console.log("set_new_password_using_token");
+      });      
+    };
 
   }]);
 

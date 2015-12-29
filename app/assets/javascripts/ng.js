@@ -155,21 +155,34 @@ yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', '$cook
 
   //$scope.init();
   $scope.fetch_user_by_token = function(reset_password_token){
-    //console.log("YomuLabsDefaultCtrl - set_token");
-
     yomuLabAppService.get_user_details_by_reset_password_token(reset_password_token).then(function(data) {
       logged_in_user = angular.fromJson(data.data.current_user);
-      $scope.current_user_email = logged_in_user.email;
-      $scope.current_user_name = logged_in_user.first_name +" "+logged_in_user.last_name;
 
-      //console.log("current_user-email="+$scope.current_user_email);
+      if (logged_in_user == null){
+        // Pass invalid token message - Some error code
+        $cookies.put('yomu_app_token', "");
+        var landingUrl = "http://" + $window.location.host + "/Login";
+        $window.location.href = landingUrl;
+      }else{
+        $scope.current_user_email = logged_in_user.email;
+        $scope.current_user_name = logged_in_user.first_name +" "+logged_in_user.last_name;
+      }
     }, function() {
       console.log("Service give error while retrieving the user details at reset password token.");
     });
-
-
   }
 
+  $scope.set_new_password_using_token = function(reset_password_token, reset_password_form){
+    // Empty the Error Message Box
+    $scope.message_box = "";
+    $scope.message_box = check_input_for_reset_password_token(reset_password_token, reset_password_form);
+    if ( $scope.message_box != "" ){ return false; }
 
+    yomuLabAppService.set_new_password_using_token(reset_password_token, reset_password_form).then(function(data) {
+      $scope.message_box = data.data.response_message;
+    }, function() {
+      console.log("Service give error while setting new password.");
+    });
+  }
 
 }]);

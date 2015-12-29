@@ -11,19 +11,13 @@ class Users::PasswordsController < Devise::PasswordsController
       @user = User.find_by_email(resource_params[:email])
       if @user.present?
         @user.send_reset_password_instructions
-        render :json => {
-          :status => 200, :response_message => "Password reset successfully.",
-        }
+        render :status => 200, :json => {:status => "success", :response_code => 200, :response_message => "Password reset successfully."}
       else
-        render :json => {
-          :status => 400, :response_message => "No such email exists.",
-        }
+        render :status => 400, :json => {:status => "error", :response_code => 400, :response_message => "No such email exists."}
       end
     rescue
       # => Email To Support Team about Error occurence
-      render :json => {
-        :status => 400, :response_message => "Error occurred while reseting the password.",
-      }
+      render :status => 400, :json => {:status => "error", :response_code => 400, :response_message => "Password saved successfully."}
     end
   end
 
@@ -34,8 +28,22 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # PUT /resource/password
   def update
-    super
+    reset_password_token = Devise.token_generator.digest(User, :reset_password_token, params[:user][:reset_password_token])
+    @user_detail = User.find_by_reset_password_token(reset_password_token)
+    user_data_save = @user_detail.update(user_params)
+
+    if user_data_save
+      render :status => 200, :json => {:status => "success", :response_code => 200, :response_message => "Password saved successfully."}
+    else
+      render :status => 404, :json => {:status => "error", :response_code => 200, :response_message => "Invalid userid."}
+    end
   end
+
+  def user_params
+    # NOTE: Using `strong_parameters` gem
+    params.require(:user).permit(:reset_password_token, :password, :password_confirmation)
+  end
+
 
   # protected
 
