@@ -28,15 +28,20 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', '$cookies', '
       // Setting a cookie       
       $cookies.put('yomu_app_token', user.authentication_token);
     }, function(error) {
+      //$cookies.remove('yomu_app_token');
+      $cookies.yomu_app_token = undefined;
       console.log("Auth failed");       // Authentication failed...
+      $scope.message_box = "Invalid Email and Password. Please try again.";
     });
 
     $scope.$on('devise:login', function(event, currentUser) {
+      console.log("current_user = "+currentUser);
       var landingUrl = "http://" + $window.location.host + "/home/tell_your_friends";
       $window.location.href = landingUrl;       // after a login, a hard refresh, a new tab
     });
 
     $scope.$on('devise:new-session', function(event, currentUser) {
+      console.log("current_user = "+currentUser);
       // user logged in by Auth.login({...})
     });
   }
@@ -57,6 +62,22 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', '$cookies', '
     });
   }
 
+}]);
+
+/*
+* YomuLabsSignOutCtrl Controller
+*/
+yomu_lab.controller('YomuLabsSignOutCtrl', ['$scope', '$http', '$window', '$cookies', function($scope, $http, $window, $cookies) {
+  $scope.init = function(){
+    $scope.message_box = "";
+  }
+  $scope.init();
+
+  $scope.sign_out = function(){    
+    $cookies.remove('yomu_app_token');
+    var landingUrl = "http://" + $window.location.host + "/Login";
+    $window.location.href = landingUrl;       // after a login, a hard refresh, a new tab
+  }
 }]);
 
 /*
