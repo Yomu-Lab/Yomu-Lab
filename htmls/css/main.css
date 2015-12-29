@@ -820,7 +820,9 @@
   }
 
   .error { color: #FF4C4C !important; }
-
+  .success { color: #4DD865 !important; }
+  .info { color: #3c57a7 !important}
+  
   .valid { color: #4CAF50 !important; }
 
   .error i,
