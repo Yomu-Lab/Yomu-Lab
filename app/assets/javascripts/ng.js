@@ -52,19 +52,13 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', '$cookies', '
     });
   }
 
-  $scope.forgot_password = function(loginForm){    
+  $scope.forgot_password = function(email){    
     /*
       => Check Email Valid Or Not
     */
-    var config = {
-      headers: {
-        'X-HTTP-Method-Override': 'POST'
-      }
-    };
-
     // Empty the Error Message Box
     $scope.message_box = "";
-    $scope.message_box = check_input_for_forgot_password(loginForm.email);
+    $scope.message_box = check_input_for_forgot_password(email);
     if ( $scope.message_box != "" ){
       $scope.message_type = "error";
       return false;
@@ -73,7 +67,12 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', '$cookies', '
     /*
       => Reset Password Link - To Email
     */
-    yomuLabAppService.get_reset_password_link(loginForm, config).then(function(data) {
+    var config = {
+      headers: {
+        'X-HTTP-Method-Override': 'POST'
+      }
+    };
+    yomuLabAppService.get_reset_password_link(email, config).then(function(data) {
       $scope.message_type = "success";
       $scope.message_box = data.data.response_message;
       //console.log("forgot_password - message_box = "+$scope.message_box);
