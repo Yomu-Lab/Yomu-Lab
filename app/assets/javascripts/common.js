@@ -2,21 +2,22 @@ var lang = new Lang('en');
 lang.dynamic('fr', 'js/langpack/fr.json');
 lang.dynamic('de', 'js/langpack/de.json');
 
-function check_input_for_login(loginForm, email, password){
+//function check_input_for_login(loginForm, email, password){
+function check_input_for_login(loginForm){
   var error_message_value = "";
   if ( loginForm == undefined ){
     error_message_value = "Please enter your email and password.";
   } 
-  else if ( email == undefined || email == "" || email.length == 0 ){
+  else if ( loginForm.email == undefined || loginForm.email == "" || loginForm.email.length == 0 ){
     error_message_value = "Please enter your email.";
   }
-  else if ( !EMAIL_REGEXP.test(email) ) {
+  else if ( !EMAIL_REGEXP.test(loginForm.email) ) {
     error_message_value = "Please enter your valid email address.";
   }
-  else if ( password == undefined || password == "" || password.length == 0 ){
+  else if ( loginForm.password == undefined || loginForm.password == "" || loginForm.password.length == 0 ){
     error_message_value = "Please enter your password.";
   }
-  else if ( password.length < PASSWORD_LENGTH_MINIMUM ){
+  else if ( loginForm.password.length < PASSWORD_LENGTH_MINIMUM ){
     error_message_value = "Short passwords are easy to guess. Try one with at least 8 characters.";
   }
   return error_message_value;

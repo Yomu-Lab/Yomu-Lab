@@ -1,5 +1,5 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-
+=begin
   def self.provides_callback_for(provider)
     class_eval %Q{
       def #{provider}
@@ -55,4 +55,5 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # def after_omniauth_failure_path_for(scope)
   #   super(scope)
   # end
+=end  
 end

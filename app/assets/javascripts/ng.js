@@ -17,7 +17,8 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', '$cookies', '
   $scope.submit_credentials = function(loginForm){
     // Empty the Error Message Box
     $scope.message_box = "";
-    $scope.message_box = check_input_for_login(loginForm, loginForm.email, loginForm.password);
+    //$scope.message_box = check_input_for_login(loginForm, loginForm.email, loginForm.password);
+    $scope.message_box = check_input_for_login(loginForm);
     if ( $scope.message_box != "" ){
       $scope.message_type = "error";
       return false;
@@ -73,7 +74,7 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', '$cookies', '
       }
     };
     yomuLabAppService.get_reset_password_link(email, config).then(function(data) {
-      $scope.message_type = "success";
+      $scope.message_type = data.data.response_type;
       $scope.message_box = data.data.response_message;
       console.log("forgot_password - message_box = "+$scope.message_box);
     }, function() {
