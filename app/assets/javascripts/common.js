@@ -34,7 +34,7 @@ function check_input_for_forgot_password(email){
 }
 
 function check_input_for_signup(sign_up_form){
-  console.log("check_input_for_signup(sign_up_form)="+sign_up_form);
+  //console.log("check_input_for_signup(sign_up_form)="+sign_up_form);
   var error_message_value = "";
   if ( sign_up_form == undefined ){
     error_message_value = "Please fill the empty text boxes.";
@@ -66,9 +66,8 @@ function check_input_for_signup(sign_up_form){
   return error_message_value;  
 }
 
-
 function check_input_for_reset_password_token(reset_password_token, reset_password_form){
-  console.log("check_input_for_reset_password_token="+reset_password_form);
+  //console.log("check_input_for_reset_password_token="+reset_password_form);
   var error_message_value = "";
   if ( reset_password_form == undefined ){
     error_message_value = "Please fill the empty text boxes.";

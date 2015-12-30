@@ -1,4 +1,13 @@
 class ApplicationMailer < ActionMailer::Base
+
+	include Devise::Mailers::Helpers
+
+
+	def reset_password_instructions(record, opts={})
+		mail(:to => record, :subject => "Reset Password Instructions")
+	end	
+
+
   default from: "from@example.com"
   layout 'mailer'
 

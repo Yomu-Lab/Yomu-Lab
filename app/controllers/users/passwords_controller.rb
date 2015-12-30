@@ -11,13 +11,14 @@ class Users::PasswordsController < Devise::PasswordsController
       @user = User.find_by_email(resource_params[:email])
       if @user.present?
         @user.send_reset_password_instructions
-        render :status => 200, :json => {:status => "success", :response_code => 200, :response_message => "Password reset successfully."}
+        UserMailer.reset_password_instructions(resource_params[:email]).deliver
+        render :status => 200, :json => {:status => "success", :response_code => 200, :response_message => "An email will be sent to your Primary Email address that includes a password reset link."}
       else
         render :status => 400, :json => {:status => "error", :response_code => 400, :response_message => "No such email exists."}
       end
     rescue
       # => Email To Support Team about Error occurence
-      render :status => 400, :json => {:status => "error", :response_code => 400, :response_message => "Password saved successfully."}
+      render :status => 200, :json => {:status => "success", :response_code => 400, :response_message => "An email will be sent to your Primary Email address that includes a password reset link."}
     end
   end
 

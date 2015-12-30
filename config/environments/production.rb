@@ -77,7 +77,8 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { :host => 'https://yomu-lab-staging.herokuapp.com/' }
+  config.action_mailer.default_url_options = { :host => 'http://localhost:3000/' }
+  #config.action_mailer.default_url_options = { :host => 'https://yomu-lab-staging.herokuapp.com/' }
 
   config.action_mailer.delivery_method = :smtp
 
@@ -90,4 +91,5 @@ Rails.application.configure do
     username: 'yomulab@gmail.com',
     password: 'yomu@123'
   }  
+  config.action_mailer.raise_delivery_errors = true
 end

@@ -821,7 +821,9 @@
 
   .error { color: #FF4C4C !important; }
 
-  .valid { color: #4CAF50 !important; }
+  .valid, .success { color: #4CAF50 !important; }
+
+  .info { color: #d9edf7 !important; }
 
   .error i,
   .valid i { padding-right: .5em; }
@@ -925,7 +927,7 @@
   #signupheader p a:hover {text-decoration: underline;}
   #signup_Login .form-control {border-color:#9b9c9d;}
   #signup_Login .form-control:focus {border-color:#36bb4d;}    
-  #errorMsg {margin-bottom: 20px}
+  #errorMsg, #message_box {margin-bottom: 20px}
   #signupfooter {border-top: 1px solid #999898; padding-top: 20px}
   #signup_Login .notetext {font-size: 15px; padding-top: 10px}
   #signup_Login .btn {text-transform: capitalize;}
