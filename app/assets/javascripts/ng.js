@@ -75,11 +75,11 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', '$cookies', '
     yomuLabAppService.get_reset_password_link(email, config).then(function(data) {
       $scope.message_type = "success";
       $scope.message_box = data.data.response_message;
-      //console.log("forgot_password - message_box = "+$scope.message_box);
+      console.log("forgot_password - message_box = "+$scope.message_box);
     }, function() {
       $scope.message_type = "error";
       $scope.message_box = "Service gives error while retrieving password link.";
-      //console.log("Service give error while retrieving password link.");
+      console.log("Service give error while retrieving password link.");
     });
   }
 
