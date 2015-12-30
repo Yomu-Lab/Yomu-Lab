@@ -67,6 +67,7 @@ class HomeController < ApplicationController
           current_user = @user 
           response_code = "200"
           response_message = GlobalMessage::SIGNING_UP_CONFIRM_EMAIL
+          UserMailer.welcome_email(@user).deliver_later
         end
       end
     rescue ActiveRecord::RecordNotUnique

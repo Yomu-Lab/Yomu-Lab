@@ -43,10 +43,10 @@
     /*
     # => Register New User
     */
-    this.get_reset_password_link = function(login_form){
+    this.get_reset_password_link = function(email){
       login_form = {
                       "user": {
-                        "email": login_form.email
+                        "email": email
                       }
                     }
       return $http.post("/users/password", login_form).success(function(data, status, header, config) {

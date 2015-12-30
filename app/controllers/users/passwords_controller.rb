@@ -34,7 +34,7 @@ class Users::PasswordsController < Devise::PasswordsController
     user_data_save = @user_detail.update(user_params)
 
     if user_data_save
-      render :status => 200, :json => {:status => "success", :response_code => 200, :response_message => "Password saved successfully."}
+      render :status => 200, :json => {:status => "success", :response_code => 200, :response_message => "Password updated successfully. Please sign in again."}
     else
       render :status => 404, :json => {:status => "error", :response_code => 200, :response_message => "Invalid userid."}
     end

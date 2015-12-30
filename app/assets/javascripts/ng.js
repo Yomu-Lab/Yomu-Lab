@@ -125,11 +125,13 @@ yomu_lab.controller('YomuLabsSignUpCtrl', ['$scope', '$http', '$window', '$cooki
 
       if (data.data.current_user == false){
         $cookies.remove("yomu_app_token");
+        $scope.message_type = "error";
         $scope.message_box = data.data.response_message;
       }
       else{
 
         logged_in_user = angular.fromJson(data.data.current_user);
+        $scope.message_type = "success";
         $scope.message_box = data.data.response_message;
 
         $scope.current_user = {
@@ -230,10 +232,25 @@ yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', '$cook
 
     yomuLabAppService.set_new_password_using_token(reset_password_token, reset_password_form).then(function(data) {
       $scope.message_type = "success";
+      $scope.redirect_page_to_sign_in_page();
       $scope.message_box = data.data.response_message;
     }, function() {
       console.log("Service give error while setting new password.");
     });
   }
+
+  $scope.redirect_page_to_sign_in_page = function(){
+    var seconds = 5;
+    $scope.remaining_seconds = seconds;
+    setInterval(function () {
+      seconds--;
+      $scope.remaining_seconds = seconds;
+      if (seconds == 0) {
+        //$scope.remaining_seconds = 0;
+        window.location = "/Login";
+      }
+    }, 1000);
+  }
+
 
 }]);

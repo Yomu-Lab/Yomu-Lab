@@ -1,5 +1,7 @@
 class UserMailer < ApplicationMailer
 
+	default from: 'notifications@yomulabs.com'
+
 	def welcome_email(user)
 		@user = user
 		@subject = "YomuLabs - Welcome You."
@@ -19,7 +21,7 @@ class UserMailer < ApplicationMailer
 		@user = user
 		@subject = "YomuLabs - Reset Password Link  - To set new password."
 		@url = 'https://yomu-lab-staging.herokuapp.com/'
-		@reset_password_url = "" 
+		@reset_password_url = "https://yomu-lab-staging.herokuapp.com/ResetPassword/?token=<%=@token %>">
 		mail( to: @user.email, subject: @subject )
 	end
 

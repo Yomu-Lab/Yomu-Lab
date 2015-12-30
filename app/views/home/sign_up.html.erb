@@ -10,7 +10,11 @@
     </header>
 
     <div class="col-sm-6 col-md-4 col-centered">
-      <p id="errorMsg" class="error small" ng-show="error_message != ''">{{message_box}}</p>
+      
+      <!-- Message Box -->
+      <p id="message_box" class="{{message_type}} small" ng-show="message_box != ''">{{message_box}}</p>
+      <!-- End - Message Box -->
+
       <form name="signinForm" role="form" class="ng-pristine ng-valid-email ng-invalid ng-invalid-required" novalidate>
         <div class="form-group">
           <input type="text" placeholder="First Name *" class="form-control" ng-model="sign_up_form.first_name" name="first_name" required="required" />

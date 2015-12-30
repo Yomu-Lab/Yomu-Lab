@@ -86,3 +86,39 @@ function check_input_for_reset_password_token(reset_password_token, reset_passwo
   }
   return error_message_value;  
 }
+
+
+
+/*
+* Redirect To Login Page
+*/
+function redirect_page_to_sign_in_page1($scope){
+  var seconds = 5;
+  $scope.remaining_seconds = seconds;
+  setInterval(function () {
+    seconds--;
+    $scope.remaining_seconds = seconds;
+    if (seconds == 0) {
+      $scope.remaining_seconds = 0;
+      window.location = "/Login";
+    }
+  }, 1000);
+}
+
+/*
+$(function () {
+    $("#btnRedirect").click(function () {
+        var seconds = 5;
+        $("#dvCountDown").show();
+        $("#lblCount").html(seconds);
+        setInterval(function () {
+            seconds--;
+            $("#lblCount").html(seconds);
+            if (seconds == 0) {
+                $("#dvCountDown").hide();
+                window.location = "http://www.aspsnippets.com/";
+            }
+        }, 1000);
+    });
+});
+*/
