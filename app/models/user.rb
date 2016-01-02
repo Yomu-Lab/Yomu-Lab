@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
       last_name = auth.extra.raw_info.family_name
       email = auth.extra.raw_info.email
     end
+
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
