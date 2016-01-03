@@ -23,7 +23,7 @@ Devise.setup do |config|
 
   # => Production - YomuLabs - yomulab@gmail.com
   config.omniauth :facebook, "903744876407538", "3f19716f756d1106a35e163ce98716aa", scope: 'email,public_profile', info_fields: 'email, first_name, last_name'
-  config.omniauth :google_oauth2, "129795603295-ivuuu7q15mlvmc34ish5ha6lpdje3bqi.apps.googleusercontent.com", " obD_sRyO7oVrbhXOxoXOxJNe"
+  config.omniauth :google_oauth2, "129795603295-ivuuu7q15mlvmc34ish5ha6lpdje3bqi.apps.googleusercontent.com", "obD_sRyO7oVrbhXOxoXOxJNe"
 
   # => Development - YomuLabs - rahulpatil.scs@gmail.com
   #config.omniauth :facebook, "181656798853276", "fd4d0f8646b3b55d12906bc65a55c127", scope: 'email,public_profile', info_fields: 'email, first_name, last_name'
