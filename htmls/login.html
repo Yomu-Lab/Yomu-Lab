@@ -42,7 +42,7 @@
             </div>
           </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-default btn-block submitbtn">Log In</button>
+            <button type="submit" class="btn btn-default btn-block submitbtn">Log In <i class="fa fa-refresh fa-spin hidden loader"></i></button>
           </div>
         </form>
         <footer id="signupfooter">
@@ -72,5 +72,13 @@
       </script>
       <script src="js/main.js"></script>
       <script src="js/gmap.js"></script>
+      <script type="text/javascript">
+      		$(document).ready(function(){
+      			$(".loader").addClass("hidden");
+      			$(".submitbtn").click(function(){      				
+      				$(this).find(".loader").removeClass("hidden");
+      			});
+      		});
+      </script>
     </body>
     </html>

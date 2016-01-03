@@ -1,7 +1,7 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "from@example.com"
-  layout 'mailer'
 
+	default from: 'notifications@yomulabs.com'
+  layout 'mailer'
 
 	def error_occured_and_send_email_to_support_team(user, error)
 		staff_email = "yomulab@gmail.com"

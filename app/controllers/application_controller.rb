@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
     return Devise.friendly_token
   end
 
+  def generate_referral_token
+    return SecureRandom.hex(4)
+  end
+
   def ensure_signup_complete
     # Ensure we don't go into an infinite loop
     return if action_name == 'finish_signup'

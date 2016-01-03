@@ -6,7 +6,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '666f413816f34afb376459e47e9781164b7faad5532f08ad758da4247135fd9472de9fc10f4cda4ca31a2bec08fe18f35146efece61e9bf71c120203847df326'
+  config.secret_key = '666f413816f34afb376459e47e9781164b7faad5532f08ad758da4247135fd9472de9fc10f4cda4ca31a2bec08fe18f35146efece61e9bf71c120203847df326'
 
   # => Omniauth Verification 
   #config.omniauth :facebook, "327554610669430", "cc67fb7616c240499fb1c2f95acf930f"
@@ -16,14 +16,18 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'yomulabs@gmail.com'
+  config.mailer_sender = 'yomulab@gmail.com'
 
   # => YomuLabs  
   #config.omniauth :facebook, "904030749652784", "853580d4fa816c6445be0fb0ffe2915f", scope: 'email,public_profile', info_fields: 'email, first_name, last_name'
 
-  # => YomuTest
-  config.omniauth :facebook, "181656798853276", "fd4d0f8646b3b55d12906bc65a55c127", scope: 'email,public_profile', info_fields: 'email, first_name, last_name'
-  config.omniauth :google_oauth2, "234954652765-bduggs2ogm0lelpi0iet15klbrqiv4ov.apps.googleusercontent.com", "9o-Js2n5y8yzM7coaK25RGVB"
+  # => Production - YomuLabs - yomulab@gmail.com
+  config.omniauth :facebook, "903744876407538", "3f19716f756d1106a35e163ce98716aa", scope: 'email,public_profile', info_fields: 'email, first_name, last_name'
+  config.omniauth :google_oauth2, "129795603295-ivuuu7q15mlvmc34ish5ha6lpdje3bqi.apps.googleusercontent.com", "obD_sRyO7oVrbhXOxoXOxJNe"
+
+  # => Development - YomuLabs - rahulpatil.scs@gmail.com
+  #config.omniauth :facebook, "181656798853276", "fd4d0f8646b3b55d12906bc65a55c127", scope: 'email,public_profile', info_fields: 'email, first_name, last_name'
+  #config.omniauth :google_oauth2, "234954652765-bduggs2ogm0lelpi0iet15klbrqiv4ov.apps.googleusercontent.com", "9o-Js2n5y8yzM7coaK25RGVB"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'

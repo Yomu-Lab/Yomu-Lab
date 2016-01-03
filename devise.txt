@@ -30,3 +30,11 @@ Some setup you must do manually if you haven't yet:
 
        rails g devise:views
 
+# Password Manually Set
+
+# Confirmation Email - Testing
+
+# Refer Friend - Spam Link - Posting
+
+#Confirmation token is invalid
+Email was already confirmed, please try signing in

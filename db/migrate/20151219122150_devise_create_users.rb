@@ -48,6 +48,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.integer  :level
       t.string   :provider
       t.string   :uid
+      t.string   :referral_code
 
       t.timestamps null: false
     end

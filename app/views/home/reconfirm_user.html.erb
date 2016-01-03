@@ -1,0 +1,28 @@
+<!-- Reconfirm User -->
+<section id="sendFeedback" ng-controller="YomuLabsDefaultCtrl">
+ 	<div class="container" ng-init="fetch_user_by_confirmation_token('<%=@confirmation_token %>');">
+ 		<header id="sendFeedbackHeader">
+    	<p class="text-center">
+    		<a href="/"><img class="logo-head" alt="logo" src="/assets/logo_icon_nobg.svg" height="50" width="50" /></a>
+  		</p>
+		</header>
+
+		<div id="feedbackContent" class="col-sm-6 col-md-6 col-centered">
+			<p id="errorMsg" class="error small"></p>
+	    <form>
+        <div class="form-group">
+        	<p class="small text-center thankyoumessage {{message_type}}" ng-show="message_box != ''">
+        		{{message_box}}
+      		</p>
+      	</div>
+      	<div class="form-group text-center">
+      		<a href="/" class="btn btn-default submitbtn">Home</a>
+    		</div>
+  		</form>
+		</div>
+
+		<footer id="feedbackFooter">
+			<p class="text-center notetext">We will not share your comments and <br /> identity with a third-party.</p>
+		</footer>
+  </div>
+</section>

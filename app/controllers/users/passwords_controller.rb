@@ -8,16 +8,18 @@ class Users::PasswordsController < Devise::PasswordsController
   # => POST /resource/password
   def create
     begin
-      @user = User.find_by_email(resource_params[:email])
+      @user = User.find_by_email(params[:user][:email])
+
       if @user.present?
         @user.send_reset_password_instructions
-        render :status => 200, :json => {:status => "success", :response_code => 200, :response_message => "Password reset successfully."}
+        UserMailer.reset_password_instructions(resource_params[:email]).deliver
+        render :status => 200, :json => {:response_type => "success", :response_code => 200, :response_message => "An email will be sent to your Primary Email address that includes a password reset link."}
       else
-        render :status => 400, :json => {:status => "error", :response_code => 400, :response_message => "No such email exists."}
+        render :status => 200, :json => {:response_type => "error", :response_code => 400, :response_message => "No such email exists."}
       end
     rescue
       # => Email To Support Team about Error occurence
-      render :status => 400, :json => {:status => "error", :response_code => 400, :response_message => "Password saved successfully."}
+      render :status => 200, :json => {:response_type => "success", :response_code => 400, :response_message => "An email will be sent to your Primary Email address that includes a password reset link."}
     end
   end
 
@@ -33,7 +35,7 @@ class Users::PasswordsController < Devise::PasswordsController
     user_data_save = @user_detail.update(user_params)
 
     if user_data_save
-      render :status => 200, :json => {:status => "success", :response_code => 200, :response_message => "Password saved successfully."}
+      render :status => 200, :json => {:status => "success", :response_code => 200, :response_message => "Password updated successfully. Please sign in again."}
     else
       render :status => 404, :json => {:status => "error", :response_code => 200, :response_message => "Invalid userid."}
     end

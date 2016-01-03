@@ -43,15 +43,17 @@
     /*
     # => Register New User
     */
-    this.get_reset_password_link = function(login_form){
+    this.get_reset_password_link = function(email){
       login_form = {
                       "user": {
-                        "email": login_form.email
+                        "email": email
                       }
                     }
-      return $http.post("/users/password", login_form).success(function(data, status) {
-        //console.log("forgot password link");
-      });      
+      return $http.post("/users/password", login_form).success(function(data, status, header, config) {
+        console.log("forgot password link - Success");
+      }).error(function(data, status, header, config){
+        console.log("forgot password link - Error");
+      });
     };
 
     /*
@@ -65,9 +67,11 @@
                       }
                     }
       */
-      return $http.get("/default/get_user_details_by_reset_password_token/"+token+".json").success(function(data, status) {
-        console.log("get_user_details_by_reset_password_token");
-      });      
+      return $http.get("/default/get_user_details_by_reset_password_token/"+token+".json").success(function(data, status, header, config) {
+        console.log("get_user_details_by_reset_password_token - Success");
+      }).error(function(data, status, header, config){
+        console.log("get_user_details_by_reset_password_token - Error");
+      });
     };
 
     /*
@@ -81,9 +85,22 @@
                                   "password_confirmation": reset_password_form.password_confirmation
                                 }
                               }
-      return $http.put("/users/password/", new_password_details).success(function(data, status) {
-        console.log("set_new_password_using_token");
-      });      
+      return $http.put("/users/password/", new_password_details).success(function(data, status, header, config) {
+        console.log("set_new_password_using_token - Success");
+      }).error(function(data, status, header, config){
+        console.log("set_new_password_using_token - Error");
+      });
+    };
+
+    /*
+    # => Confirm User Using By Confirmation Token
+    */
+    this.confirm_user_by_confirmation_token = function(confirmation_token){
+      return $http.get("/users/confirmation?confirmation_token="+confirmation_token).success(function(data, status, header, config) {
+        console.log("confirm_user_by_confirmation_token - Success");
+      }).error(function(data, status, header, config){
+        console.log("confirm_user_by_confirmation_token - Error");
+      });
     };
 
   }]);

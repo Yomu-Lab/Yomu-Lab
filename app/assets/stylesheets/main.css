@@ -109,7 +109,7 @@
    ========================================================================== */
 
    .hero-section {
-    background: url(../img/bg.jpg) center center no-repeat scroll;
+    background: url("/assets/bg.jpg") center center no-repeat scroll;
     background-size: cover;
     padding: 0 0 4.5em;
     position: relative;
@@ -395,7 +395,7 @@
     position: relative;
     height: 400px;
     overflow: hidden;
-    background: #333 url(../img/bg-video-preview.jpg) center center no-repeat scroll;
+    background: #333 url("/assets/bg-video-preview.jpg") center center no-repeat scroll;
     background-size: cover;
     -webkit-perspective: 1000;
     perspective: 1000;
@@ -462,7 +462,7 @@
    ========================================================================== */
 
    .pricing {
-    background: url(../img/bg-pricing.jpg) center center no-repeat scroll;
+    background: url("/assets/bg-pricing.jpg") center center no-repeat scroll;
     background-size: cover;
     position: relative;
   }
@@ -714,7 +714,7 @@
    ========================================================================== */
 
    .twitter-feed {
-    background: url(../img/bg-twitter.jpg) center center no-repeat scroll;
+    background: url("/assets/bg-twitter.jpg") center center no-repeat scroll;
     background-size: cover;
     position: relative;
   }
@@ -763,7 +763,7 @@
 
   .map-head h3 {
     height: 30px;
-    background: url(../img/logo-nav.png) 47px center no-repeat;
+    background: url("/assets/logo-nav.png") 47px center no-repeat;
     background-size: 110px auto;
     text-indent: -999em;
     margin: 12px 0 14px;
@@ -820,10 +820,11 @@
   }
 
   .error { color: #FF4C4C !important; }
-  .success { color: #4DD865 !important; }
-  .info { color: #3c57a7 !important}
-  
-  .valid { color: #4CAF50 !important; }
+
+  .valid, .success { color: #4CAF50 !important; }
+
+  .info { color: #d9edf7 !important; }
+
 
   .error i,
   .valid i { padding-right: .5em; }
@@ -927,7 +928,7 @@
   #signupheader p a:hover {text-decoration: underline;}
   #signup_Login .form-control {border-color:#9b9c9d;}
   #signup_Login .form-control:focus {border-color:#36bb4d;}    
-  #errorMsg {margin-bottom: 20px}
+  #errorMsg, #message_box {margin-bottom: 20px}
   #signupfooter {border-top: 1px solid #999898; padding-top: 20px}
   #signup_Login .notetext {font-size: 15px; padding-top: 10px}
   #signup_Login .btn {text-transform: capitalize;}
