@@ -19,7 +19,7 @@
         <p class="small text-center">Share your unique link via Facebook, Twitter, Google Plus or Email</p>
         <div class="col-md-6 col-centered">
           <form class="form-inline sharetofriendsForm clearfix"> 
-            <input class="sharelinkBox text-center col-md-10 col-xs-9" type="text" value="http://www.yomulab.com/signup?prelaunch_ref=f42j43er4">
+            <input class="sharelinkBox text-center col-md-10 col-xs-9" type="text" value="{{referral_url}}" ng-model="referral_url">
             <div class="col-md-2 col-xs-3 sharelinkcopy">
               <button type="button" class="btn btn-default btn-block">Copy</button>
             </div>
@@ -27,9 +27,9 @@
         </div>
         <p class="text-center">
           <!-- Facebook -->
-          <a href="https://www.facebook.com/sharer/sharer.php?u=" title="Share on Facebook" target="_blank" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{referral_url}}" title="Share on Facebook" target="_blank" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
           <!-- Google+ -->
-          <a href="https://plus.google.com/share?url=" title="Share on Google+" target="_blank" class="btn btn-googleplus"><i class="fa fa-google-plus"></i> Google+</a>
+          <a href="https://plus.google.com/share?url={{referral_url}}" title="Share on Google+" target="_blank" class="btn btn-googleplus"><i class="fa fa-google-plus"></i> Google+</a>
         </p>
         </div>
         <div class="col-md-5 signedupFriends col-centered">

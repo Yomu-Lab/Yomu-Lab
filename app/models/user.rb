@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, 
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :confirmable,
          :omniauth_providers => [:facebook, :google_oauth2]
 
   ## Token Authenticatable
@@ -30,6 +30,22 @@ class User < ActiveRecord::Base
       user.email = email
       user.password = Devise.friendly_token[0,20]
     end
+  end
+
+  def only_if_unconfirmed
+    pending_any_confirmation {yield}
+  end
+
+  def attempt_set_password(params)
+    p = {}
+    p[:password] = params[:password]
+    p[:password_confirmation] = params[:password_confirmation]
+    update_attributes(p)
+  end
+  
+  # new function to return whether a password has been set
+  def has_no_password?
+    self.encrypted_password.blank?
   end
 
 end

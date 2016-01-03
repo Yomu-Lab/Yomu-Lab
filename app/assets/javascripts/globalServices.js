@@ -92,6 +92,17 @@
       });
     };
 
+    /*
+    # => Confirm User Using By Confirmation Token
+    */
+    this.confirm_user_by_confirmation_token = function(confirmation_token){
+      return $http.get("/users/confirmation?confirmation_token="+confirmation_token).success(function(data, status, header, config) {
+        console.log("confirm_user_by_confirmation_token - Success");
+      }).error(function(data, status, header, config){
+        console.log("confirm_user_by_confirmation_token - Error");
+      });
+    };
+
   }]);
 
 // })();

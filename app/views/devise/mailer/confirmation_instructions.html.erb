@@ -1,5 +1,28 @@
-<p>Welcome <%= @email %>!</p>
-
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>
+      Dear <%=@resource.first_name %> <%=@resource.last_name %>,<br/><br/>
+      You recently selected <%=@resource.email %> as your new Yomu Labs Id. To verify this email address belongs to you, click the link below and then sign in using your Yomu Labs ID and password.<br/><br/>
+      <a href="http://localhost:3000/ReconfirmUser/?confirmation_token=<%=@token %>">Heroku Staging Verify Now</a>
+      <br/>
+      <%= link_to 'Local Host Verify Now', confirmation_url(@resource, confirmation_token: @token) %>
+      <br/>
+      <a href="https://yomu-lab-staging.herokuapp.com/ReconfirmUser/?confirmation_token=<%=@token %>">Heroku Staging Verify Now</a>
+    </p>
+    <p>
+      Why you received this email.<br/>
+      Yomu Labs requests verification whenever an email address is selected as an Yomu Labs ID. Your Yomu Labs cannot be used until you verify it.<br/>
+      If you didn’t make this change or if you believe an unauthorized person is attempting to access your account, you can reset your password by going to Yomu Labs ID.
+      <br/>
+      To login to the site, just follow this link: <a href="#">Yomu Labs Sign In</a>
+    </p>
+    <p>
+      Sincerely,<br/>
+      Yomu Labs Support
+    </p>
+  </body>
+</html>

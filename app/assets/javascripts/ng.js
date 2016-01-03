@@ -184,8 +184,10 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', '$cookies', 
         provider: logged_in_user.provider,
         target_language: logged_in_user.target_language,
         ui_language: logged_in_user.ui_language,
-        unconfirmed_email: logged_in_user.unconfirmed_email
+        unconfirmed_email: logged_in_user.unconfirmed_email,
+        referral_code: logged_in_user.referral_code        
       };
+      $scope.referral_url = "http://www.yomulab.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
       //console.log("current_user-email="+$scope.current_user.email);
     }, function() {
       console.log("Service give error while retrieving the user details.");
@@ -252,6 +254,15 @@ yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', '$cook
       }
     }, 1000);
   }
+
+  $scope.fetch_user_by_confirmation_token = function(confirmation_token){
+    yomuLabAppService.confirm_user_by_confirmation_token(confirmation_token).then(function(data) {
+      $scope.message_type = data.data.response_type;
+      $scope.message_box = data.data.response_message;
+    }, function() {
+      console.log("Service give error while fetch_user_by_confirmation_token.");
+    });
+  };
 
 
 }]);

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   
-  #devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
-
   resources :home, only: :index do
     collection do
       get :tell_your_friends, as: :tell_your_friends
@@ -9,8 +7,11 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, controllers: {
-    sessions: 'users/sessions', :omniauth_callbacks => "callbacks", :passwords =>"users/passwords"
+    sessions: 'users/sessions', :omniauth_callbacks => "callbacks", :passwords =>"users/passwords",
+    :confirmations => "users/confirmations"
   }
+
+  #patch '/users/confirmation' => 'users/confirmations#update', :via => :patch, :as => :update_user_confirmation
 
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
   get 'home/user_details/:authentication_token' => 'home#user_details'
   get 'home/current_user_details/:authentication_token' => 'home#current_user_details'
   post 'home/register' => 'home#register'
+  match '/ReconfirmUser' => 'home#reconfirm_user', via: [:get]
 
   resources :default
   # match '/ForgotPassword' => 'default#forgot_password', via: [:get]
