@@ -36,7 +36,7 @@ class HomeController < ApplicationController
       :confirmed_at => current_user.confirmed_at, :unconfirmed_email => unconfirmed_email_value, :first_sign_in => current_user.first_sign_in,
       :second_sign_in => current_user.second_sign_in, :ui_language => current_user.ui_language, :original_language => current_user.original_language,
       :target_language => current_user.target_language, :level => current_user.level, :provider => current_user.provider, :sign_in_count => current_user.sign_in_count,
-      :referral_code => current_user.referral_code
+      :referral_code => current_user.referral_code, :authentication_token => current_user.authentication_token
     }#.to_json
     render  :status => 200,
             :json => {

@@ -18,3 +18,67 @@ raw_info=
 
   last_name="Patil" name="Rahul Patil"> provider="google_oauth2" uid="109252910613801325073"
 =end
+
+Who: User
+What: Refer friends
+Why: To get free benefits after Beta ends and help us boost user base
+
+Description:
+User can share a unique link on Facebook, Twitter and Google Plus. When someone uses that unique link to sign up for a NEW account, the referrer is credited with one user. Based on the number of users he refers, he can get free benefits after Beta ends
+
+Only new accounts can be credited to referrer
+Make sure that signup with email and with OAuth are both supported
+Keep a table with referrer and referree, date signed up, to grant awards / detect fraud later.
+
+https://github.com/zenorocha/clipboard.js.git
+-------------------------------------------------------------------------------------------------------
+
+/*
+# => Global Service To Check Cookies
+*/
+  yomu_lab.service('yomuLabAppCookieService', ['$cookies', function($cookies){
+
+    /*
+    # => Service To Check Authentication Exist
+    */
+    this.cookie_exist_or_not = function(){
+      if ( $cookies.get('yomu_app_token').length == 0 ){
+        console.log("cookie service authentication_token="+$cookies.get('yomu_app_token'));
+        window.location = "/Login";
+      }else{
+        console.log("cookie service authentication_token="+$cookies.get('yomu_app_token'));
+      }
+    };
+
+    /*
+    # => Service To Set Authentication Inside Cookie
+    */
+    this.set_cookie = function(authentication_token){
+      // console.log("Service - set_cookie ="+authentication_token);
+      $cookies.put('yomu_app_token', authentication_token);
+      var store_token = $cookies.get('yomu_app_token');
+      console.log("Service - store_token ="+store_token);
+    };
+
+    /*
+    # => Service To Get Authentication via Cookie
+    */
+    this.get_cookie = function(){
+      var authentication_token = $cookies.get('yomu_app_token');
+      console.log("Service - get_cookie ="+authentication_token);
+      return authentication_token;
+    }
+
+    /*
+    # => Service To Remove Authentication Cookie
+    */
+    this.remove_cookie = function(){
+      var authentication_token = $cookies.get('yomu_app_token');
+      console.log("Service - remove_cookie Previous Token ="+authentication_token);
+
+      $cookies.put('yomu_app_token', "");
+      authentication_token = $cookies.get('yomu_app_token');
+      console.log("Service - remove_cookie AfterRemoval Token ="+authentication_token);
+    }
+
+  }]);

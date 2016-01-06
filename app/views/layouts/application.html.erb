@@ -41,10 +41,11 @@
 <% #end %>
 -->
 
-<% if flash[:notice].present? %>
-  <h1> Flash Notice <%=flash[:notice]%></h1>
-  <h2> Flash token <%=flash[:token]%></h2>
+  <% if flash[:notice].present? %>
+    <h1> Flash Notice <%=flash[:notice]%></h1>
+    <h2> Flash token <%=flash[:token]%></h2>
   <% end %>
+  
   <%= yield %>
 
 </body>

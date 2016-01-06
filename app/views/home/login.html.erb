@@ -1,5 +1,5 @@
 <!-- Sign up -->
-<section id="signup_Login" ng-controller="YomuLabsCtrl">
+<section id="signup_Login" ng-controller="YomuLabsCtrl" ng-init="redirect_user_to_refer_your_friends();">
   <div class="container">
     <header id="signupheader">
       <p class="text-center">
@@ -24,8 +24,11 @@
           <input type="password" placeholder="Password" class="form-control" ng-model="loginForm.password" name="password" required="required" />
         </div>
         <div class="form-group">
-          <div class="clearfix"><span class="pull-left"><input type="checkbox" /> Remember me</span>
-          <a href="#" class="pull-right" ng-click="forgot_password(loginForm.email);">Forgot Password?</a>
+          <div class="clearfix">
+            <span class="pull-left">
+              <input type="checkbox" ng-model="loginForm.remember_me" name="remember_me" /> Remember me
+            </span>
+            <a href="#" class="pull-right" ng-click="forgot_password(loginForm.email);">Forgot Password?</a>
           </div>
         </div>
         <div class="form-group">

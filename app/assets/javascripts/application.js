@@ -16,6 +16,7 @@
 //= require jquery-2.1.4.min
 //= require angular-filter
 //= require angular-cookies
+//= require angular-local-storage
 //= require devise
 //= require retina.min
 //= require tweetie.min
@@ -30,4 +31,3 @@
 //= require common
 //= require ng
 //= require globalServices
-

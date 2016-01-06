@@ -1,4 +1,4 @@
-var yomu_lab = angular.module('yomu_lab', [ 'Devise', 'ngCookies' ]);
+var yomu_lab = angular.module('yomu_lab', [ 'Devise', 'LocalStorageModule' ]);
 
 var EMAIL_REGEXP = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 var PASSWORD_LENGTH_MINIMUM = 8;
@@ -6,18 +6,30 @@ var PASSWORD_LENGTH_MINIMUM = 8;
 /*
 * YomuLabs Controller
 */
-yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', '$cookies', 'yomuLabAppService', 'Auth', function($scope, $http, $window, $cookies, yomuLabAppService, Auth) {
+yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', 'yomuLabAppLocalStorageService', 'yomuLabAppService', 'Auth', function($scope, $http, $window, yomuLabAppLocalStorageService, yomuLabAppService, Auth) {
 
   $scope.init = function(){
     $scope.message_box = "";
-    //console.log("init method");
-    //loginForm = {};
-  }
+    //yomuLabAppLocalStorageService.redirect_user_to_refer_your_friends();
+    if(yomuLabAppLocalStorageService.isSupported_or_not){
+      console.log("LocalStorage isSupported");
+    }else{
+      console.log("LocalStorage NOT Supported");
+    }    
+  };
+
+  /*
+  # => Service To Redirect The User To Tell Your Friend Page If Authentication Token Exists
+  */
+  $scope.redirect_user_to_refer_your_friends = function(){
+    console.log("redirect_user_to_refer_your_friends");
+    yomuLabAppLocalStorageService.redirect_user_to_refer_your_friends();
+  };
   
   $scope.submit_credentials = function(loginForm){
+    $scope.remember_me = false;
     // Empty the Error Message Box
     $scope.message_box = "";
-    //$scope.message_box = check_input_for_login(loginForm, loginForm.email, loginForm.password);
     $scope.message_box = check_input_for_login(loginForm);
     if ( $scope.message_box != "" ){
       $scope.message_type = "error";
@@ -29,11 +41,19 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', '$cookies', '
       }
     };
     Auth.login(loginForm, config).then(function(user) {
-      // Setting a cookie       
-      $cookies.put('yomu_app_token', user.authentication_token);
+      // Remove Authenticaiton Token Local Storage
+      yomuLabAppLocalStorageService.remove_authentication_token();
+
+      // Set Remember Me
+      $scope.remember_me = loginForm.remember_me;
+
+      // Set Authenticaiton Token Local Storage
+      yomuLabAppLocalStorageService.set_authentication_token(user.authentication_token, $scope.remember_me);
+
+
     }, function(error) {
-      //$cookies.remove('yomu_app_token');
-      $cookies.yomu_app_token = undefined;
+      // Remove Authenticaiton Token Local Storage
+      yomuLabAppLocalStorageService.remove_authentication_token();
       /*
       =>  Authentication Failed
       */
@@ -42,15 +62,10 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', '$cookies', '
     });
 
     $scope.$on('devise:login', function(event, currentUser) {
-      console.log("current_user = "+currentUser);
-      var landingUrl = "http://" + $window.location.host + "/home/tell_your_friends";
-      $window.location.href = landingUrl;       // after a login, a hard refresh, a new tab
+      window.location = "/home/tell_your_friends";
     });
 
-    $scope.$on('devise:new-session', function(event, currentUser) {
-      console.log("current_user = "+currentUser);
-      // user logged in by Auth.login({...})
-    });
+    $scope.$on('devise:new-session', function(event, currentUser) { });
   }
 
   $scope.forgot_password = function(email){    
@@ -89,30 +104,31 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', '$cookies', '
 /*
 * YomuLabsSignOutCtrl Controller
 */
-yomu_lab.controller('YomuLabsSignOutCtrl', ['$scope', '$http', '$window', '$cookies', function($scope, $http, $window, $cookies) {
+yomu_lab.controller('YomuLabsSignOutCtrl', ['$scope', '$http', '$window', 'yomuLabAppLocalStorageService', function($scope, $http, $window, yomuLabAppLocalStorageService) {
   $scope.init = function(){
     $scope.message_box = "";
   }
-  $scope.init();
 
-  $scope.sign_out = function(){    
-    $cookies.remove('yomu_app_token');
-    var landingUrl = "http://" + $window.location.host + "/Login";
-    $window.location.href = landingUrl;       // after a login, a hard refresh, a new tab
+  $scope.sign_out = function(){
+    yomuLabAppLocalStorageService.remove_authentication_token();
+    yomuLabAppLocalStorageService.authentication_token_exist_or_not();
   }
 }]);
 
 /*
 * YomuLabsSignUpCtrl Controller
 */
-yomu_lab.controller('YomuLabsSignUpCtrl', ['$scope', '$http', '$window', '$cookies', 'yomuLabAppService', 'Auth', function($scope, $http, $window, $cookies, yomuLabAppService, Auth) {
+yomu_lab.controller('YomuLabsSignUpCtrl', ['$scope', '$http', '$window', 'yomuLabAppLocalStorageService', 'yomuLabAppService', 'Auth', function($scope, $http, $window, yomuLabAppLocalStorageService, yomuLabAppService, Auth) {
   $scope.init = function(){
     $scope.message_box = "";
+    yomuLabAppLocalStorageService.redirect_user_to_refer_your_friends();
   }
-  $scope.init();
+  //$scope.init();
 
   $scope.submit_sign_up_details = function(sign_up_form){    
-    // Empty the Error Message Box
+    /*
+      => Empty the Error Message Box
+    */    
     $scope.message_box = "";
     $scope.message_box = check_input_for_signup(sign_up_form);
     if ( $scope.message_box != "" ){ 
@@ -125,12 +141,13 @@ yomu_lab.controller('YomuLabsSignUpCtrl', ['$scope', '$http', '$window', '$cooki
     yomuLabAppService.register_new_user(sign_up_form).then(function(data) {
 
       if (data.data.current_user == false){
-        $cookies.remove("yomu_app_token");
+        // Remove Authenticaiton Token Local Storage
+        yomuLabAppLocalStorageService.remove_authentication_token();
         $scope.message_type = "error";
         $scope.message_box = data.data.response_message;
       }
-      else{
-
+      else
+      {
         logged_in_user = angular.fromJson(data.data.current_user);
         $scope.message_type = "success";
         $scope.message_box = data.data.response_message;
@@ -149,25 +166,32 @@ yomu_lab.controller('YomuLabsSignUpCtrl', ['$scope', '$http', '$window', '$cooki
           authentication_token: logged_in_user.authentication_token
         };
 
-        $cookies.put('yomu_app_token', $scope.current_user.authentication_token);
-        var landingUrl = "http://" + $window.location.host + "/home/tell_your_friends";
-        $window.location.href = landingUrl;       // after a login, a hard refresh, a new tab
+        // Set Authenticaiton Token Local Storage
+        yomuLabAppLocalStorageService.set_authentication_token(user.authentication_token);
+        // Redirect User To Tell Your Friends Page after Successful SignUp
+        $window.location = "/home/tell_your_friends";
       }
     }, function() {
       $scope.message_type = "error";
       $scope.message_box = "Service gives error while creating new user.";
-      //console.log("Service give error while creating new user.");
     });
   }
 }]);
 
-yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', '$cookies', 'yomuLabAppService', 'Auth', function($scope, $http, $window, $cookies, yomuLabAppService, Auth) {
+yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppLocalStorageService','yomuLabAppService', function($scope, $http, $window, yomuLabAppLocalStorageService, yomuLabAppService) {
 
   $scope.init = function(token){
     if (token != ""){
-      $cookies.put('yomu_app_token', token);
+      // Set Authenticaiton Token Local Storage
+      yomuLabAppLocalStorageService.set_authentication_token(token);
     }
-    var authentication_token = $cookies.get('yomu_app_token');
+
+    // => Fetch Authentication Token
+    var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
+    
+    // => Check Authentication Token Exist Or Not
+    yomuLabAppLocalStorageService.authentication_token_exist_or_not();
+
     var logged_in_user = "";
 
     yomuLabAppService.get_user_details(authentication_token).then(function(data) {
@@ -185,36 +209,31 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', '$cookies', 
         target_language: logged_in_user.target_language,
         ui_language: logged_in_user.ui_language,
         unconfirmed_email: logged_in_user.unconfirmed_email,
-        referral_code: logged_in_user.referral_code        
+        referral_code: logged_in_user.referral_code,
+        authentication_token: logged_in_user.authentication_token
       };
       $scope.referral_url = "http://www.yomulab.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
-      //console.log("current_user-email="+$scope.current_user.email);
     }, function() {
       console.log("Service give error while retrieving the user details.");
     });
   }
 
-  $scope.init();
-
 }]);
 
 
-yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', '$cookies', 'yomuLabAppService', 'Auth', function($scope, $http, $window, $cookies, yomuLabAppService, Auth) {
+yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', 'localStorageService', 'yomuLabAppService', function($scope, $http, $window, localStorageService, yomuLabAppService) {
 
   $scope.init = function(){
-    //console.log("YomuLabsDefaultCtrl - init");
+    yomuLabAppLocalStorageService.redirect_user_to_refer_your_friends();
   }
 
-  //$scope.init();
   $scope.fetch_user_by_token = function(reset_password_token){
     yomuLabAppService.get_user_details_by_reset_password_token(reset_password_token).then(function(data) {
       logged_in_user = angular.fromJson(data.data.current_user);
 
       if (logged_in_user == null){
-        // Pass invalid token message - Some error code
-        $cookies.put('yomu_app_token', "");
-        var landingUrl = "http://" + $window.location.host + "/Login";
-        $window.location.href = landingUrl;
+        yomuLabAppLocalStorageService.remove_authentication_token();
+        yomuLabAppLocalStorageService.authentication_token_exist_or_not();
       }else{
         $scope.current_user_email = logged_in_user.email;
         $scope.current_user_name = logged_in_user.first_name +" "+logged_in_user.last_name;
@@ -249,7 +268,8 @@ yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', '$cook
       seconds--;
       $scope.remaining_seconds = seconds;
       if (seconds == 0) {
-        //$scope.remaining_seconds = 0;
+        // Remove Authenticaiton Token Local Storage
+        yomuLabAppLocalStorageService.remove_authentication_token();
         window.location = "/Login";
       }
     }, 1000);
@@ -264,5 +284,12 @@ yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', '$cook
     });
   };
 
-
 }]);
+
+
+yomu_lab.config(function (localStorageServiceProvider) {
+  localStorageServiceProvider
+    .setPrefix('yomuLab')
+    .setStorageType('sessionStorage')
+    .setNotify(true, true)
+});

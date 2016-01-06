@@ -38,3 +38,13 @@ Some setup you must do manually if you haven't yet:
 
 #Confirmation token is invalid
 Email was already confirmed, please try signing in
+
+user_id, register_from_referral_id
+1, 45
+1, 50
+2, 35
+3
+
+# Facebook Content - For Sharing
+
+# 
