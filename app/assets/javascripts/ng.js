@@ -286,10 +286,11 @@ yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', 'local
 
 }]);
 
-
+/*
 yomu_lab.config(function (localStorageServiceProvider) {
   localStorageServiceProvider
     .setPrefix('yomuLab')
     .setStorageType('sessionStorage')
     .setNotify(true, true)
 });
+*/
