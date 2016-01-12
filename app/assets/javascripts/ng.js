@@ -109,15 +109,13 @@ yomu_lab.controller('YomuLabsSignOutCtrl', ['$scope', '$http', '$window', 'yomuL
   }
 
   $scope.sign_out = function(){
+    var config = {
+      headers: {
+        'X-HTTP-Method-Override': 'DELETE'
+      }
+    };
 
-var config = {
-            headers: {
-                'X-HTTP-Method-Override': 'DELETE'
-            }
-        };
-
-
-    Auth.logout(config).then(function(oldUser) {
+    Auth.logout(config).then(function() {
       console.log("you're signed out now.");
       yomuLabAppLocalStorageService.remove_authentication_token();
       yomuLabAppLocalStorageService.authentication_token_exist_or_not();
@@ -309,16 +307,7 @@ yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', 'local
 
 }]);
 
-/*
-yomu_lab.config(function (localStorageServiceProvider) {
-  localStorageServiceProvider
-    .setPrefix('yomuLab')
-    .setStorageType('sessionStorage')
-    .setNotify(true, true)
-});
-*/
-
 yomu_lab.config(function(AuthProvider) {
-        AuthProvider.logoutPath('/users/sign_out.json');
-        AuthProvider.logoutMethod('GET');
-    });
+  AuthProvider.logoutPath('/users/sign_out.json');
+  AuthProvider.logoutMethod('DELETE');
+});
