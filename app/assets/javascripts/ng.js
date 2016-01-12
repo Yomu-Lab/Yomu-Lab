@@ -307,7 +307,9 @@ yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', 'local
 
 }]);
 
+/*
 yomu_lab.config(function(AuthProvider) {
   AuthProvider.logoutPath('/users/sign_out.json');
   AuthProvider.logoutMethod('DELETE');
 });
+*/
