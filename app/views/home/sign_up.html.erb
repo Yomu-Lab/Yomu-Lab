@@ -1,5 +1,5 @@
 <!-- Sign up -->
-<section id="signup_Login" ng-controller="YomuLabsSignUpCtrl">
+<section id="signup_Login" ng-controller="YomuLabsSignUpCtrl" ng-init="set_referral_code('<%=params[:prelaunch_ref] %>');">
   <div class="container">
     <header id="signupheader">
       <p class="text-center">
@@ -30,10 +30,12 @@
         </div>
         <div class="form-group">
           <input type="password" placeholder="Password Confirmation *" class="form-control" ng-model="sign_up_form.password_confirmation" name="password_confirmation" required="required" />
-          <input type="text" ng-model="sign_up_form.prelaunch_ref" ng-value="<%=params[:prelaunch_ref]%>" placeholder="<%=params[:prelaunch_ref]%>">
+
+          <input type="text" data-ng-model="sign_up_form.prelaunch_ref" value="<%=params[:prelaunch_ref]%>" name="prelaunch_ref" placeholder="<%=params[:prelaunch_ref]%>" />
+
         </div>
         <div class="form-group">
-          <button type="submit" ng-click="submit_sign_up_details(sign_up_form);" class="btn btn-default btn-block submitbtn">Sign Up</button>
+          <button type="submit" ng-click="submit_sign_up_details(sign_up_form, '<%=params[:prelaunch_ref]%>');" class="btn btn-default btn-block submitbtn">Sign Up</button>
         </div>
       </form>
       <%= render "partials/social_sign_footer" %>

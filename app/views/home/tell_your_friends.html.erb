@@ -34,9 +34,11 @@
         </p>
         </div>
         <div class="col-md-5 signedupFriends col-centered">
-          <p class="text-center">You currently have 3 friends who have signed up</p>
+          <p class="text-center">You currently have {{referral_count}} friends who have signed up</p>
         </div>
         <div class="col-md-12 col-centered packages clearfix">
+
+
           <div class="col-md-2 package active">
             <p class="text-center">Sign Up</p>
             <div class="status">
@@ -45,46 +47,49 @@
             </div>
             <p class="text-center">5 free articles</p>
           </div>
-          <div class="col-md-2 package">
+          <div class="col-md-2 package {{referral_count >= 5 ? 'active' : ''}}">
             <p class="text-center">5 friends</p>
             <div class="status">
-              <div class="check hide"><div class="checkmark"><i class="fa fa-check"></i></div></div>
+              <div class="check {{referral_count >= 5 ? '' : 'hide'}}"><div class="checkmark"><i class="fa fa-check"></i></div></div>
               <div class="statusLine"></div>
             </div>
             <p class="text-center">10 free articles</p>
           </div>
-          <div class="col-md-2 package">
+          <div class="col-md-2 package {{referral_count >= 10 ? 'active' : ''}}">
             <p class="text-center">10 friends</p>
             <div class="status">
-              <div class="check hide"><div class="checkmark"><i class="fa fa-check"></i></div></div>
+              <div class="check {{referral_count >= 10 ? '' : 'hide'}}"><div class="checkmark"><i class="fa fa-check"></i></div></div>
               <div class="statusLine"></div>
             </div>
             <p class="text-center">25 free articles</p>
           </div>
-          <div class="col-md-2 package">
+          <div class="col-md-2 package {{referral_count >= 25 ? 'active' : ''}}">
             <p class="text-center">25 friends</p>
             <div class="status">
-              <div class="check hide"><div class="checkmark"><i class="fa fa-check"></i></div></div>
+              <div class="check {{referral_count >= 25 ? '' : 'hide'}}"><div class="checkmark"><i class="fa fa-check"></i></div></div>
               <div class="statusLine"></div>
             </div>
             <p class="text-center">40 free articles</p>
           </div>
-          <div class="col-md-2 package">
+          <div class="col-md-2 package {{referral_count >= 40 ? 'active' : ''}}">
             <p class="text-center">40 friends</p>
             <div class="status">
-              <div class="check hide"><div class="checkmark"><i class="fa fa-check"></i></div></div>
+              <div class="check {{referral_count >= 40 ? '' : 'hide'}}"><div class="checkmark"><i class="fa fa-check"></i></div></div>
               <div class="statusLine"></div>
             </div>
             <p class="text-center">55 free articles</p>
           </div>
-          <div class="col-md-2 package">
+          <div class="col-md-2 package {{referral_count >= 60 ? 'active' : ''}}">
             <p class="text-center">60 friends</p>
             <div class="status">
-              <div class="check hide"><div class="checkmark"><i class="fa fa-check"></i></div></div>
+              <div class="check {{referral_count >= 60 ? '' : 'hide'}}"><div class="checkmark"><i class="fa fa-check"></i></div></div>
               <div class="statusLine"></div>
             </div>
             <p class="text-center">80 free articles</p>
           </div>
+
+
+
         </div>
       </section>
       <footer id="tellyourfriendsFooter">

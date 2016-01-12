@@ -36,6 +36,7 @@ Some setup you must do manually if you haven't yet:
 
 # Refer Friend - Spam Link - Posting
 
+
 #Confirmation token is invalid
 Email was already confirmed, please try signing in
 
@@ -43,7 +44,8 @@ user_id, register_from_referral_id
 1, 45
 1, 50
 2, 35
-3
+
+rails g model ReferralUser user_id:integer referral_user_id:integer status:boolean
 
 # Facebook Content - For Sharing
 

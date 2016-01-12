@@ -5,7 +5,24 @@
     <a href="/users/auth/facebook" title="Share on Facebook" target="_blank" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
     <!-- Google+ -->
     <a href="/users/auth/google_oauth2" title="Share on Google+" target="_blank" class="btn btn-googleplus"><i class="fa fa-google-plus"></i> Google+</a>
+    <!--
+	    <a href="#" onclick="PopupCenter('http://localhost:3000/users/auth/facebook','xtf','900','500'); ">Click PopUp</a>
+	    <a href="http://localhost:3000/users/auth/facebook" class="popup-window">Open in new window</a>
+    -->
   </p>
   <p class="text-center notetext">We will never post to Twitter, Facebook, or<br />
     Google Plus without your permission.</p>
 </footer>
+
+<script type="text/javascript">
+	
+$( document ).ready(function() {
+	console.log( "ready!" );
+	$('a.popup-window').on('click', function(){
+		var w = 880, h = 600,
+		    left = Number((screen.width/2)-(w/2)), tops = Number((screen.height/2)-(h/2)),
+		    popupWindow = window.open(this.href, '', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=1, copyhistory=no, width='+w+', height='+h+', top='+tops+', left='+left);
+		popupWindow.focus(); return false;
+	});
+});
+</script>

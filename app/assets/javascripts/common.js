@@ -105,21 +105,3 @@ function redirect_page_to_sign_in_page1($scope){
     }
   }, 1000);
 }
-
-/*
-$(function () {
-    $("#btnRedirect").click(function () {
-        var seconds = 5;
-        $("#dvCountDown").show();
-        $("#lblCount").html(seconds);
-        setInterval(function () {
-            seconds--;
-            $("#lblCount").html(seconds);
-            if (seconds == 0) {
-                $("#dvCountDown").hide();
-                window.location = "http://www.aspsnippets.com/";
-            }
-        }, 1000);
-    });
-});
-*/

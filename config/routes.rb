@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'home/current_user_details/:authentication_token' => 'home#current_user_details'
   post 'home/register' => 'home#register'
   match '/ReconfirmUser' => 'home#reconfirm_user', via: [:get]
+  get 'home/current_user_referral_count/:authentication_token' => 'home#current_user_referral_count'
 
   resources :default
   # match '/ForgotPassword' => 'default#forgot_password', via: [:get]

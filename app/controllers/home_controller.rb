@@ -52,6 +52,16 @@ class HomeController < ApplicationController
             }
   end
 
+  def current_user_referral_count
+    current_user = User.where(authentication_token: params[:authentication_token]).first
+    referral_count = ReferralUser.where(:user_id => current_user.id).count
+    render  :status => 200,
+            :json => {
+              :referral_count => referral_count, :response_code => 200,
+            }
+  end
+
+
   def register
     begin
       check_existing_user = User.find_by_email(params[:email])
@@ -70,6 +80,12 @@ class HomeController < ApplicationController
         @user.referral_code = generate_referral_token
         @user.password_manually_set = true
         if @user.save
+          if params[:prelaunch_ref].present?
+            yomu_user = User.find_by_referral_code(params[:prelaunch_ref])
+            if yomu_user.present?
+              ReferralUser.create(user_id: yomu_user.id, referral_user_id: @user.id)
+            end
+          end
           current_user = @user 
           response_code = 200
           response_message = GlobalMessage::SIGNING_UP_CONFIRM_EMAIL
