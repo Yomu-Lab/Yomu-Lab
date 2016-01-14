@@ -20,7 +20,7 @@
         <p class="small text-center">Share your unique link via Facebook, Twitter, Google Plus or Email</p>
         <div class="col-md-6 col-centered">
           <form class="form-inline sharetofriendsForm clearfix"> 
-            <input class="sharelinkBox text-center col-md-10 col-xs-9" type="text" value="{{referral_url}}" ng-model="referral_url">
+            <input class="sharelinkBox text-center col-md-10 col-xs-9" type="text" id="refferal_url" value="{{referral_url}}" ng-model="referral_url">
             <div class="col-md-2 col-xs-3 sharelinkcopy">
               <button type="button" class="btn btn-default btn-block">Copy</button>
             </div>
@@ -28,13 +28,13 @@
         </div>
         <p class="text-center">
           <!-- Facebook -->
-          <a href="https://www.facebook.com/sharer/sharer.php?u={{referral_url}}" title="Share on Facebook" target="_blank" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
+          <a onclick="fbShare('700', '600');" href="#" title="Share on Facebook" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
           <!-- Google+ -->
           <a href="https://plus.google.com/share?url={{referral_url}}" title="Share on Google+" target="_blank" class="btn btn-googleplus"><i class="fa fa-google-plus"></i> Google+</a>
         </p>
         </div>
         <div class="col-md-5 signedupFriends col-centered">
-          <p class="text-center">You currently have {{referral_count}} friends who have signed up</p>
+          <p class="text-center">You currently have {{referral_count}} friend(s) who have signed up</p>
         </div>
         <div class="col-md-12 col-centered packages clearfix">
 
@@ -87,9 +87,6 @@
             </div>
             <p class="text-center">80 free articles</p>
           </div>
-
-
-
         </div>
       </section>
       <footer id="tellyourfriendsFooter">
@@ -101,3 +98,20 @@
     </div>
   </section>
 </div>
+
+<script>
+  function fbShare(referral_url, winWidth, winHeight) {
+    var winTop = (screen.height / 2) - (winHeight / 2);
+    var winLeft = (screen.width / 2) - (winWidth / 2);
+
+    var app_id = "903744876407538";
+    //var redirect_uri = "https://www.facebook.com/sharer/sharer.php?u={{referral_url}}";
+    var redirect_uri = $("#refferal_url").val();
+
+    var picture_url = "https://yomu-lab-staging.herokuapp.com/assets/bg.jpg";
+    var caption_content = "Improve your Japanese reading - Free for a Limited Time!";
+    var description = "Improve your Japanese reading effortlessly with fully translated and annotated contents, delivered daily to you.";
+
+  window.open("https://www.facebook.com/dialog/feed?app_id="+app_id+"&redirect_uri=https://www.facebook.com&link="+redirect_uri+"&picture="+picture_url+"&caption="+caption_content+"&description="+description+"&properties{text:'value1',key2:'value2'}&message='tuine&actions={name:'Improve your Japanese reading - Free for a Limited Time!',link:'https://yomu-lab-staging.herokuapp.com'}",'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+    }
+</script>

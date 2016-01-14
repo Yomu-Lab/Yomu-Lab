@@ -7,6 +7,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
     existing_user = check_user_existing(request.env["omniauth.auth"])
     @user.referral_code = generate_referral_token if existing_user.referral_code.blank?
     @user.password_manually_set = false if existing_user.password_manually_set.blank?
+    @user.refresh_token = generate_refresh_token if existing_user.refresh_token.blank?
     @user.save
 
     UserMailer.welcome_email(@user).deliver_later if !existing_user.present?
@@ -20,6 +21,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
     existing_user = check_user_existing(request.env["omniauth.auth"])
     @user.referral_code = generate_referral_token if existing_user.referral_code.blank?
     @user.password_manually_set = false if existing_user.password_manually_set.blank?
+    @user.refresh_token = generate_refresh_token if existing_user.refresh_token.blank?
     @user.save
 
     UserMailer.welcome_email(@user).deliver_later if !existing_user.present?

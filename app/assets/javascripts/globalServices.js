@@ -42,7 +42,7 @@
     };
 
     /*
-    # => Register New User
+    # => Reseet Password Link
     */
     this.get_reset_password_link = function(email){
       login_form = {
@@ -128,35 +128,44 @@
       if ( existing_user==null || existing_user.token==null || existing_user.token.length == 0 ){
         window.location = "/Login";
       }else{
-        var date = new Date();
-        var current_time = date.setTime(date.getTime());
-        //console.log("current_time = "+current_time + "::existing_user.token_expires_at="+existing_user.token_expires_at);
 
-        if (existing_user.token_expires_at < current_time){
-          this.remove_authentication_token();
-          this.authentication_token_exist_or_not();
+        if ( existing_user.remember_me == "true" ){
+          var date = new Date();
+          var current_time = date.setTime(date.getTime());
+        
+          if (existing_user.token_expires_at < current_time){
+            this.remove_authentication_token();
+            this.authentication_token_exist_or_not();
+          }
         }
+        //console.log("current_time = "+current_time + "::existing_user.token_expires_at="+existing_user.token_expires_at);      
       }
     };
 
     /*
     # => Service To Set Authentication Inside Local Storage
     */
-    this.set_authentication_token = function(authentication_token, remember_me){
+    this.set_authentication_token = function(authentication_token, remember_me, refresh_token){
 
       var date = new Date();
+      var expiresAt = ""
 
       // 30 minutes is 30 * 60 * 1000 miliseconds. Add that to the current date to specify an expiration date 30 minutes in the future
-      var minutes = 120;
-      if (remember_me == true){
-        minutes = 30;
+      var minutes = 0;
+      if ( remember_me == true ){ 
+        minutes = 2; 
+        expiresAt = date.setTime(date.getTime() + (minutes * 60 * 1000));
       }
-      var expiresAt = date.setTime(date.getTime() + (minutes * 60 * 1000));
-      var yomu_app_token = { 'token': authentication_token, 'remember_me': remember_me, 'token_expires_at': expiresAt };
+      var yomu_app_token = { 
+        'token': authentication_token, 
+        'remember_me': remember_me, 
+        'token_expires_at': expiresAt,
+        'refresh_token': refresh_token 
+      };
 
       // Set Authenticaiton Token Local Storage
       localStorageService.set('yomu_app_token', JSON.stringify(yomu_app_token));
-      this.authentication_token_exist_or_not();
+      //this.authentication_token_exist_or_not();
     };
 
     /*
@@ -185,7 +194,8 @@
       //console.log("current_time = "+current_time + "::existing_user.token_expires_at="+authentication_token.token_expires_at);
       
       if( authentication_token!=null && ( authentication_token.token!=null || authentication_token.token.length != 0 )){
-        if( authentication_token.token_expires_at < current_time ){
+
+        if(  authentication_token.refresh_token == true && authentication_token.token_expires_at < current_time ){
           this.remove_authentication_token();
           this.authentication_token_exist_or_not();
         }else{

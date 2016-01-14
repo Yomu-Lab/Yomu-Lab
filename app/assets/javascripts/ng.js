@@ -47,7 +47,7 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', 'yomuLabAppLo
       $scope.remember_me = loginForm.remember_me;
 
       // Set Authenticaiton Token Local Storage
-      yomuLabAppLocalStorageService.set_authentication_token(user.authentication_token, $scope.remember_me);
+      yomuLabAppLocalStorageService.set_authentication_token(user.authentication_token, $scope.remember_me, user.refresh_token);
 
 
     }, function(error) {
@@ -198,7 +198,7 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
   $scope.init = function(token){
     if (token != ""){
       // Set Authenticaiton Token Local Storage
-      yomuLabAppLocalStorageService.set_authentication_token(token);
+      //yomuLabAppLocalStorageService.set_authentication_token(token);
     }
 
     // => Fetch Authentication Token

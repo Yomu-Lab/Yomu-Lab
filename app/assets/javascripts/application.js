@@ -31,3 +31,4 @@
 //= require common
 //= require ng
 //= require globalServices
+//= require share
