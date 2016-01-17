@@ -69,6 +69,6 @@ group :test do
 end
 
 # => AngularJs Devise
-source "http://rails-assets.org" do
+source "https://rails-assets.org" do
   gem "rails-assets-angular-devise"
 end
