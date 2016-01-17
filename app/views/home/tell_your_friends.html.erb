@@ -1,6 +1,6 @@
 <div ng-controller="DashboardCtrl" ng-init="init('<%=@authentication_token%>')">
 
-  <div class="alert alert-error text-center" role="alert">
+  <div class="alert {{ message_type }} text-center" role="alert">
     <span>{{ message_box }}</span>
     <!-- <span>Thank you for signing up. Please confirm your email.</span> -->
   </div>

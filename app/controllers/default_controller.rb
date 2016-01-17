@@ -17,4 +17,19 @@ class DefaultController < ApplicationController
     }
   end
 
+  def get_user_details_by_authentication_token
+    puts "token = #{params[:token]}"
+    params_token = params[:token]
+    user = User.find_by_authentication_token(params_token)
+    render  :status => 200,
+            :json => {
+              :response_code => 200, 
+              :response_message => "OK",
+              :refresh_token => user.refresh_token,
+              :authentication_token => params_token, 
+            }
+
+  end
+
+
 end

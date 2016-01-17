@@ -113,7 +113,11 @@
 /*
 # => Global Service To Check Local Storage Value
 */
-  yomu_lab.service('yomuLabAppLocalStorageService', ['localStorageService', function(localStorageService){
+
+  yomu_lab.service('yomuLabAppLocalStorageService', ["$http",'localStorageService', function($http,localStorageService){
+    this.server = {
+      baseURL: 'http://localhost:3000/'
+    };
 
     this.isSupported_or_not = function(){
       this.authentication_token_exist_or_not();

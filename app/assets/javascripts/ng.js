@@ -206,8 +206,17 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
 
   $scope.init = function(token){
     if (token != ""){
-      // Set Authenticaiton Token Local Storage
-      //yomuLabAppLocalStorageService.set_authentication_token(token);
+      
+      // Fetch User Details From User Table
+      $http.get("/default/get_user_details_by_authentication_token/"+token+".json")
+        .success(function(data, status, header, config) {
+          // Set Authenticaiton Token Local Storage
+          yomuLabAppLocalStorageService.set_authentication_token(token, false, data.refresh_token);
+          console.log("Service - set_authentication_token_through_auth - Success");
+        })
+        .error(function(data, status, header, config){
+          console.log("Service - set_authentication_token_through_auth - Error");
+        });        
     }
 
     // => Fetch Authentication Token
@@ -240,6 +249,9 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
     }, function() {
       console.log("Service give error while retrieving the user details.");
     });
+
+    //  => Message Success
+    $scope.message_type = "alert-success";
 
     yomuLabAppService.get_referral_count(authentication_token.token).then(function(data) {
       $scope.referral_count = angular.fromJson(data.data.referral_count);

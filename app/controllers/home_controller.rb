@@ -26,6 +26,7 @@ class HomeController < ApplicationController
 
     if current_user.confirmed_at.present?
       unconfirmed_email_value = true
+      set_referral_count_true(current_user.id)
       response_message = GlobalMessage::SIGNING_UP_INVITE_FRIENDS
     else
       unconfirmed_email_value = false
@@ -55,8 +56,7 @@ class HomeController < ApplicationController
 
   def current_user_referral_count
     current_user = User.where(authentication_token: params[:authentication_token]).first
-    #debugger
-    referral_count = ReferralUser.where(:user_id => current_user.id).count
+    referral_count = ReferralUser.where(:user_id => current_user.id, :status => true).count
     render  :status => 200,
             :json => {
               :referral_count => referral_count, :response_code => 200,
@@ -87,7 +87,7 @@ class HomeController < ApplicationController
           if params[:prelaunch_ref].present?
             yomu_user = User.find_by_referral_code(params[:prelaunch_ref])
             if yomu_user.present?
-              ReferralUser.create(user_id: yomu_user.id, referral_user_id: @user.id)
+              ReferralUser.create(user_id: yomu_user.id, referral_user_id: @user.id, status: false)
             end
           end
           current_user = @user 
@@ -109,6 +109,12 @@ class HomeController < ApplicationController
 
   def reconfirm_user
     @confirmation_token = params[:confirmation_token]
+  end
+
+  def set_referral_count_true(user_id)
+    referral_bonus_active = ReferralUser.find_by_referral_user_id(user_id)
+    referral_bonus_active.status = true
+    referral_bonus_active.save
   end
 
 end

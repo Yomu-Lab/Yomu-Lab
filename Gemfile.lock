@@ -1,17 +1,16 @@
 GIT
   remote: git://github.com/zquestz/omniauth-google-oauth2.git
-  revision: e505783c33d51c0b0db1c8e595539b4fde30d6d6
+  revision: f7a360053358ae18e2ba41b3d1c7e6c8c4d568b9
   specs:
-    omniauth-google-oauth2 (0.2.10)
-      addressable (~> 2.3)
+    omniauth-google-oauth2 (0.3.0)
       jwt (~> 1.0)
       multi_json (~> 1.3)
       omniauth (>= 1.1.1)
-      omniauth-oauth2 (~> 1.3.1)
+      omniauth-oauth2 (>= 1.3.1)
 
 GEM
-  remote: https://rubygems.org/
-  remote: https://rails-assets.org/
+  remote: http://rubygems.org/
+  remote: http://rails-assets.org/
   specs:
     actionmailer (4.2.2)
       actionpack (= 4.2.2)
@@ -52,7 +51,6 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.4.0)
     arel (6.0.3)
     bcrypt (3.1.10)
     binding_of_caller (0.7.3.pre1)
@@ -111,10 +109,10 @@ GEM
     hashie (3.4.3)
     i18n (0.7.0)
     interception (0.5)
-    jbuilder (2.3.2)
-      activesupport (>= 3.0.0, < 5)
+    jbuilder (2.4.0)
+      activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
-    jquery-rails (4.0.5)
+    jquery-rails (4.1.0)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
@@ -126,7 +124,7 @@ GEM
       rb-inotify (>= 0.9)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
-    lumberjack (1.0.9)
+    lumberjack (1.0.10)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
@@ -154,7 +152,7 @@ GEM
       rack (>= 1.0, < 3)
     omniauth-facebook (3.0.0)
       omniauth-oauth2 (~> 1.2)
-    omniauth-oauth2 (1.3.1)
+    omniauth-oauth2 (1.4.0)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
@@ -194,7 +192,7 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-erd (1.4.4)
+    rails-erd (1.4.5)
       activerecord (>= 3.2)
       activesupport (>= 3.2)
       choice (~> 0.2.0)
@@ -211,8 +209,8 @@ GEM
       activesupport (= 4.2.2)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.4.2)
-    rb-fsevent (0.9.6)
+    rake (10.5.0)
+    rb-fsevent (0.9.7)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     rdoc (4.2.1)
@@ -240,7 +238,7 @@ GEM
       rspec-expectations (~> 2.99.0)
       rspec-mocks (~> 2.99.0)
     ruby-graphviz (1.2.2)
-    sass (3.4.20)
+    sass (3.4.21)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
@@ -251,9 +249,9 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     shellany (0.0.1)
-    shoulda-matchers (3.0.1)
+    shoulda-matchers (3.1.0)
       activesupport (>= 4.0.0)
-    simple_token_authentication (1.11.0)
+    simple_token_authentication (1.12.0)
       actionmailer (>= 3.2.6, < 5)
       actionpack (>= 3.2.6, < 5)
       devise (~> 3.2)
@@ -263,7 +261,7 @@ GEM
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
     slop (3.6.0)
-    spring (1.6.1)
+    spring (1.6.2)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
     sprockets (3.5.2)
@@ -279,7 +277,7 @@ GEM
       ref
     thor (0.19.1)
     thread_safe (0.3.5)
-    tilt (2.0.1)
+    tilt (2.0.2)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.2)

@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -35,6 +35,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2', github: 'zquestz/omniauth-google-oauth2'
 gem 'active_model_serializers', '0.10.0.rc3'
+gem 'simple_token_authentication', '~> 1.0'
 
 group :production do
   gem 'pg'
@@ -68,9 +69,6 @@ group :test do
 end
 
 # => AngularJs Devise
-source "https://rails-assets.org" do
+source "http://rails-assets.org" do
   gem "rails-assets-angular-devise"
 end
-
-gem 'devise'
-gem 'simple_token_authentication', '~> 1.0'
