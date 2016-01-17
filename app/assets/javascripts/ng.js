@@ -14,7 +14,17 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', 'yomuLabAppLo
       console.log("LocalStorage isSupported");
     }else{
       console.log("LocalStorage NOT Supported");
-    }    
+    }
+    $scope.loginForm = {
+      remember_me : true
+    };
+
+  };
+
+  $scope.set_remember_me = function(){
+    if ($scope.loginForm.remember_me == true){
+      $scope.loginForm.remember_me = false;
+    }
   };
 
   /*
@@ -26,7 +36,6 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', 'yomuLabAppLo
   };
   
   $scope.submit_credentials = function(loginForm){
-    $scope.remember_me = false;
     // Empty the Error Message Box
     $scope.message_box = "";
     $scope.message_box = check_input_for_login(loginForm);
@@ -34,6 +43,7 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', 'yomuLabAppLo
       $scope.message_type = "error";
       return false;
     }
+    return false;
     var config = {
       headers: {
         'X-HTTP-Method-Override': 'POST'
