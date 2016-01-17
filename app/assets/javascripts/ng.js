@@ -18,7 +18,6 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', 'yomuLabAppLo
     $scope.loginForm = {
       remember_me : true
     };
-
   };
 
   $scope.set_remember_me = function(){
@@ -43,7 +42,7 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', 'yomuLabAppLo
       $scope.message_type = "error";
       return false;
     }
-    return false;
+    //return false;
     var config = {
       headers: {
         'X-HTTP-Method-Override': 'POST'

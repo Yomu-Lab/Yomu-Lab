@@ -1,10 +1,10 @@
 class ApplicationMailer < ActionMailer::Base
 
-	default from: 'notifications@yomulabs.com'
+	default from: 'support@yomulab.com '
   layout 'mailer'
 
 	def error_occured_and_send_email_to_support_team(user, error)
-		staff_email = "yomulab@gmail.com"
+		staff_email = "support@yomulab.com "
 		@user = user
 		@subject = "YomuLabs - Error Occured"
 		@url = 'https://yomu-lab-staging.herokuapp.com/'
