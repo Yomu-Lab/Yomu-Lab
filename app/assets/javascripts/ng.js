@@ -192,7 +192,7 @@ yomu_lab.controller('YomuLabsSignUpCtrl', ['$scope', '$http', '$window', 'yomuLa
 
         // Set Authenticaiton Token Local Storage
         //yomuLabAppLocalStorageService.set_authentication_token(logged_in_user.authentication_token);
-        yomuLabAppLocalStorageService.set_authentication_token(logged_in_user.authentication_token, sign_up_formremember_me, logged_in_user.refresh_token);
+        yomuLabAppLocalStorageService.set_authentication_token(logged_in_user.authentication_token, sign_up_form.remember_me, logged_in_user.refresh_token);
 
         // Redirect User To Tell Your Friends Page after Successful SignUp
         $window.location = "/home/tell_your_friends";
