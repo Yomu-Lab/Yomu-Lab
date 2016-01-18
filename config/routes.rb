@@ -16,9 +16,10 @@ Rails.application.routes.draw do
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   resources :home
-  match '/Index'   => "home#index",     via: [:get]
-  match '/Login'   => "home#login",     via: [:get]
-  match '/SignUp'  => "home#sign_up",   via: [:get]
+  match '/Index'            => "home#index",     via: [:get]
+  match '/Login'            => "home#login",     via: [:get]
+  match '/SignUp'           => "home#sign_up",           via: [:get]
+  match '/ForgotPassword'   => "home#forgot_password",   via: [:get]
   
   get 'home/user_details/:authentication_token' => 'home#user_details'
   get 'home/current_user_details/:authentication_token' => 'home#current_user_details'
@@ -27,7 +28,6 @@ Rails.application.routes.draw do
   get 'home/current_user_referral_count/:authentication_token' => 'home#current_user_referral_count'
 
   resources :default
-  # match '/ForgotPassword' => 'default#forgot_password', via: [:get]
   match '/ResetPassword' => 'default#reset_password', via: [:get]
   get 'default/get_user_details_by_reset_password_token/:token' => 'default#get_user_details_by_reset_password_token'
   get 'default/get_user_details_by_authentication_token/:token' => 'default#get_user_details_by_authentication_token'

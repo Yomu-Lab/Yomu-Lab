@@ -19,6 +19,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
         self.resource = @confirmable
       else
         @confirmable.confirm
+        set_referral_count_true(@confirmable.id)
       end
     end
 
@@ -42,6 +43,12 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
     render  :status => 200, 
             :json => { :response_type => message_type, :response_code => message_code, :response_message => message_content }
+  end
+
+  def set_referral_count_true(user_id)
+    referral_bonus_active = ReferralUser.find_by_referral_user_id(user_id)
+    referral_bonus_active.status = true
+    referral_bonus_active.save
   end
 
 protected

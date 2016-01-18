@@ -12,23 +12,26 @@
     # => Service To Logged In User Data
     */
     this.get_logged_in_user = function(authentication_token){
-      console.log("Service - Get Logged In User - Enter");
-      return $http.get("/home/user_details/"+authentication_token+".json").
-        success( function(data, status, header, config){
+      //console.log("Service - Get Logged In User - Enter");
+      return $http.get("/home/user_details/"+authentication_token+".json")
+        .success( function(data, status, header, config){
           var logged_in_user = data.current_user;
-          console.log("Service - Get Logged In User - Enter - Success "+data);
-        }).
-        error( function(data, status, header, config){
-          console.log("Service - Get Logged In User - Error");
+          //console.log("Service - Get Logged In User - Enter - Success "+data);
+        })
+        .error( function(data, status, header, config){
+          //console.log("Service - Get Logged In User - Error");
         });
     };
 
     this.get_user_details = function(authentication_token){
-      return $http.get("/home/current_user_details/"+authentication_token.token+".json").success(function(data, status, header, config){
-        console.log("Service - Get User Details - Enter - success");
-      }).error(function(data, status, header, config){
-        console.log("Service - Get User Details - Error");
-      });
+      //return $http.get("/home/current_user_details/"+authentication_token.token+".json")
+      return $http.get("/home/current_user_details/"+authentication_token+".json")
+        .success(function(data, status, header, config){
+          //console.log("Service - Get User Details - Enter - success");
+        })
+        .error(function(data, status, header, config){
+          //console.log("Service - Get User Details - Error");
+        });
     };
 
     /*
@@ -36,9 +39,10 @@
     */
     this.register_new_user = function(sign_up_form, prelaunch_ref){
       sign_up_form.prelaunch_ref = prelaunch_ref;
-      return $http.post("/home/register/", sign_up_form).success(function(data, status) {
-        console.log("Service - Register New User - "+data);
-      });      
+      return $http.post("/home/register/", sign_up_form)
+        .success(function(data, status) {
+          //console.log("Service - Register New User - "+data);
+        });      
     };
 
     /*
@@ -50,22 +54,25 @@
                         "email": email
                       }
                     }
-      return $http.post("/users/password", login_form).success(function(data, status, header, config) {
-        console.log("Service - Forgot Password Link - Success");
-      }).error(function(data, status, header, config){
-        console.log("Service - Forgot Password Link- Error");
-      });
+      return $http.post("/users/password", login_form)
+        .success(function(data, status, header, config) {
+          //console.log("Service - Forgot Password Link - Success");
+        })
+        .error(function(data, status, header, config){
+          //console.log("Service - Forgot Password Link- Error");
+        });
     };
 
     /*
     # => Get User Details By Reset Password Token
     */
     this.get_user_details_by_reset_password_token = function(token){
-      return $http.get("/default/get_user_details_by_reset_password_token/"+token+".json").success(function(data, status, header, config) {
-        console.log("Service - Get User Details By Reset Password Token - Success");
-      }).error(function(data, status, header, config){
-        console.log("Service - Get User Details By Reset Password Token - Error");
-      });
+      return $http.get("/default/get_user_details_by_reset_password_token/"+token+".json")
+        .success(function(data, status, header, config) {
+          //console.log("Service - Get User Details By Reset Password Token - Success");
+        }).error(function(data, status, header, config){
+          //console.log("Service - Get User Details By Reset Password Token - Error");
+        });
     };
 
     /*
@@ -79,33 +86,36 @@
                                   "password_confirmation": reset_password_form.password_confirmation
                                 }
                               }
-      return $http.put("/users/password/", new_password_details).success(function(data, status, header, config) {
-        console.log("Service - Get New Password Using Token - Success");
-      }).error(function(data, status, header, config){
-        console.log("Service - Get New Password Using Token - Error");
-      });
+      return $http.put("/users/password/", new_password_details)
+        .success(function(data, status, header, config) {
+          //console.log("Service - Get New Password Using Token - Success");
+        }).error(function(data, status, header, config){
+          //console.log("Service - Get New Password Using Token - Error");
+        });
     };
 
     /*
     # => Confirm User Using By Confirmation Token
     */
     this.confirm_user_by_confirmation_token = function(confirmation_token){
-      return $http.get("/users/confirmation?confirmation_token="+confirmation_token).success(function(data, status, header, config) {
-        console.log("Service - Confirm User By Confirmation Token - Success");
-      }).error(function(data, status, header, config){
-        console.log("Service - Confirm User By Confirmation Token - Error");
-      });
+      return $http.get("/users/confirmation?confirmation_token="+confirmation_token)
+        .success(function(data, status, header, config) {
+          //console.log("Service - Confirm User By Confirmation Token - Success");
+        }).error(function(data, status, header, config){
+          //console.log("Service - Confirm User By Confirmation Token - Error");
+        });
     };
 
     /*
     # => Get Referral Count of Logged In User Using By Confirmation Token
     */
     this.get_referral_count = function(authentication_token){
-      return $http.get("/home/current_user_referral_count/"+authentication_token+".json").success(function(data, status, header, config) {
-        console.log("Service - Confirm User By Confirmation Token - Success");
-      }).error(function(data, status, header, config){
-        console.log("Service - Confirm User By Confirmation Token - Error");
-      });
+      return $http.get("/home/current_user_referral_count/"+authentication_token+".json")
+        .success(function(data, status, header, config) {
+          //console.log("Service - get_referral_count - Success");
+        }).error(function(data, status, header, config){
+          //console.log("Service - get_referral_count - Error");
+        });
     };
 
   }]);
@@ -120,7 +130,7 @@
     };
 
     this.isSupported_or_not = function(){
-      this.authentication_token_exist_or_not();
+      //this.authentication_token_exist_or_not();
       return localStorageService.isSupported;
     }
 
@@ -135,8 +145,7 @@
 
         if ( existing_user.remember_me == "true" ){
           var date = new Date();
-          var current_time = date.setTime(date.getTime());
-        
+          var current_time = date.setTime(date.getTime());        
           if (existing_user.token_expires_at < current_time){
             this.remove_authentication_token();
             this.authentication_token_exist_or_not();
@@ -169,16 +178,16 @@
 
       // Set Authenticaiton Token Local Storage
       localStorageService.set('yomu_app_token', JSON.stringify(yomu_app_token));
-      //this.authentication_token_exist_or_not();
     };
 
     /*
     # => Service To Get Authentication via Local Storage
     */
     this.get_authentication_token = function(){
-      var logged_in_token = JSON.parse(localStorageService.get('yomu_app_token'));
-      console.log("Local Storage Token ="+logged_in_token);
-      return logged_in_token;
+      //var logged_in_token = 
+      return JSON.parse(localStorageService.get('yomu_app_token'));
+      //console.log("Local Storage Token ="+logged_in_token);
+      //return logged_in_token;
     };
 
     /*

@@ -18,6 +18,7 @@ class DefaultController < ApplicationController
   end
 
   def get_user_details_by_authentication_token
+    debugger
     puts "token = #{params[:token]}"
     params_token = params[:token]
     user = User.find_by_authentication_token(params_token)

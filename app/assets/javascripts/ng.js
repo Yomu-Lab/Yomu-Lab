@@ -191,7 +191,9 @@ yomu_lab.controller('YomuLabsSignUpCtrl', ['$scope', '$http', '$window', 'yomuLa
         };
 
         // Set Authenticaiton Token Local Storage
-        yomuLabAppLocalStorageService.set_authentication_token(logged_in_user.authentication_token);
+        //yomuLabAppLocalStorageService.set_authentication_token(logged_in_user.authentication_token);
+        yomuLabAppLocalStorageService.set_authentication_token(logged_in_user.authentication_token, sign_up_formremember_me, logged_in_user.refresh_token);
+
         // Redirect User To Tell Your Friends Page after Successful SignUp
         $window.location = "/home/tell_your_friends";
       }
@@ -205,18 +207,17 @@ yomu_lab.controller('YomuLabsSignUpCtrl', ['$scope', '$http', '$window', 'yomuLa
 yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppLocalStorageService','yomuLabAppService', function($scope, $http, $window, yomuLabAppLocalStorageService, yomuLabAppService) {
 
   $scope.init = function(token){
-    if (token != ""){
-      
+    if (token != ""){      
       // Fetch User Details From User Table
-      $http.get("/default/get_user_details_by_authentication_token/"+token+".json")
-        .success(function(data, status, header, config) {
-          // Set Authenticaiton Token Local Storage
-          yomuLabAppLocalStorageService.set_authentication_token(token, false, data.refresh_token);
-          console.log("Service - set_authentication_token_through_auth - Success");
-        })
-        .error(function(data, status, header, config){
-          console.log("Service - set_authentication_token_through_auth - Error");
-        });        
+      authentication_token = { "token": token }
+
+      yomuLabAppService.get_user_details(token).then(function(data) {
+        logged_in_user = angular.fromJson(data.data.current_user);
+        yomuLabAppLocalStorageService.set_authentication_token(logged_in_user.authentication_token, false, logged_in_user.refresh_token);
+        //console.log("logged_in_user = "+logged_in_user);
+      }, function() {
+        //console.log("Service give error while retrieving the user details.");
+      });
     }
 
     // => Fetch Authentication Token
@@ -227,7 +228,7 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
 
     var logged_in_user = "";
 
-    yomuLabAppService.get_user_details(authentication_token).then(function(data) {
+    yomuLabAppService.get_user_details(authentication_token.token).then(function(data) {
       logged_in_user = angular.fromJson(data.data.current_user);
       $scope.message_box = data.data.response_message;
 
@@ -247,7 +248,7 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
       };
       $scope.referral_url = "https://yomu-lab-staging.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
     }, function() {
-      console.log("Service give error while retrieving the user details.");
+      //console.log("Service give error while retrieving the user details.");
     });
 
     //  => Message Success
@@ -256,7 +257,7 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
     yomuLabAppService.get_referral_count(authentication_token.token).then(function(data) {
       $scope.referral_count = angular.fromJson(data.data.referral_count);
     }, function() {
-      console.log("Service give error while retrieving the referral_code.");
+      //console.log("Service give error while retrieving the referral_code.");
     });
   }
 
@@ -281,7 +282,7 @@ yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', 'local
         $scope.current_user_name = logged_in_user.first_name +" "+logged_in_user.last_name;
       }
     }, function() {
-      console.log("Service give error while retrieving the user details at reset password token.");
+      //console.log("Service give error while retrieving the user details at reset password token.");
     });
   }
 
@@ -299,7 +300,7 @@ yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', 'local
       $scope.redirect_page_to_sign_in_page();
       $scope.message_box = data.data.response_message;
     }, function() {
-      console.log("Service give error while setting new password.");
+      //console.log("Service give error while setting new password.");
     });
   }
 
@@ -322,7 +323,7 @@ yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', 'local
       $scope.message_type = data.data.response_type;
       $scope.message_box = data.data.response_message;
     }, function() {
-      console.log("Service give error while fetch_user_by_confirmation_token.");
+      //console.log("Service give error while fetch_user_by_confirmation_token.");
     });
   };
 
