@@ -67,6 +67,9 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', 'yomuLabAppLo
       */
       $scope.message_type = "error";
       $scope.message_box = "Invalid Email and Password. Please try again.";
+      if(error.data.error!=""){
+        $scope.message_box = error.data.error;
+      }
     });
 
     $scope.$on('devise:login', function(event, currentUser) {
@@ -76,36 +79,6 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', 'yomuLabAppLo
     $scope.$on('devise:new-session', function(event, currentUser) { });
   }
 
-  $scope.forgot_password = function(email){    
-    /*
-      => Check Email Valid Or Not
-    */
-    // Empty the Error Message Box
-    $scope.message_box = "";
-    $scope.message_box = check_input_for_forgot_password(email);
-    if ( $scope.message_box != "" ){
-      $scope.message_type = "error";
-      return false;
-    }
-
-    /*
-      => Reset Password Link - To Email
-    */
-    var config = {
-      headers: {
-        'X-HTTP-Method-Override': 'POST'
-      }
-    };
-    yomuLabAppService.get_reset_password_link(email, config).then(function(data) {
-      $scope.message_type = data.data.response_type;
-      $scope.message_box = data.data.response_message;
-      console.log("forgot_password - message_box = "+$scope.message_box);
-    }, function() {
-      $scope.message_type = "error";
-      $scope.message_box = "Service gives error while retrieving password link.";
-      console.log("Service give error while retrieving password link.");
-    });
-  }
 
 }]);
 
@@ -207,49 +180,71 @@ yomu_lab.controller('YomuLabsSignUpCtrl', ['$scope', '$http', '$window', 'yomuLa
 yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppLocalStorageService','yomuLabAppService', function($scope, $http, $window, yomuLabAppLocalStorageService, yomuLabAppService) {
 
   $scope.init = function(token){
+    var logged_in_user = "";
     if (token != ""){      
       // Fetch User Details From User Table
       authentication_token = { "token": token }
 
       yomuLabAppService.get_user_details(token).then(function(data) {
-        logged_in_user = angular.fromJson(data.data.current_user);
+        var logged_in_user = angular.fromJson(data.data.current_user);
         yomuLabAppLocalStorageService.set_authentication_token(logged_in_user.authentication_token, false, logged_in_user.refresh_token);
+        
+        //logged_in_user = angular.fromJson(data.data.current_user);
+        $scope.message_box = data.data.response_message;
+
+        $scope.current_user = {
+          email: logged_in_user.email,
+          first_name: logged_in_user.first_name,
+          last_name: logged_in_user.last_name,
+          id: logged_in_user.id,
+          level: logged_in_user.level,
+          original_language: logged_in_user.original_language,
+          provider: logged_in_user.provider,
+          target_language: logged_in_user.target_language,
+          ui_language: logged_in_user.ui_language,
+          unconfirmed_email: logged_in_user.unconfirmed_email,
+          referral_code: logged_in_user.referral_code,
+          authentication_token: logged_in_user.authentication_token
+        };
+        $scope.referral_url = "https://yomu-lab-staging.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
         //console.log("logged_in_user = "+logged_in_user);
       }, function() {
         //console.log("Service give error while retrieving the user details.");
       });
     }
+    else{
 
-    // => Fetch Authentication Token
-    var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
-    
-    // => Check Authentication Token Exist Or Not
-    yomuLabAppLocalStorageService.authentication_token_exist_or_not();
+      // => Fetch Authentication Token
+      var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
+      
+      // => Check Authentication Token Exist Or Not
+      yomuLabAppLocalStorageService.authentication_token_exist_or_not();
 
-    var logged_in_user = "";
+      var logged_in_user = "";
 
-    yomuLabAppService.get_user_details(authentication_token.token).then(function(data) {
-      logged_in_user = angular.fromJson(data.data.current_user);
-      $scope.message_box = data.data.response_message;
+      yomuLabAppService.get_user_details(authentication_token.token).then(function(data) {
+        logged_in_user = angular.fromJson(data.data.current_user);
+        $scope.message_box = data.data.response_message;
 
-      $scope.current_user = {
-        email: logged_in_user.email,
-        first_name: logged_in_user.first_name,
-        last_name: logged_in_user.last_name,
-        id: logged_in_user.id,
-        level: logged_in_user.level,
-        original_language: logged_in_user.original_language,
-        provider: logged_in_user.provider,
-        target_language: logged_in_user.target_language,
-        ui_language: logged_in_user.ui_language,
-        unconfirmed_email: logged_in_user.unconfirmed_email,
-        referral_code: logged_in_user.referral_code,
-        authentication_token: logged_in_user.authentication_token
-      };
-      $scope.referral_url = "https://yomu-lab-staging.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
-    }, function() {
-      //console.log("Service give error while retrieving the user details.");
-    });
+        $scope.current_user = {
+          email: logged_in_user.email,
+          first_name: logged_in_user.first_name,
+          last_name: logged_in_user.last_name,
+          id: logged_in_user.id,
+          level: logged_in_user.level,
+          original_language: logged_in_user.original_language,
+          provider: logged_in_user.provider,
+          target_language: logged_in_user.target_language,
+          ui_language: logged_in_user.ui_language,
+          unconfirmed_email: logged_in_user.unconfirmed_email,
+          referral_code: logged_in_user.referral_code,
+          authentication_token: logged_in_user.authentication_token
+        };
+        $scope.referral_url = "https://yomu-lab-staging.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
+      }, function() {
+        //console.log("Service give error while retrieving the user details.");
+      });
+    }
 
     //  => Message Success
     $scope.message_type = "alert-success";
@@ -264,11 +259,48 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
 }]);
 
 
-yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', 'localStorageService', 'yomuLabAppService', function($scope, $http, $window, localStorageService, yomuLabAppService) {
+yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', 'yomuLabAppLocalStorageService', 'yomuLabAppService', function($scope, $http, $window, yomuLabAppLocalStorageService, yomuLabAppService) {
 
   $scope.init = function(){
-    yomuLabAppLocalStorageService.redirect_user_to_refer_your_friends();
+    yomuLabAppLocalStorageService.redirect_user_to_refer_your_friends();    
   }
+
+  $scope.set_forgot_password_page = function(){
+    $scope.message_box = "";
+  }
+
+  $scope.forgot_password = function(email){    
+    /*
+      => Check Email Valid Or Not
+    */
+    // Empty the Error Message Box
+    $scope.message_box = "";
+    $scope.message_box = check_input_for_forgot_password(email);
+    if ( $scope.message_box != "" ){
+      $scope.message_type = "error";
+      return false;
+    }
+
+    /*
+      => Reset Password Link - To Email
+    */
+    var config = {
+      headers: {
+        'X-HTTP-Method-Override': 'POST'
+      }
+    };
+    yomuLabAppService.get_reset_password_link(email, config).then(function(data) {
+      $scope.message_type = data.data.response_type;
+      $scope.message_box = data.data.response_message;
+      $scope.redirect_page_to_sign_in_page();
+      console.log("forgot_password - message_box = "+$scope.message_box);
+    }, function() {
+      $scope.message_type = "error";
+      $scope.message_box = "Service gives error while retrieving password link.";
+      console.log("Service give error while retrieving password link.");
+    });
+  }
+
 
   $scope.fetch_user_by_token = function(reset_password_token){
     yomuLabAppService.get_user_details_by_reset_password_token(reset_password_token).then(function(data) {
@@ -322,6 +354,7 @@ yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', 'local
     yomuLabAppService.confirm_user_by_confirmation_token(confirmation_token).then(function(data) {
       $scope.message_type = data.data.response_type;
       $scope.message_box = data.data.response_message;
+      $scope.redirect_page_to_sign_in_page();
     }, function() {
       //console.log("Service give error while fetch_user_by_confirmation_token.");
     });

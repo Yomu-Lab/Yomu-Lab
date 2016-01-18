@@ -12,7 +12,8 @@
 	    <form>
         <div class="form-group">
         	<p class="small text-center thankyoumessage {{message_type}}" ng-show="message_box != ''">
-        		{{message_box}}
+        		{{message_box}}. 
+            <span ng-show="message_box != ''"> You will be redirected after {{remaining_seconds}} seconds.</span>
       		</p>
       	</div>
       	<div class="form-group text-center">
