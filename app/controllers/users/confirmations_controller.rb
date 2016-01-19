@@ -47,8 +47,10 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
   def set_referral_count_true(user_id)
     referral_bonus_active = ReferralUser.find_by_referral_user_id(user_id)
-    referral_bonus_active.status = true
-    referral_bonus_active.save
+    if referral_bonus_active.present?
+      referral_bonus_active.status = true
+      referral_bonus_active.save
+    end
   end
 
 protected
