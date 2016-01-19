@@ -56,10 +56,6 @@ GEM
     binding_of_caller (0.7.3.pre1)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
-    byebug (3.4.0)
-      columnize (~> 0.8)
-      debugger-linecache (~> 1.2)
-      slop (~> 3.6)
     choice (0.2.0)
     coderay (1.1.0)
     coffee-rails (4.1.1)
@@ -69,11 +65,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
-    columnize (0.9.0)
     concurrent-ruby (1.0.0)
     database_cleaner (1.5.1)
     debug_inspector (0.0.2)
-    debugger-linecache (1.2.0)
     devise (3.5.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -302,7 +296,6 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (= 0.10.0.rc3)
-  byebug (= 3.4.0)
   coffee-rails (~> 4.1.0)
   database_cleaner (~> 1.5, >= 1.5.1)
   devise
