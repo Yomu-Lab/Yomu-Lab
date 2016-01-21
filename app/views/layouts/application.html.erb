@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="yomu_lab">
+<html ng-app="yomu_lab" itemscope itemtype="http://schema.org/Article">
 
 <head>
   <title>Yomu Lab</title>
@@ -12,15 +12,37 @@
   <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
 
+
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Bob Belderbos • Software | Coding | Building cool stuff" />
+<meta property="og:description" content="I am passionate about web technologies and software development" />
+<meta property="og:url" content="http://bobbelderbos.com" />
+<meta property="og:site_name" content="Bob Belderbos" />
+<meta property="fb:admins" content="628517118" />
+<meta property="og:image" content="http://bobbelderbos.com/logo.png" />
+
+
 <!-- You can use Open Graph tags to customize link previews.
     Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+    <!--
   <meta property="og:url"           content="http://www.your-domain.com/your-page.html" />
   <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="Your Website Title" />
-  <meta property="og:description"   content="Your description" />
-  <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
+  <meta property="og:title"         content="Improve your Japanese reading - Free for a Limited Time!" />
+  <meta property="og:description"   content="Improve your Japanese reading effortlessly with fully translated and annotated contents, delivered daily to you." />
+  <meta property="og:image"         content="https://yomu-lab-staging.herokuapp.com/assets/bg.jpg" />
+-->
 
 
+<!-- Update your html tag to include the itemscope and itemtype attributes. -->
+
+
+<!-- Add the following three tags inside head. -->
+<!--
+<meta itemprop="name" content="Yomu Lab">
+<meta itemprop="description" content="Improve your Japanese reading - Free for a Limited Time! Improve your Japanese reading effortlessly with fully translated and annotated contents, delivered daily to you.">
+<meta itemprop="image" content="https://yomu-lab-staging.herokuapp.com/assets/bg.jpg">
+-->
 
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <!--
