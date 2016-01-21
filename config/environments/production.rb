@@ -88,9 +88,10 @@ Rails.application.configure do
     domain: "gmail.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: 'yomulab@gmail.com',
+    user_name: 'support@yomulab.com',
     password: 'yomu@123'
   }  
+  
   config.action_mailer.raise_delivery_errors = true
 
 end
