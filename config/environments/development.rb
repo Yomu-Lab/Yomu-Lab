@@ -50,7 +50,7 @@ Rails.application.configure do
     domain: "gmail.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: 'support@yomulab.com',
+    user_name: 'yomulab@gmail.com',
     password: 'yomu@123'
   }
 

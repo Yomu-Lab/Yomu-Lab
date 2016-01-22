@@ -1,6 +1,7 @@
 class UserMailer < ApplicationMailer
 
-	default from: 'support@yomulab.com '
+	#default from: 'support@yomulab.com'
+	default from: 'yomulab@gmail.com'
 
 	def welcome_email(user)
 		@user = user
