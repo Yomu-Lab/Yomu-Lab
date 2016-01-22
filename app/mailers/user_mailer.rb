@@ -5,7 +5,8 @@ class UserMailer < ApplicationMailer
 	def welcome_email(user)
 		@user = user
 		@subject = "YomuLabs - Welcome You."
-		@url = 'https://yomu-lab-staging.herokuapp.com/'
+		#@url = 'https://yomu-lab-staging.herokuapp.com/' 
+		@url = 'https://yomu-lab-production.herokuapp.com/' 
 		mail(to: @user.email, subject: @subject )
 	end
 
@@ -19,9 +20,11 @@ class UserMailer < ApplicationMailer
 
 	def reset_password_link(user)
 		@user = user
-		@subject = "YomuLabs - Reset Password Link  - To set new password."
-		@url = 'https://yomu-lab-staging.herokuapp.com/'
-		@reset_password_url = "https://yomu-lab-staging.herokuapp.com/ResetPassword/?token=<%=#{@user.token} %>">
+		@subject = "YomuLabs - Reset Password Link"
+		#@url = 'https://yomu-lab-staging.herokuapp.com/'
+		@url = 'https://yomu-lab-production.herokuapp.com/'
+		#@reset_password_url = "https://yomu-lab-staging.herokuapp.com/ResetPassword/?token=<%=#{@user.token} %>">
+		@reset_password_url = "https://yomu-lab-production.herokuapp.com/ResetPassword/?token=<%=#{@user.token} %>">
 		mail( to: @user.email, subject: @subject )
 	end
 

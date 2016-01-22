@@ -7,7 +7,8 @@ class ApplicationMailer < ActionMailer::Base
 		staff_email = "support@yomulab.com "
 		@user = user
 		@subject = "YomuLabs - Error Occured"
-		@url = 'https://yomu-lab-staging.herokuapp.com/'
+		#@url = 'https://yomu-lab-staging.herokuapp.com/'
+		@url = 'https://yomu-lab-production.herokuapp.com/'
 		mail( to: staff_email, subject: @subject )
 	end
 

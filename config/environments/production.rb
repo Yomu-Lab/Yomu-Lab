@@ -84,12 +84,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'https://yomu-lab-staging.herokuapp.com/' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "imap.gmail.com",
-    port: 993,
+    address: "smtp.gmail.com",
+    port: 587,
     domain: "gmail.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: 'support@yomulab.com',
+    user_name: 'yomulab@gmail.com',
     password: 'yomu@123'
   }
   # => Staging Server Config - End

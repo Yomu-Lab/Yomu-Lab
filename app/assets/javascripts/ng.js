@@ -206,7 +206,8 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
           referral_code: logged_in_user.referral_code,
           authentication_token: logged_in_user.authentication_token
         };
-        $scope.referral_url = "https://yomu-lab-staging.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
+        //$scope.referral_url = "https://yomu-lab-staging.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
+        $scope.referral_url = "https://yomu-lab-production.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
         //console.log("logged_in_user = "+logged_in_user);
       }, function() {
         //console.log("Service give error while retrieving the user details.");
@@ -240,7 +241,8 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
           referral_code: logged_in_user.referral_code,
           authentication_token: logged_in_user.authentication_token
         };
-        $scope.referral_url = "https://yomu-lab-staging.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
+        //$scope.referral_url = "https://yomu-lab-staging.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
+        $scope.referral_url = "https://yomu-lab-production.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
       }, function() {
         //console.log("Service give error while retrieving the user details.");
       });
