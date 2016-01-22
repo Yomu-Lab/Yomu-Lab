@@ -78,10 +78,11 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   #config.action_mailer.default_url_options = { :host => 'http://localhost:3000/' }
+
+=begin
+  # => Staging Server Config
   config.action_mailer.default_url_options = { :host => 'https://yomu-lab-staging.herokuapp.com/' }
-
   config.action_mailer.delivery_method = :smtp
-
   config.action_mailer.smtp_settings = {
     address: "imap.gmail.com",
     port: 993,
@@ -90,7 +91,23 @@ Rails.application.configure do
     enable_starttls_auto: true,
     user_name: 'support@yomulab.com',
     password: 'yomu@123'
-  }  
+  }
+  # => Staging Server Config - End
+=end
+
+  # => Production Server Config
+  config.action_mailer.default_url_options = { :host => 'https://yomu-lab-production.herokuapp.com/' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "gmail.com",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: 'yomulab@gmail.com',
+    password: 'yomu@123'
+  }
+  # => Production Server Config - End
 
   config.action_mailer.raise_delivery_errors = true
 
