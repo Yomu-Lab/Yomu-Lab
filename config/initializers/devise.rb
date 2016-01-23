@@ -17,8 +17,8 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
 
-  #config.mailer_sender = 'support@yomulab.com'
-  config.mailer_sender = 'yomulab@gmail.com'
+  config.mailer_sender = 'support@yomulab.com'
+  #config.mailer_sender = 'yomulab@gmail.com'
 
   # => YomuLabs  
   #config.omniauth :facebook, "904030749652784", "853580d4fa816c6445be0fb0ffe2915f", scope: 'email,public_profile', info_fields: 'email, first_name, last_name'

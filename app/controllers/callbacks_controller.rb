@@ -15,7 +15,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
 
       # => Welcome Message
       begin
-        UserMailer.welcome_email(@user, server_type).deliver_later
+        #UserMailer.welcome_email(@user, server_type).deliver_later
       rescue
       end
     else
@@ -40,7 +40,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
 
       # => Welcome Message
       begin
-        UserMailer.welcome_email(@user, server_type).deliver_later
+        #UserMailer.welcome_email(@user, server_type).deliver_later
       rescue
       end
     else

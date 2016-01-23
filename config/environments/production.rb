@@ -99,13 +99,16 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'https://yomu-lab-production.herokuapp.com/' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
+    #address: "smtp.gmail.com",
+    address: "smtp.zoho.com",
+    #user_name: 'yomulab@gmail.com',
+    user_name: 'support@yomulab.com',
+    password: 'yomu@123',
+    #domain: "gmail.com",
     port: 587,
-    domain: "gmail.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: 'yomulab@gmail.com',
-    password: 'yomu@123'
+    tls: true
   }
   # => Production Server Config - End
 
