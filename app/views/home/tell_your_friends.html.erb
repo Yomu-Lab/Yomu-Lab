@@ -13,6 +13,9 @@
       </p>
     </header>    
     <section>
+<!--
+<a id="facebook" href="http://www.facebook.com/share.php?u=http://www.worldlifestyle.com/trending/never-seen-images-woodstock-1969-2/&amp;title=Never Before Seen Images Of Woodstock 1969" target="_blank" class="socialFB socialbar"><i class="fa fa-facebook"></i><span>Share</span></a>
+-->
       <div class="sharetwithriends">
         <p class="text-center" style="color:red;">{{current_user.email}}<br/>
         {{current_user.authentication_token}}</p>
@@ -31,6 +34,9 @@
           <a onclick="fbShare('700', '600');" href="#" title="Share on Facebook" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
           <!-- Google+ -->
           <a href="https://plus.google.com/share?url={{referral_url}}" title="Share on Google+" target="_blank" class="btn btn-googleplus"><i class="fa fa-google-plus"></i> Google+</a>
+
+
+          <a id="facebook" href="http://www.facebook.com/share.php?u={{referral_url}}&title=YomuLabs" target="_blank" class="socialFB socialbar"><i class="fa fa-facebook"></i><span>Share</span></a>          
         </p>
         </div>
         <div class="col-md-5 signedupFriends col-centered">
