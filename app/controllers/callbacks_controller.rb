@@ -15,14 +15,16 @@ class CallbacksController < Devise::OmniauthCallbacksController
 
       # => Welcome Message      
       UserMailer.welcome_email(@user, server_type).deliver_later
+    else
+      authentication_token = existing_user.authentication_token
     end
-    authentication_token = existing_user.authentication_token
     redirect_to controller: 'home', action: 'tell_your_friends', token: "#{authentication_token}"
   end
 
   def google_oauth2
     authentication_token = ""
-    existing_user = check_user_existing(request.env["omniauth.auth"])    
+    existing_user = check_user_existing(request.env["omniauth.auth"])
+
     if !existing_user.present?
       @user = User.from_omniauth(request.env["omniauth.auth"])
       @user.authentication_token = generate_authentication_token
@@ -35,8 +37,9 @@ class CallbacksController < Devise::OmniauthCallbacksController
 
       # => Welcome Message      
       UserMailer.welcome_email(@user, server_type).deliver_later
+    else
+      authentication_token = existing_user.authentication_token
     end
-    authentication_token = existing_user.authentication_token
     redirect_to controller: 'home', action: 'tell_your_friends', token: "#{authentication_token}"
   end
 

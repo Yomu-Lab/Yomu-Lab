@@ -1,3 +1,16 @@
+<%
+  url = root_url if url.nil?
+  if url.include?('staging')
+    present_domain = "staging"
+  elsif url.include?('production')
+    present_domain = "production"
+  elsif url.include?('yomulab')
+    present_domain = "yomulab"
+  else
+    present_domain = "localhost"
+  end
+%>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,9 +25,17 @@
       <br/>
       <br/>
 
-      <a href="https://yomu-lab-production.herokuapp.com/ReconfirmUser/?confirmation_token=<%=@token %>">
-        Click Here
-      </a>
+      <% if present_domain == "staging" %>
+      <a href="https://yomu-lab-staging.herokuapp.com/ReconfirmUser/?confirmation_token=<%=@token %>">Click Here</a>
+      <% end %>
+
+      <% if present_domain == "production" %>
+      <a href="https://yomu-lab-production.herokuapp.com/ReconfirmUser/?confirmation_token=<%=@token %>">Click Here</a>
+      <% end %>
+
+      <% if present_domain == "localhost" %>
+      <a href="http://localhost:3000/ReconfirmUser/?confirmation_token=<%=@token %>">Click Here</a>
+      <% end %>
 
       <br/>      
       <br/>
@@ -22,22 +43,3 @@
     </p>
   </body>
 </html>
-
-
-      <% if false and check_environment == "staging" %>
-      <a href="https://yomu-lab-staging.herokuapp.com/ReconfirmUser/?confirmation_token=<%=@token %>">
-        Click Here
-      </a>
-      <% end %>
-
-      <% if false and check_environment == "production" %>
-      <a href="https://yomu-lab-production.herokuapp.com/ReconfirmUser/?confirmation_token=<%=@token %>">
-        Click Here
-      </a>
-      <% end %>
-
-      <% if false and check_environment == "localhost" %>
-      <a href="http://localhost:3000/ReconfirmUser/?confirmation_token=<%=@token %>">
-        Click Here
-      </a>
-      <% end %>

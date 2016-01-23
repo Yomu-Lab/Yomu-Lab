@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::Base
+
+  #helper :all
+  helper ApplicationHelper
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   #protect_from_forgery with: :exception
@@ -37,11 +41,13 @@ class ApplicationController < ActionController::Base
   end
 
   def check_environment
-    url = request.path_info
+    url = request.host
     if url.include?('staging')
       return "staging"
     elsif url.include?('production')
       return "production"
+    elsif url.include?('yomulab')
+      return "yomulab"
     else
       return "localhost"
     end

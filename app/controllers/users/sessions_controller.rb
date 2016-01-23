@@ -2,7 +2,8 @@ class Users::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
 
   acts_as_token_authentication_handler_for User
-
+  helper :all
+  
   respond_to :json
 
   # GET /resource/sign_in

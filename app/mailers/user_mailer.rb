@@ -5,10 +5,9 @@ class UserMailer < ApplicationMailer
 
 	def welcome_email(user, server_type)
 		@user = user
-		@subject = "YomuLabs - Welcome You."
-		#@url = 'https://yomu-lab-staging.herokuapp.com/' 
-		#@url = 'https://yomu-lab-production.herokuapp.com/' 
+		@subject = "Confirmation instructions"
 		@server_type = server_type
+		@token = user.confirmation_token
 		mail(to: @user.email, subject: @subject )
 	end
 
