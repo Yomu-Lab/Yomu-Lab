@@ -13,8 +13,11 @@ class CallbacksController < Devise::OmniauthCallbacksController
       authentication_token = @user.authentication_token
       server_type = check_environment
 
-      # => Welcome Message      
-      UserMailer.welcome_email(@user, server_type).deliver_later
+      # => Welcome Message
+      begin
+        UserMailer.welcome_email(@user, server_type).deliver_later
+      rescue
+      end
     else
       authentication_token = existing_user.authentication_token
     end
@@ -35,8 +38,11 @@ class CallbacksController < Devise::OmniauthCallbacksController
       authentication_token = @user.authentication_token
       server_type = check_environment
 
-      # => Welcome Message      
-      UserMailer.welcome_email(@user, server_type).deliver_later
+      # => Welcome Message
+      begin
+        UserMailer.welcome_email(@user, server_type).deliver_later
+      rescue
+      end
     else
       authentication_token = existing_user.authentication_token
     end
