@@ -31,7 +31,7 @@
         <div class="form-group">
           <input type="password" placeholder="Password Confirmation *" class="form-control" ng-model="sign_up_form.password_confirmation" name="password_confirmation" required="required" />
 
-          <input type="text" data-ng-model="sign_up_form.prelaunch_ref" value="<%=params[:prelaunch_ref]%>" name="prelaunch_ref" placeholder="<%=params[:prelaunch_ref]%>" />
+          <input type="hidden" data-ng-model="sign_up_form.prelaunch_ref" value="<%=params[:prelaunch_ref]%>" name="prelaunch_ref" placeholder="<%=params[:prelaunch_ref]%>" />
 
         </div>
         <div class="form-group">
