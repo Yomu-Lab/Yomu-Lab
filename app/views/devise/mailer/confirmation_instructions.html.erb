@@ -11,12 +11,33 @@
       Welcome to Yomu Lab. Thanks for signing up for a free account. Click this link below to confirm your account.
       <br/>
       <br/>
+
       <a href="https://yomu-lab-production.herokuapp.com/ReconfirmUser/?confirmation_token=<%=@token %>">
         Click Here
       </a>
+
       <br/>      
       <br/>
       Yomu Labs Support
     </p>
   </body>
 </html>
+
+
+      <% if false and check_environment == "staging" %>
+      <a href="https://yomu-lab-staging.herokuapp.com/ReconfirmUser/?confirmation_token=<%=@token %>">
+        Click Here
+      </a>
+      <% end %>
+
+      <% if false and check_environment == "production" %>
+      <a href="https://yomu-lab-production.herokuapp.com/ReconfirmUser/?confirmation_token=<%=@token %>">
+        Click Here
+      </a>
+      <% end %>
+
+      <% if false and check_environment == "localhost" %>
+      <a href="http://localhost:3000/ReconfirmUser/?confirmation_token=<%=@token %>">
+        Click Here
+      </a>
+      <% end %>

@@ -3,11 +3,12 @@ class UserMailer < ApplicationMailer
 	#default from: 'support@yomulab.com'
 	default from: 'yomulab@gmail.com'
 
-	def welcome_email(user)
+	def welcome_email(user, server_type)
 		@user = user
 		@subject = "YomuLabs - Welcome You."
 		#@url = 'https://yomu-lab-staging.herokuapp.com/' 
-		@url = 'https://yomu-lab-production.herokuapp.com/' 
+		#@url = 'https://yomu-lab-production.herokuapp.com/' 
+		@server_type = server_type
 		mail(to: @user.email, subject: @subject )
 	end
 

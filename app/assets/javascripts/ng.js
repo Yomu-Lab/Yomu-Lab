@@ -204,10 +204,12 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
           ui_language: logged_in_user.ui_language,
           unconfirmed_email: logged_in_user.unconfirmed_email,
           referral_code: logged_in_user.referral_code,
-          authentication_token: logged_in_user.authentication_token
+          authentication_token: logged_in_user.authentication_token,
+          referral_url: logged_in_user.referral_url,
         };
         //$scope.referral_url = "https://yomu-lab-staging.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
-        $scope.referral_url = "https://yomu-lab-production.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
+        $scope.referral_url = logged_in_user.referral_url;
+        //"https://yomu-lab-production.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
         //console.log("logged_in_user = "+logged_in_user);
       }, function() {
         //console.log("Service give error while retrieving the user details.");
@@ -239,10 +241,12 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
           ui_language: logged_in_user.ui_language,
           unconfirmed_email: logged_in_user.unconfirmed_email,
           referral_code: logged_in_user.referral_code,
-          authentication_token: logged_in_user.authentication_token
+          authentication_token: logged_in_user.authentication_token,
+          referral_url: logged_in_user.referral_url,
         };
         //$scope.referral_url = "https://yomu-lab-staging.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
-        $scope.referral_url = "https://yomu-lab-production.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
+        $scope.referral_url = logged_in_user.referral_url;
+        //"https://yomu-lab-production.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
       }, function() {
         //console.log("Service give error while retrieving the user details.");
       });

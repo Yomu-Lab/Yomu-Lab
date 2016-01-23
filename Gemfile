@@ -57,6 +57,7 @@ group :development do
   gem 'pry-stack_explorer'
   gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
   gem 'quiet_assets'
+  gem 'byebug'
 end
 
 group :test do

@@ -36,6 +36,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_environment
+    url = request.path_info
+    if url.include?('staging')
+      return "staging"
+    elsif url.include?('production')
+      return "production"
+    else
+      return "localhost"
+    end
+  end
+
 protected
 
   # In Rails 4.2 and above
