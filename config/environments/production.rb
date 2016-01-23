@@ -105,7 +105,7 @@ Rails.application.configure do
     user_name: 'support@yomulab.com',
     password: 'yomu@123',
     #domain: "gmail.com",
-    port: 587,
+    port: 465,
     authentication: "plain",
     enable_starttls_auto: true,
     tls: true
