@@ -40,7 +40,7 @@ class HomeController < ApplicationController
     elsif check_environment == "production"
       referral_url = "https://yomu-lab-production.herokuapp.com/SignUp?prelaunch_ref="+current_user.referral_code 
     elsif check_environment == "yomulab"
-      referral_url = "http://yomulab.com/SignUp?prelaunch_ref="+current_user.referral_code
+      referral_url = "http://www.yomulab.com/SignUp?prelaunch_ref="+current_user.referral_code
     else
       referral_url = "http://localhost:3000/SignUp?prelaunch_ref="+current_user.referral_code 
     end  
