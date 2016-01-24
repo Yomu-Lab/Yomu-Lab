@@ -104,12 +104,15 @@
     var winLeft = (screen.width / 2) - (winWidth / 2);
 
     var app_id = "903744876407538";
-    var redirect_uri = $("#refferal_url").val();
-    var host_url = "https://yomu-lab-production.herokuapp.com";
+    var refferal_url = $("#refferal_url").val();
+
+    var protocol = window.location.protocol;
+    var host = window.location.host;
+    var host_url = protocol+"//"+host;
     var picture_url = host_url+"/assets/bg.jpg";
     var caption_content = "Improve your Japanese reading - Free for a Limited Time!";
     var description = "Improve your Japanese reading effortlessly with fully translated and annotated contents, delivered daily to you.";
 
-    window.open("https://www.facebook.com/dialog/feed?app_id="+app_id+"&redirect_uri=https://www.facebook.com&link="+redirect_uri+"&title="+caption_content+"&picture="+picture_url+"&caption="+caption_content+"&description="+description+"&properties{text:'value1',key2:'value2'}&message='tuine&actions={name:'Improve your Japanese reading - Free for a Limited Time!',link:'"+host_url+"'}",'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
-    }
+    window.open("https://www.facebook.com/dialog/feed?app_id="+app_id+"&redirect_uri=https://www.facebook.com&link="+refferal_url+"&title="+caption_content+"&picture="+picture_url+"&caption="+caption_content+"&description="+description+"&properties{text:'value1',key2:'value2'}&message='tuine&actions={name:'Improve your Japanese reading - Free for a Limited Time!',link:'"+host_url+"'}",'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+  }
 </script>
