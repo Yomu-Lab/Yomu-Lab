@@ -33,8 +33,7 @@ class ApplicationController < ActionController::Base
     # Ensure we don't go into an infinite loop
     return if action_name == 'finish_signup'
 
-    # Redirect to the 'finish_signup' page if the user
-    # email hasn't been verified yet
+    # Redirect to the 'finish_signup' page if the user email hasn't been verified yet
     if current_user && !current_user.email_verified?
       redirect_to finish_signup_path(current_user)
     end
@@ -42,6 +41,12 @@ class ApplicationController < ActionController::Base
 
   def check_environment
     url = request.host
+
+    puts "==================="
+    puts "=> URL = #{url}"
+    puts "==================="
+
+
     if url.include?('staging')
       return "staging"
     elsif url.include?('production')

@@ -11,9 +11,9 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', 'yomuLabAppLo
   $scope.init = function(){
     $scope.message_box = "";
     if(yomuLabAppLocalStorageService.isSupported_or_not){
-      console.log("LocalStorage isSupported");
+      //console.log("LocalStorage isSupported");
     }else{
-      console.log("LocalStorage NOT Supported");
+      //console.log("LocalStorage NOT Supported");
     }
     $scope.loginForm = {
       remember_me : true
@@ -30,7 +30,7 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', 'yomuLabAppLo
   # => Service To Redirect The User To Tell Your Friend Page If Authentication Token Exists
   */
   $scope.redirect_user_to_refer_your_friends = function(){
-    console.log("redirect_user_to_refer_your_friends");
+    //console.log("redirect_user_to_refer_your_friends");
     yomuLabAppLocalStorageService.redirect_user_to_refer_your_friends();
   };
   
@@ -98,12 +98,12 @@ yomu_lab.controller('YomuLabsSignOutCtrl', ['$scope', '$http', '$window', 'yomuL
     };
 
     Auth.logout(config).then(function() {
-      console.log("you're signed out now.");
+      //console.log("you're signed out now.");
       yomuLabAppLocalStorageService.remove_authentication_token();
       yomuLabAppLocalStorageService.authentication_token_exist_or_not();
     }, function(error) {
         // An error occurred logging out.
-        console.log("Error occurred while logout.");
+        //console.log("Error occurred while logout.");
     });
 
     $scope.$on('devise:logout', function(event, oldCurrentUser) {
@@ -244,9 +244,7 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
           authentication_token: logged_in_user.authentication_token,
           referral_url: logged_in_user.referral_url,
         };
-        //$scope.referral_url = "https://yomu-lab-staging.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
         $scope.referral_url = logged_in_user.referral_url;
-        //"https://yomu-lab-production.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
       }, function() {
         //console.log("Service give error while retrieving the user details.");
       });
@@ -299,11 +297,11 @@ yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', 'yomuL
       $scope.message_type = data.data.response_type;
       $scope.message_box = data.data.response_message;
       $scope.redirect_page_to_sign_in_page();
-      console.log("forgot_password - message_box = "+$scope.message_box);
+      //console.log("forgot_password - message_box = "+$scope.message_box);
     }, function() {
       $scope.message_type = "error";
       $scope.message_box = "Service gives error while retrieving password link.";
-      console.log("Service give error while retrieving password link.");
+      //console.log("Service give error while retrieving password link.");
     });
   }
 
