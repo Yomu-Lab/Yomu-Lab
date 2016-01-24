@@ -41,12 +41,6 @@ class ApplicationController < ActionController::Base
 
   def check_environment
     url = request.host
-
-    puts "==================="
-    puts "=> URL = #{url}"
-    puts "==================="
-
-
     if url.include?('staging')
       return "staging"
     elsif url.include?('production')

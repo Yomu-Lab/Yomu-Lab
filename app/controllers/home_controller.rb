@@ -35,17 +35,12 @@ class HomeController < ApplicationController
       response_message = GlobalMessage::SIGNING_UP_CONFIRM_EMAIL
     end
 
-    # if current_user.confirmed_at.present?
-    #   unconfirmed_email_value = true
-    #   response_message = GlobalMessage::SIGNING_UP_INVITE_FRIENDS
-    # else
-    #   unconfirmed_email_value = false
-    #   response_message = GlobalMessage::SIGNING_UP_CONFIRM_EMAIL
-    # end
     if check_environment == "staging"
       referral_url = "https://yomu-lab-staging.herokuapp.com/SignUp?prelaunch_ref="+current_user.referral_code 
     elsif check_environment == "production"
       referral_url = "https://yomu-lab-production.herokuapp.com/SignUp?prelaunch_ref="+current_user.referral_code 
+    elsif check_environment == "yomulab"
+      referral_url = "http://yomulab.com/SignUp?prelaunch_ref="+current_user.referral_code
     else
       referral_url = "http://localhost:3000/SignUp?prelaunch_ref="+current_user.referral_code 
     end  
