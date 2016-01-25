@@ -5,10 +5,10 @@
 
   elsif url.include?('production')
     # confirmation_url = "https://yomu-lab-production.herokuapp.com/ReconfirmUser/?confirmation_token="+@token
-    confirmation_url = "http://yomulab.com/ReconfirmUser/?confirmation_token="+@token
+    confirmation_url = "http://www.yomulab.com/ReconfirmUser/?confirmation_token="+@token
 
   elsif url.include?('yomulab')
-    confirmation_url = "http://yomulab.com/ReconfirmUser/?confirmation_token="+@token
+    confirmation_url = "http://www.yomulab.com/ReconfirmUser/?confirmation_token="+@token
 
   else
     confirmation_url = "http://localhost:3000/ReconfirmUser/?confirmation_token="+@token
