@@ -1,13 +1,16 @@
 <%
   url = root_url if url.nil?
   if url.include?('staging')
-    present_domain = "staging"
+    confirmation_url = "https://yomu-lab-staging.herokuapp.com/ReconfirmUser/?confirmation_token="+@token
+
   elsif url.include?('production')
-    present_domain = "production"
+    confirmation_url = "https://yomu-lab-production.herokuapp.com/ReconfirmUser/?confirmation_token="+@token
+
   elsif url.include?('yomulab')
-    present_domain = "yomulab"
+    confirmation_url = "http://yomulab.com/ReconfirmUser/?confirmation_token="+@token
+
   else
-    present_domain = "localhost"
+    confirmation_url = "http://localhost:3000/ReconfirmUser/?confirmation_token="+@token
   end
 %>
 
@@ -25,18 +28,8 @@
       <br/>
       <br/>
 
-      <% if present_domain == "staging" %>
-      <a href="https://yomu-lab-staging.herokuapp.com/ReconfirmUser/?confirmation_token=<%=@token %>">Click Here</a>
-      <% end %>
-
-      <% if present_domain == "production" %>
-      <a href="https://yomu-lab-production.herokuapp.com/ReconfirmUser/?confirmation_token=<%=@token %>">Click Here</a>
-      <% end %>
-
-      <% if present_domain == "localhost" %>
-      <a href="http://localhost:3000/ReconfirmUser/?confirmation_token=<%=@token %>">Click Here</a>
-      <% end %>
-
+      <a href="<%=confirmation_url %>">Click Here</a>
+      
       <br/>      
       <br/>
       Yomu Labs Support
