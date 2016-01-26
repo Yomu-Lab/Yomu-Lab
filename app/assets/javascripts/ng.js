@@ -98,7 +98,6 @@ yomu_lab.controller('YomuLabsSignOutCtrl', ['$scope', '$http', '$window', 'yomuL
     };
 
     Auth.logout(config).then(function() {
-      //console.log("you're signed out now.");
       yomuLabAppLocalStorageService.remove_authentication_token();
       yomuLabAppLocalStorageService.authentication_token_exist_or_not();
     }, function(error) {
@@ -164,7 +163,6 @@ yomu_lab.controller('YomuLabsSignUpCtrl', ['$scope', '$http', '$window', 'yomuLa
         };
 
         // Set Authenticaiton Token Local Storage
-        //yomuLabAppLocalStorageService.set_authentication_token(logged_in_user.authentication_token);
         yomuLabAppLocalStorageService.set_authentication_token(logged_in_user.authentication_token, sign_up_form.remember_me, logged_in_user.refresh_token);
 
         // Redirect User To Tell Your Friends Page after Successful SignUp
@@ -189,7 +187,6 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
         var logged_in_user = angular.fromJson(data.data.current_user);
         yomuLabAppLocalStorageService.set_authentication_token(logged_in_user.authentication_token, false, logged_in_user.refresh_token);
         
-        //logged_in_user = angular.fromJson(data.data.current_user);
         $scope.message_box = data.data.response_message;
 
         $scope.current_user = {
@@ -207,10 +204,7 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
           authentication_token: logged_in_user.authentication_token,
           referral_url: logged_in_user.referral_url,
         };
-        //$scope.referral_url = "https://yomu-lab-staging.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
         $scope.referral_url = logged_in_user.referral_url;
-        //"https://yomu-lab-production.herokuapp.com/SignUp?prelaunch_ref="+logged_in_user.referral_code;
-        //console.log("logged_in_user = "+logged_in_user);
       }, function() {
         //console.log("Service give error while retrieving the user details.");
       });
@@ -297,7 +291,6 @@ yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', 'yomuL
       $scope.message_type = data.data.response_type;
       $scope.message_box = data.data.response_message;
       $scope.redirect_page_to_sign_in_page();
-      //console.log("forgot_password - message_box = "+$scope.message_box);
     }, function() {
       $scope.message_type = "error";
       $scope.message_box = "Service gives error while retrieving password link.";
@@ -364,7 +357,8 @@ yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', 'yomuL
     });
   };
 
-}]);
+}])
+//;
 
 /*
 yomu_lab.config(function(AuthProvider) {
@@ -372,3 +366,7 @@ yomu_lab.config(function(AuthProvider) {
   AuthProvider.logoutMethod('DELETE');
 });
 */
+
+.run(function(yomuLabAppService) {
+  yomuLabAppService.hide_alert_message();
+});
