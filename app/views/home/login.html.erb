@@ -31,9 +31,10 @@
             <a href="/ForgotPassword" class="pull-right">Forgot Password?</a>
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group waiting-loader">
           <button type="submit" ng-click="submit_credentials(loginForm);" class="btn btn-default btn-block submitbtn">
             Log In
+            <i class="fa fa-refresh fa-spin hidden loader"></i>
           </button>
         </div>
       </form>
@@ -41,3 +42,13 @@
     </div>
   </div>
 </section>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".loader").addClass("hidden");
+    $(".submitbtn").click(function(){             
+      $(this).find(".loader").removeClass("hidden");
+    });
+  });
+</script>

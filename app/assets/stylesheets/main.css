@@ -96,6 +96,7 @@
     color:#fff;
     margin-bottom: 15px;
     padding: 15px;
+    border-radius: 0;    
   }
   .alert-error {    
     background: #ee1f25;
@@ -1230,10 +1231,13 @@
 
   }
 
-  @media (max-width: 460px) {
+ @media (max-width: 460px) {
     .video-tour .play-btn img { width: 45%; }
     #articleDetails .actionpanel span {display: block; margin-top: 10px}
     #articleReadFooter #sendfeedbackLink {margin-top: 10px}
+    #tellyourfriends .packages .package {border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 5px 5px 0;}
   }
 
   /* custom */

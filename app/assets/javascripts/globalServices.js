@@ -116,7 +116,22 @@
         });
     };
 
-  }]);
+    /*
+    # => Show Loader
+    */
+    this.show_loader = function(){      
+      $(".waiting-loader").find(".loader").removeClass("hidden");
+    };
+
+    /*
+    # => Hide Loader
+    */
+    this.hide_loader = function(){      
+      $(".waiting-loader").find(".loader").addClass("hidden");
+    };
+
+}]);
+
 
 /*
 # => Global Service To Check Local Storage Value

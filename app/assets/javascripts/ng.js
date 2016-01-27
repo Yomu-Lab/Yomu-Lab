@@ -9,6 +9,9 @@ var PASSWORD_LENGTH_MINIMUM = 8;
 yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', 'yomuLabAppLocalStorageService', 'yomuLabAppService', 'Auth', function($scope, $http, $window, yomuLabAppLocalStorageService, yomuLabAppService, Auth) {
 
   $scope.init = function(){
+    // => Hide Loader
+    yomuLabAppService.hide_loader();
+
     $scope.message_box = "";
     if(yomuLabAppLocalStorageService.isSupported_or_not){
       //console.log("LocalStorage isSupported");
@@ -35,14 +38,19 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', 'yomuLabAppLo
   };
   
   $scope.submit_credentials = function(loginForm){
+    // => Show Loader
+    yomuLabAppService.show_loader();
+
     // Empty the Error Message Box
     $scope.message_box = "";
     $scope.message_box = check_input_for_login(loginForm);
     if ( $scope.message_box != "" ){
       $scope.message_type = "error";
+      // => Hide Loader
+      yomuLabAppService.hide_loader();
       return false;
     }
-    //return false;
+
     var config = {
       headers: {
         'X-HTTP-Method-Override': 'POST'
@@ -70,6 +78,9 @@ yomu_lab.controller('YomuLabsCtrl', ['$scope', '$http', '$window', 'yomuLabAppLo
       if(error.data.error!=""){
         $scope.message_box = error.data.error;
       }
+      // => Hide Loader
+      yomuLabAppService.hide_loader();
+
     });
 
     $scope.$on('devise:login', function(event, currentUser) {
@@ -101,12 +112,11 @@ yomu_lab.controller('YomuLabsSignOutCtrl', ['$scope', '$http', '$window', 'yomuL
       yomuLabAppLocalStorageService.remove_authentication_token();
       yomuLabAppLocalStorageService.authentication_token_exist_or_not();
     }, function(error) {
-        // An error occurred logging out.
         //console.log("Error occurred while logout.");
     });
 
     $scope.$on('devise:logout', function(event, oldCurrentUser) {
-        // ...
+      // ...
     });
   }
 }]);
@@ -120,16 +130,21 @@ yomu_lab.controller('YomuLabsSignUpCtrl', ['$scope', '$http', '$window', 'yomuLa
     $scope.referral_code = referral_code;
     yomuLabAppLocalStorageService.redirect_user_to_refer_your_friends();
   }
-  //$scope.init();
 
   $scope.submit_sign_up_details = function(sign_up_form, prelaunch_ref){    
     /*
       => Empty the Error Message Box
     */    
+
+    // => Show Loader
+    yomuLabAppService.show_loader();
+
     $scope.message_box = "";
     $scope.message_box = check_input_for_signup(sign_up_form);
     if ( $scope.message_box != "" ){ 
       $scope.message_type = "error";
+      // => Hide Loader
+      yomuLabAppService.hide_loader();
       return false; 
     }
 
@@ -141,6 +156,8 @@ yomu_lab.controller('YomuLabsSignUpCtrl', ['$scope', '$http', '$window', 'yomuLa
         yomuLabAppLocalStorageService.remove_authentication_token();
         $scope.message_type = "error";
         $scope.message_box = data.data.response_message;
+        // => Hide Loader
+        yomuLabAppService.hide_loader();
       }
       else
       {
@@ -169,6 +186,9 @@ yomu_lab.controller('YomuLabsSignUpCtrl', ['$scope', '$http', '$window', 'yomuLa
         $window.location = "/home/tell_your_friends";
       }
     }, function() {
+      // => Hide Loader
+      yomuLabAppService.hide_loader();
+
       $scope.message_type = "error";
       $scope.message_box = "Service gives error while creating new user.";
     });
@@ -271,11 +291,16 @@ yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', 'yomuL
     /*
       => Check Email Valid Or Not
     */
+    // => Show Loader
+    yomuLabAppService.show_loader();
+
     // Empty the Error Message Box
     $scope.message_box = "";
     $scope.message_box = check_input_for_forgot_password(email);
     if ( $scope.message_box != "" ){
       $scope.message_type = "error";
+      // => Hide Loader
+      yomuLabAppService.hide_loader();
       return false;
     }
 
@@ -291,7 +316,12 @@ yomu_lab.controller('YomuLabsDefaultCtrl', ['$scope', '$http', '$window', 'yomuL
       $scope.message_type = data.data.response_type;
       $scope.message_box = data.data.response_message;
       $scope.redirect_page_to_sign_in_page();
+      // => Hide Loader
+      yomuLabAppService.hide_loader();
     }, function() {
+      // => Hide Loader
+      yomuLabAppService.hide_loader();
+
       $scope.message_type = "error";
       $scope.message_box = "Service gives error while retrieving password link.";
       //console.log("Service give error while retrieving password link.");

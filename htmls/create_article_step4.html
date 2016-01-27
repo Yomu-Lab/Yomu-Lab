@@ -19,7 +19,7 @@
 </head>
 <body>
 
-  <!-- Create Article -->
+ <!-- Create Article -->
  <header id="articleHeader">
    <div class="col-md-6 col-sm-10  col-centered clearfix">
      <h1 id="logo" class="pull-left"><a href="#"><img class="logo-head" alt="logo" src="img/logo_icon_nobg.svg" height="50" width="50" /></a></h1>
@@ -40,6 +40,27 @@
 </header>
 <section id="articleDetails" class="clearfix">
   <div class="col-md-6 col-centered">
+  <div id="steps" class="col-centered clearfix">
+          <div class="circleTop">
+            <div class="circle">1</div>
+            <span>Text</span>
+          </div>
+          <div class="line"></div>
+          <div class="circleTop">
+            <div class="circle">2</div>
+            <span>Annotation</span>
+          </div>
+          <div class="line"></div>
+          <div class="circleTop">
+            <div class="circle">3</div>
+            <span>Translation</span>
+          </div>
+          <div class="line"></div>
+          <div class="circleTop">
+            <div class="circle active">4</div>
+            <span>Review</span>
+          </div>
+        </div>
     <header id="articleInfo" class="clearfix">
       <span lang="en" class="pull-left source">Source: <a href="#">NHK Easy News</a></span>
       <span lang="en" class="pull-right">Level: <a href="#">JLPT N5</a></span>
@@ -62,14 +83,11 @@
         <p><span class="label">Specific Note</span> <span>none</span></p>
         </div>
       </article>
-      <div class="actionpanel">
-
-        <button lang="en" class="btn btn-default">Mark As Read</button> <span lang="en">Mark as Read when done so we can show you your progress</span>
-      </div>
+     
     </div>
   </section>
   <footer id="articleReadFooter">
-    <div class="col-md-6 col-sm-10 col-centered">
+    <div class="col-md-6 col-sm-10 col-centered clearfix">
       <div class="col-md-8">
         <label class="actionLabel">Enable Translation</label> 
         <div class="switch">
@@ -83,7 +101,7 @@
         </div>
       </div>
       <div class="col-md-4 text-right">
-        <p id="sendfeedbackLink" class="text-center"><a href="#">Send Feedback</a></p>
+        <button class="btn btn-primary stepButton" type="submit">Save</button>
       </div>
     </div>
   </footer>

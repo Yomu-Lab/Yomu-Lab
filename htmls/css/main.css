@@ -96,6 +96,7 @@
     color:#fff;
     margin-bottom: 15px;
     padding: 15px;
+    border-radius: 0;
   }
   .alert-error {    
     background: #ee1f25;
@@ -948,6 +949,7 @@
   #tellyourfriends .packages .status .check {position: absolute; height: 100%; width: 100%; top: 0; left: 0}
   #tellyourfriends .packages .status .check .checkmark {background: #66be60; border-radius: 50%; height: 28px; width: 28px; margin:0 auto; text-align: center; line-height: 28px; color: #fff; font-weight: normal;}
   #tellyourfriends .packages .statusLine {background:#999898; height: 7px;}
+  #tellyourfriends .packages .package {margin-bottom: 20px}
   #tellyourfriends .packages .package.active .status {color:#484849;}
   #tellyourfriends .packages .package.active .statusLine {background: #66be60}
   #tellyourfriendsFooter {padding-top: 30px}
@@ -1015,7 +1017,7 @@
   #articleDetails .actionpanel .btn-default.disabled {background: #ccc}
   #articleDetails .actionpanel span {color:#9d9f9f; font-size: 13px}
   #articleDetails #articleBody .wordDef {text-decoration: underline; cursor: pointer;}
-  #articleReadFooter {padding-top: 50px; font-size: 12px; color: #9d9f9f;}   
+  #articleReadFooter {padding-top: 50px; font-size: 12px; color: #9d9f9f; padding-bottom: 10px}   
   #articleReadFooter .switch, #articleReadFooter .actionLabel {display: table-cell; vertical-align: middle;}
   #articleReadFooter .actionLabel {padding-right: 10px; font-weight: normal;}
   #articleReadFooter .switch {padding-right: 20px}
@@ -1023,7 +1025,7 @@
   #definationBox {position: absolute; width: 100%; left: 0; background: #f1f2f1; padding: 10px; border:1px solid #ddd;}
   #definationBox h3 {font-size: 16px; margin-top:0; color:#f37875;}
   #definationBox p {font-size: 13px; color: #000; margin: 0}
-  #definationBox span.label {width: 104px; display: inline-block; padding-right: 10px; font-weight: bold}
+  #definationBox span.label {width: 104px; display: inline-block; padding-right: 10px; font-weight: bold; font-size: 13px; color: #000; text-align: left}
   #definationBox .closebtn {font-size: 12px; color: #bbb; cursor: pointer; text-decoration: underline;}
   #definationBox .closebtn:hover {text-decoration: none;}
   .synonyms {position: relative;}
@@ -1058,6 +1060,10 @@
     padding: 0;
     text-transform: capitalize;}
 
+  #adminArticle #articleHeading {padding: 10px 0 30px; color: #000}
+  #adminArticle #articleBody {position: relative;}
+  #adminArticle #articleBody .articleContent p {margin-bottom: 30px; color: #000; line-height: 34px}
+
   /*** Create Article Step 1 ***/  
   #createarticle_step1 .form-control {border-color:#9b9c9d;}
   #createarticle_step1 .form-control:focus {border-color:#36bb4d;} 
@@ -1081,7 +1087,25 @@
   #changePassword form a {color:#3c57a7; text-decoration: underline;}
   #changePassword form a:hover {text-decoration: none;}
   #changePassword form input.error {border-color: #f00}
+
+  /*** Word Annotation Form ***/  
+  #adminAnnotation {z-index: 1; position: relative;}
+  .annotSuccess {position: absolute; top:-5px; left: 0; width: 100%; z-index: 1}
+  .annotSuccess .msgBox {padding: 20px; border: 1px solid #66be60; background: #fff; color: #66be60; font-size: 13px}
+  #adminAnnotation #selectedWord {font-weight: normal; color: #f37875}
+  #adminAnnotation #annotationForm .btn {text-transform: capitalize; margin-right: 10px; padding: 6px 12px; font-size: 13px}
+  #formTypes {margin-bottom: 30px}
+  #annotationForm .form-horizontal .control-label {font-weight: normal; color: #ababab; font-size: 14px; padding-top: 0}
+  #annotationForm .form-horizontal .form-control {border-color: #999998; font-size: 14px; padding: 6px 12px}
+  #annotationForm .form-horizontal input.form-control {height: 34px; }
+  #annotationForm .form-horizontal .btn-default {background: #b7b7b8}
+  #fakeBg {position: fixed; right: 0; top:0; height: 100%; background: #fdfcfc; border-left:1px solid #ddd;}  
+  #articleDetails #articleBody.translation .articleContent p {margin-bottom: 10px}
+  #articleDetails #articleBody.translation h2 {padding-bottom: 0}
   
+  #translationPage .translatedText {color:#f37875; font-size: 13px; font-style: italic;}
+  #translationPage .form-control {border-color: #9b9c9d}
+  #translationPage textarea {padding: 10px}
 /* ==========================================================================
    19.Small devices (tablets, 768px and up)
    ========================================================================== */
@@ -1233,6 +1257,9 @@
     .video-tour .play-btn img { width: 45%; }
     #articleDetails .actionpanel span {display: block; margin-top: 10px}
     #articleReadFooter #sendfeedbackLink {margin-top: 10px}
+    #tellyourfriends .packages .package {border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 5px 5px 0;}
   }
 
   /* custom */
