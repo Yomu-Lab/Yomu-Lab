@@ -1,0 +1,23 @@
+.background {
+  background-color:#000000;
+  background-repeat: repeat-y; /* for vertical repeat */
+  background-repeat: repeat-x; /* for horizontal repeat */
+  padding: 2em 2em 2em 2em;    
+}
+
+.logo {}
+
+.progressBar {}
+
+.splash {
+  background-image: url(splash.png);
+}
+
+.watermark {
+  background-image: url("http://www.yomulab.com/assets/mood-media.png");
+  height: 57px;
+  width: 57px;
+  background-repeat: no-repeat;
+  float: right;
+  bottom: 0px;
+}
