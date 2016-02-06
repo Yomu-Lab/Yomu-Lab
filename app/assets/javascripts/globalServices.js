@@ -172,21 +172,21 @@
                           "authentication_token": authentication_token,
                         }
 
-      if (article.id == ""){
+      //if (article.id == ""){
         return $http.post("/articles", params_article)
           .success(function(data, status, header, config) {
             console.log("Service - create article step 1 - Success");
           }).error(function(data, status, header, config){
             console.log("Service - create article step 1 - Error");
           });
-      }else{
-        return $http.put("/articles/"+article.id, params_article)
-          .success(function(data, status, header, config) {
-            console.log("Service - create article step 1 - Success");
-          }).error(function(data, status, header, config){
-            console.log("Service - create article step 1 - Error");
-          });
-      }
+      // }else{
+      //   return $http.put("/articles/"+article.id, params_article)
+      //     .success(function(data, status, header, config) {
+      //       console.log("Service - create article step 1 - Success");
+      //     }).error(function(data, status, header, config){
+      //       console.log("Service - create article step 1 - Error");
+      //     });
+      // }
     };
 
     /*
