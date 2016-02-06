@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="yomu_lab" itemscope itemtype="http://schema.org/website">
+
+<head>
+  <title>Yomu Lab - Admin</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Yomu Lab">
+  <!-- Favicon Icon -->
+  <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Improve your Japanese reading - Free for a Limited Time!" />
+  <meta property="og:description" content="Improve your Japanese reading effortlessly with fully translated and annotated contents, delivered daily to you." />
+  <meta property="og:url" content="https://yomu-lab-production.herokuapp.com" />
+  <meta property="og:site_name" content="Yomu Lab" />
+  <meta property="og:image" content="https://yomu-lab-production.herokuapp.com/assets/bg.jpg" />
+
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <!--
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,700" rel="stylesheet">
+  -->
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+<!--
+<% #if user_signed_in? %>
+  <%#=current_user.first_name %> <%#=current_user.last_name %> : <%#=current_user.email %>
+<% #else %>
+  NO USER
+<% #end %>
+
+<% #if user_signed_in? %>
+  <li>
+    <a data-method="delete" href="/users/sign_out" rel="nofollow"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+  </li>
+<%#= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+<%# else %>
+  <li>
+    <%#= link_to('Login', new_user_session_path)  %>  
+  </li>
+<% #end %>
+-->
+
+  <% if flash[:notice].present? %>
+    <h1> Flash Notice <%=flash[:notice]%></h1>
+    <h2> Flash token <%=flash[:token]%></h2>
+  <% end %>
+
+  <%= render "partials/admin_header" %>
+  
+  <%= yield %>
+
+</body>
+</html>

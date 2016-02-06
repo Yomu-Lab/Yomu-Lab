@@ -1,0 +1,159 @@
+<!-- Create Article -->
+<div id="fakeBg" class="col-md-5"></div>
+
+<section id="adminAnnotation" ng-controller="YomuLabsAdminCtrl" ng-init="fetch_article_data_at_step2(<%=@article_id %>);response_from_create_article_step1('<%=@response_code %>');">
+
+  <!-- Header -->
+  <header id="articleHeader" class="clearfix">
+    <div class="col-md-7 has-feedback">
+      
+      <!-- Alert Message -->
+      <div class="annotSuccess response_message_box" ng-show="message_type == 'success_box'">
+        <div class="col-md-11 col-centered text-center msgBox">
+          <span>{{ message_content }}</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-5">
+      <div class="col-md-11 col-centered">
+        <h4 id="selectedWord">づ蛣䦌姨驚</h4>
+      </div>
+    </div>
+
+  </header>
+  <!-- Header - End -->
+
+  <section id="adminWrapper">
+    <section class="clearfix">
+      <div class="col-md-7 steps_top_padding">
+
+        <!-- Steps - Start -->
+        <%= render "admin/article_process_steps" %>
+        <!-- Steps - End -->
+
+        <div id="adminArticle" class="col-md-11 col-centered">
+
+          <input type="text" id="article_id" name="article_id" value="{{article.id}}" />
+          
+          <header class="clearfix" id="articleInfo">
+            <span lang="en" class="pull-left source">Source: <a target="_blank" href="{{article.source_url}}">{{article.source_name}}</a></span>
+            <span lang="en" class="pull-right">Level: <a href="#">{{article.level}}</a></span>
+          </header>
+
+          <header class="clearfix" id="articleInfo">
+            <span lang="en" class="pull-left source">Word Count: {{article.word_count}}</span>
+            <span lang="en" class="pull-right">Character Count: {{article.character_count}} [{{article.publication_status}}]</span>
+          </header>          
+          
+          <article id="articleBody">
+
+            <h2 lang="ja" id="articleHeading">{{article.title}}</h2>
+
+            <div class="articleContent editable">
+              <p lang="ja">{{article.body}}</p>
+            </div>
+
+            <div class="clearfix">
+              <div class="form-group clearfix">
+                <a href="/admin/create_article_step1/{{article.id}}" class="btn btn-primary stepButton pull-left" type="submit">&lt;&lt; Previous</a>
+                <a href="/admin/create_article_step3/{{article.id}}" class="btn btn-primary stepButton pull-right" type="submit">Next &gt;&gt;</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="col-md-5 steps_top_padding annotationFormbg">
+        <div id="annotationForm" class="col-md-11 col-centered">
+          
+          <div class="row clearfix" id="formTypes">
+            <div class="col-md-4" ng-repeat="category in annotation_category">
+              <button id="{{category.id}}" ng-click="select_annotation_category(category.id);" class="btn btn-primary stepButton btn-block">{{category.name}}</button>
+            </div>
+            <!--
+            <div class="col-md-4">
+              <button class="btn btn-primary stepButton btn-block">Grammar</button>
+            </div>
+            <div class="col-md-4">
+              <button class="btn btn-primary stepButton btn-block">Other</button>
+            </div>
+          -->
+        </div>
+
+        <!-- Form Start -->
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="conjugation" class="col-sm-3 control-label">Original Conjugation</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="conjugation" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="definition" class="col-sm-3 control-label">Definition</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="definition" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reading" class="col-sm-3 control-label">Reading</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="reading" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reading" class="col-sm-3 control-label">Translation</label>
+            <div class="col-sm-9">
+              <textarea class="form-control" ></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reading" class="col-sm-3 control-label">General Note</label>
+            <div class="col-sm-9">
+              <textarea class="form-control" ></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reading" class="col-sm-3 control-label">Specific Note</label>
+            <div class="col-sm-9">
+              <textarea class="form-control" ></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9 clearfix">
+              <div class="row col-md-5">
+                <button type="submit" class="btn btn-primary btn-block">Save</button>
+              </div>
+              <div class="col-md-5">
+                <button type="submit" class="btn btn-default btn-block">Discard</button>
+              </div>
+            </div>
+          </div>
+
+        </form>
+        <!-- Form End -->
+
+        </div>
+      </div>
+    </section>
+  </section>
+</section>
+
+<div class="editable"></div>
+<script>
+
+$(document).ready(function() {
+  var editor = new MediumEditor('.editable');
+});
+</script>
+
+
+<script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">

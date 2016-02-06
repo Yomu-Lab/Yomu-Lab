@@ -1,0 +1,22 @@
+.article_message {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+.article_message .error_box {
+  padding: 20px;
+  border: 1px solid #FF4C4C !important;
+  background: #fff;
+  color: #FF4C4C !important;
+  font-size: 13px;
+}
+.article_message .success_box {
+  padding: 20px;
+  border: 1px solid #66be60 !important;
+  background: #fff;
+  color: #66be60 !important;
+  font-size: 13px;
+}
+

@@ -399,4 +399,5 @@ yomu_lab.config(function(AuthProvider) {
 
 yomu_lab.run(['yomuLabAppService', function(yomuLabAppService) {
   yomuLabAppService.hide_alert_message();
+  yomuLabAppService.hide_response_message();
 }]);

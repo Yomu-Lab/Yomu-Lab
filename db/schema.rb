@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160110192810) do
+ActiveRecord::Schema.define(version: 20160204205115) do
+
+  create_table "annotation_categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.boolean  "status",     limit: 1,   default: true, null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.integer  "user_id",            limit: 4
+    t.string   "original_language",  limit: 255
+    t.string   "level",              limit: 255
+    t.string   "title",              limit: 255
+    t.text     "body",               limit: 65535
+    t.string   "source_name",        limit: 255
+    t.string   "source_url",         limit: 255
+    t.string   "publication_status", limit: 255
+    t.integer  "word_count",         limit: 4,     default: 0, null: false
+    t.integer  "character_count",    limit: 4,     default: 0, null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+  end
 
   create_table "referral_users", force: :cascade do |t|
     t.integer  "user_id",          limit: 4

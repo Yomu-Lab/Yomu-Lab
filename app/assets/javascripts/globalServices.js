@@ -1,7 +1,7 @@
 // (function(){
 //   'use strict';
 
-  yomu_lab.service('yomuLabAppService', ["$http", '$timeout', '$q', function($http, $timeout, $q){
+  yomu_lab.service('yomuLabAppService', ["$http", '$timeout', '$q', 'yomuLabAppLocalStorageService', function($http, $timeout, $q, yomuLabAppLocalStorageService){
     this.server = {
       baseURL: 'http://localhost:3000/'
     };
@@ -16,6 +16,14 @@
       }, 5000 );
     };
 
+    /*
+    # => Service To Hide Response Message From Article
+    */
+    this.hide_response_message = function(){
+      setInterval( function(){
+        $(".response_message_box").fadeOut(500);
+      }, 5000 );
+    };
     /*
     # => Service To Logged In User Data
     */
@@ -128,6 +136,84 @@
     */
     this.hide_loader = function(){      
       $(".waiting-loader").find(".loader").addClass("hidden");
+    };
+
+    /*
+    # => Article Listing - Logged In User
+    */
+    this.get_articles_list = function(authentication_token){
+      console.log("GlobalService = "+authentication_token);
+      return $http.get("/articles.json?authentication_token="+authentication_token)
+        .success(function(data, status, header, config) {
+        }).error(function(data, status, header, config){
+          //console.log("Service - get_referral_count - Error");
+        });      
+    };
+
+    /*
+    # => Create Article Step One - Logged In User
+    */
+    this.create_article_step1 = function(article, authentication_token){
+      // => Fetch Authentication Token
+      var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
+
+
+
+
+      params_article = {
+                          "article": {
+                            "title": article.title,
+                            "source_name": article.source_name,
+                            "source_url": article.source_url,
+                            "level": article.level,
+                            "body": article.body,
+                            "id": article.id,
+                          },
+                          "authentication_token": authentication_token,
+                        }
+
+      if (article.id == ""){
+        return $http.post("/articles", params_article)
+          .success(function(data, status, header, config) {
+            console.log("Service - create article step 1 - Success");
+          }).error(function(data, status, header, config){
+            console.log("Service - create article step 1 - Error");
+          });
+      }else{
+        return $http.put("/articles/"+article.id, params_article)
+          .success(function(data, status, header, config) {
+            console.log("Service - create article step 1 - Success");
+          }).error(function(data, status, header, config){
+            console.log("Service - create article step 1 - Error");
+          });
+      }
+    };
+
+    /*
+    # => Fetch Article Step One Data - Logged In User
+    */
+    this.get_article_step1_data = function(article_id){
+      // => Fetch Authentication Token
+      var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
+
+      return $http.get("/articles/get_article_detail/"+article_id)
+        .success(function(data, status, header, config) {
+          console.log("Service - fetch article step 1 - Success");
+        }).error(function(data, status, header, config){
+          console.log("Service - fetch article step 1 - Error");
+        });      
+    };
+
+    /*
+    # => Fetch Annotation Categories - Logged In User
+    */
+    this.get_annotation_category = function(article_id){
+      return $http.get("/annotation_categories.json")
+        .success(function(data, status, header, config) {
+          console.log("Service - fetch_annotation_category - Success");
+        }).error(function(data, status, header, config){
+          console.log("Service - fetch_annotation_category - Error");
+        });      
     };
 
 }]);

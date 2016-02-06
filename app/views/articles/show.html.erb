@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @article.user_id %>
+</p>
+
+<p>
+  <strong>Original language:</strong>
+  <%= @article.original_language %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @article.level %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @article.body %>
+</p>
+
+<p>
+  <strong>Source name:</strong>
+  <%= @article.source_name %>
+</p>
+
+<p>
+  <strong>Source url:</strong>
+  <%= @article.source_url %>
+</p>
+
+<p>
+  <strong>Publication status:</strong>
+  <%= @article.publication_status %>
+</p>
+
+<p>
+  <strong>Word count:</strong>
+  <%= @article.word_count %>
+</p>
+
+<p>
+  <strong>Character count:</strong>
+  <%= @article.character_count %>
+</p>
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>

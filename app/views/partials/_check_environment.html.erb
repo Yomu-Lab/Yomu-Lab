@@ -1,0 +1,12 @@
+<%
+  url = root_url
+  if url.include?('staging')
+    present_domain = "staging"
+  elsif url.include?('production')
+    present_domain = "production"
+  elsif url.include?('yomulab')
+    present_domain = "yomulab"
+  else
+    present_domain = "localhost"
+  end
+%>

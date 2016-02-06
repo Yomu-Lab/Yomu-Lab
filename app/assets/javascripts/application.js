@@ -30,4 +30,5 @@
 //= require main
 //= require common
 //= require ng
+//= require ng_admin
 //= require globalServices

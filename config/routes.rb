@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
   
+  resources :annotation_categories
+  get 'annotation_categories/get_category_list'
+  get 'admin/dashboard'
+  get 'admin/create_article_step1/:article_id' => 'admin#create_article_step1'
+  get 'admin/create_article_step2/:article_id' => 'admin#create_article_step2'
+  get 'admin/create_article_step3'
+
+  resources :articles
+  get 'articles/get_article_detail/:id' => 'articles#get_article_detail'
+  
   resources :home, only: :index do
     collection do
       get :tell_your_friends, as: :tell_your_friends

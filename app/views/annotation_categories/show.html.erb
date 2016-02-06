@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @annotation_category.name %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @annotation_category.status %>
+</p>
+
+<%= link_to 'Edit', edit_annotation_category_path(@annotation_category) %> |
+<%= link_to 'Back', annotation_categories_path %>

@@ -1,0 +1,39 @@
+<%
+  action_name = controller.action_name
+
+  case action_name
+    when "create_article_step1"
+      step1_active = "active"
+
+    when "create_article_step2"
+      step2_active = "active"
+
+    when "create_article_step3"
+      step3_active = "active"
+
+    when "create_article_step4"
+      step4_active = "active"
+    end
+%>
+
+<div id="steps" class="col-centered clearfix">
+  <div class="circleTop">
+    <div class="circle <%=step1_active %>">1</div>
+    <span>Text</span>
+  </div>
+  <div class="line"></div>
+  <div class="circleTop">
+    <div class="circle  <%=step2_active %>">2</div>
+    <span>Annotation</span>
+  </div>
+  <div class="line"></div>
+  <div class="circleTop">
+    <div class="circle <%=step3_active %>">3</div>
+    <span>Translation</span>
+  </div>
+  <div class="line"></div>
+  <div class="circleTop">
+    <div class="circle <%=step4_active %>">4</div>
+    <span>Review</span>
+  </div>
+</div>

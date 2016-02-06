@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   ## Token Authenticatable
   acts_as_token_authenticatable # => field :authentication_token
 
+  has_many :articles
+
   def self.from_omniauth(auth)
     
     if auth.provider == "facebook"

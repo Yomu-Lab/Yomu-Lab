@@ -58,6 +58,7 @@ group :development do
   gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
   gem 'quiet_assets'
   gem 'byebug'
+  gem "rails-erd"
 end
 
 group :test do
@@ -72,3 +73,5 @@ end
 source "https://rails-assets.org" do
   gem "rails-assets-angular-devise"
 end
+
+gem 'words_counted'
