@@ -46,8 +46,16 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
     var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
 
     yomuLabAppService.create_article_step1(article, authentication_token.token).then(function(data){
-      var success_response = angular.fromJson(data.data);
-      window.location = success_response.response_url;
+      var create_response = angular.fromJson(data.data);
+      if (create_response == 400){
+        console.log("Service give error while creating the article Step One.");
+        $scope.message_type = "error_box";
+        $scope.message_content = create_response.response_message; //"Service give error while creating the article Step One.";
+      }
+      else
+      {
+        window.location = create_response.response_url;
+      }      
     }, function() {
       console.log("Service give error while creating the article Step One.");
       $scope.message_type = "error_box";

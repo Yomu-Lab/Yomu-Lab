@@ -168,7 +168,7 @@
                           "authentication_token": authentication_token,
                         }
 
-      if (article.id == ""){
+      if (article.id == "" || article.id == undefined   ){
         return $http.post("/articles", params_article)
           .success(function(data, status, header, config) {
             console.log("Service - create article step 1 - Success");

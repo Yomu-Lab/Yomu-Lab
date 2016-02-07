@@ -35,7 +35,7 @@ class ArticlesController < ApplicationController
       @article.publication_status = GlobalConstant::ARTICLE_STATUS_DRAFT
 
       # => Seperator Between Space
-      @article.body = params[:article][:text].gsub!(/[\n]+/, "\n\n").concat("\n\n");
+      @article.body = params[:article][:body].gsub(/[\n]+/, "\n\n").concat("\n\n");
 
       if @article.save
         render  :status => 200,
