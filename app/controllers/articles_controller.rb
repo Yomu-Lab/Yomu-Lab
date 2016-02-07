@@ -34,6 +34,9 @@ class ArticlesController < ApplicationController
       @article.character_count = params[:article][:body].gsub(" ", "").size
       @article.publication_status = GlobalConstant::ARTICLE_STATUS_DRAFT
 
+      # => Seperator Between Space
+      @article.body = params[:article][:text].gsub!(/[\n]+/, "\n\n").concat("\n\n");
+
       if @article.save
         render  :status => 200,
           :json => {
@@ -57,15 +60,53 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @article.update(article_params)
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
-        format.json { render :show, status: :ok, location: @article }
+    begin
+      @article = Article.find_by_id(params[:article][:id])
+
+      user = User.find_by_authentication_token(params["authentication_token"]["token"])
+      @article.user_id = user.id
+
+      @article.level = params[:article][:level]
+      @article.title = params[:article][:title]
+      # => Seperator Between Unconstant Space & New Line
+      @article.body = params[:article][:body].gsub!(/[\n]+/, "\n\n");
+      @article.source_name = params[:article][:source_name]
+      @article.source_url = params[:article][:source_url]
+
+      @article.word_count = WordsCounted.count(params[:article][:body]).token_count
+      @article.character_count = params[:article][:body].gsub(" ", "").size
+      @article.publication_status = GlobalConstant::ARTICLE_STATUS_DRAFT
+
+      if @article.save
+        render  :status => 200,
+          :json => {
+            :article => @article, :response_code => 200,
+            :response_url => "/admin/create_article_step2/#{@article.id}?response_code=CODE_200"
+          }
       else
-        format.html { render :edit }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+        render  :status => 200,
+          :json => {
+            :response_code => 400, :response_message => GlobalMessage::ARTICLE_ERROR_OCCURED,
+            :error_message => @article.errors,
+          }
       end
+    rescue
+      render  :status => 200,
+        :json => {
+          :response_code => 400, :response_message => GlobalMessage::ARTICLE_ERROR_OCCURED,
+          :error_message => @article.errors,
+        }
     end
+
+    # respond_to do |format|
+    #   if @article.update(article_params)
+    #     format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @article }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @article.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   def destroy
@@ -93,6 +134,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:auth_token, :user_id, :original_language, :level, :title, :body, :source_name, :source_url, :publication_status, :word_count, :character_count)
+      params.require(:article).permit(:id, :auth_token, :user_id, :original_language, :level, :title, :body, :source_name, :source_url, :publication_status, :word_count, :character_count)
     end
 end

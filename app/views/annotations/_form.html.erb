@@ -1,0 +1,77 @@
+<%= form_for(@annotation) do |f| %>
+  <% if @annotation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@annotation.errors.count, "error") %> prohibited this annotation from being saved:</h2>
+
+      <ul>
+      <% @annotation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :article_id %><br>
+    <%= f.number_field :article_id %>
+  </div>
+  <div class="field">
+    <%= f.label :destination_language %><br>
+    <%= f.text_field :destination_language %>
+  </div>
+  <div class="field">
+    <%= f.label :source_text %><br>
+    <%= f.text_area :source_text %>
+  </div>
+  <div class="field">
+    <%= f.label :location_start %><br>
+    <%= f.number_field :location_start %>
+  </div>
+  <div class="field">
+    <%= f.label :location_end %><br>
+    <%= f.number_field :location_end %>
+  </div>
+  <div class="field">
+    <%= f.label :word_count %><br>
+    <%= f.number_field :word_count %>
+  </div>
+  <div class="field">
+    <%= f.label :character_count %><br>
+    <%= f.number_field :character_count %>
+  </div>
+  <div class="field">
+    <%= f.label :annotation_category_id %><br>
+    <%= f.number_field :annotation_category_id %>
+  </div>
+  <div class="field">
+    <%= f.label :definition %><br>
+    <%= f.text_area :definition %>
+  </div>
+  <div class="field">
+    <%= f.label :reading %><br>
+    <%= f.text_area :reading %>
+  </div>
+  <div class="field">
+    <%= f.label :translation %><br>
+    <%= f.text_area :translation %>
+  </div>
+  <div class="field">
+    <%= f.label :usage_note %><br>
+    <%= f.text_area :usage_note %>
+  </div>
+  <div class="field">
+    <%= f.label :specific_note %><br>
+    <%= f.text_area :specific_note %>
+  </div>
+  <div class="field">
+    <%= f.label :paragraph_id %><br>
+    <%= f.number_field :paragraph_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -401,3 +401,27 @@ yomu_lab.run(['yomuLabAppService', function(yomuLabAppService) {
   yomuLabAppService.hide_alert_message();
   yomuLabAppService.hide_response_message();
 }]);
+
+
+yomu_lab.filter('newline', function($sce) {
+  return function(text) {
+    var translation_input_box = '<div class="form-group"><textarea class="form-control translatedText" placeholder="Enter Translation"></textarea></div>';
+    text = text.replace(/\n\n/g, '<br />'+translation_input_box);
+    return $sce.trustAsHtml(text);
+  }
+});
+
+yomu_lab.filter('create_input_box_with_ng_model', function($sce) {
+  return function(text) {
+    var new_text="";
+    var text_array = text.split('\n\n');
+    $.each(text_array, function(index, value) {
+      if (value!=""){
+        var paragarph_id = index+1;
+        var translation_input_box = '<div class="form-group"><textarea class="form-control translatedText" ng-model="translation.paragraph_'+paragarph_id+'" id="paragarph_'+paragarph_id+'" placeholder="Enter Translation"></textarea></div>';
+        new_text +=value+translation_input_box;
+      }
+    });
+    return $sce.trustAsHtml(new_text);
+  }
+});

@@ -11,6 +11,10 @@ module GlobalMessage
   ARTICLE_SUCCESSFULLY_CREATED = "Article was successfully created."
   ARTICLE_ERROR_OCCURED = "Error occurred while creating Article."
   ARTICLE_CHANGES_SAVED = "Your changes have been saved successfully."
-  
+
+  # => Annotation Messages
+  ANNOTATION_SAVED = "Annotation saved successfully."
+  ANNOTATION_NOT_SAVED = "Error occurred while creating Annotation."
+  ANNOTATION_UPDATED = "Annotation updated successfully.."
 
 end

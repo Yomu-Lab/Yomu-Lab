@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Annotations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Article</th>
+      <th>Destination language</th>
+      <th>Source text</th>
+      <th>Location start</th>
+      <th>Location end</th>
+      <th>Word count</th>
+      <th>Character count</th>
+      <th>Annotation category</th>
+      <th>Definition</th>
+      <th>Reading</th>
+      <th>Translation</th>
+      <th>Usage note</th>
+      <th>Specific note</th>
+      <th>Paragraph</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @annotations.each do |annotation| %>
+      <tr>
+        <td><%= annotation.user_id %></td>
+        <td><%= annotation.article_id %></td>
+        <td><%= annotation.destination_language %></td>
+        <td><%= annotation.source_text %></td>
+        <td><%= annotation.location_start %></td>
+        <td><%= annotation.location_end %></td>
+        <td><%= annotation.word_count %></td>
+        <td><%= annotation.character_count %></td>
+        <td><%= annotation.annotation_category_id %></td>
+        <td><%= annotation.definition %></td>
+        <td><%= annotation.reading %></td>
+        <td><%= annotation.translation %></td>
+        <td><%= annotation.usage_note %></td>
+        <td><%= annotation.specific_note %></td>
+        <td><%= annotation.paragraph_id %></td>
+        <td><%= link_to 'Show', annotation %></td>
+        <td><%= link_to 'Edit', edit_annotation_path(annotation) %></td>
+        <td><%= link_to 'Destroy', annotation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Annotation', new_annotation_path %>

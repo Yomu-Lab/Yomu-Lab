@@ -18,7 +18,7 @@
 
     <div class="col-md-5">
       <div class="col-md-11 col-centered">
-        <h4 id="selectedWord">づ蛣䦌姨驚</h4>
+        <h4 id="selectedWord"  >づ蛣䦌姨驚</h4>
       </div>
     </div>
 
@@ -66,79 +66,84 @@
       </div>
 
       <div class="col-md-5 steps_top_padding annotationFormbg">
+
+        <!-- Alert Message  -->
+        <div class="annotation_notification {{annotation_notification_message_type}} response_message_box" ng-show="message_type == 'success_box' || message_type == 'error_box'">
+          <div class="col-md-11 col-centered text-center msgBox">
+            <span>{{annotation_notification_message}}</span>
+          </div>
+        </div>
+
         <div id="annotationForm" class="col-md-11 col-centered">
           
           <div class="row clearfix" id="formTypes">
-            <div class="col-md-4" ng-repeat="category in annotation_category">
+            <div class="col-md-4 annotation_button" ng-repeat="category in annotation_category">
               <button id="{{category.id}}" ng-click="select_annotation_category(category.id);" class="btn btn-primary stepButton btn-block">{{category.name}}</button>
             </div>
-            <!--
-            <div class="col-md-4">
-              <button class="btn btn-primary stepButton btn-block">Grammar</button>
-            </div>
-            <div class="col-md-4">
-              <button class="btn btn-primary stepButton btn-block">Other</button>
-            </div>
-          -->
-        </div>
-
-        <!-- Form Start -->
-        <form class="form-horizontal">
-          <div class="form-group">
-            <label for="conjugation" class="col-sm-3 control-label">Original Conjugation</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" id="conjugation" />
-            </div>
           </div>
 
-          <div class="form-group">
-            <label for="definition" class="col-sm-3 control-label">Definition</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" id="definition" />
-            </div>
-          </div>
+          <!-- Form Start -->
+          <form class="form-horizontal">
+          Category
+            <input type="text" class="form-control" ng-model="annotation.selected_annotation_category" />
+            annotation
+            <input type="text" class="form-control" id="source_text" ng-model="annotation.source_text" />
 
-          <div class="form-group">
-            <label for="reading" class="col-sm-3 control-label">Reading</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" id="reading" />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="reading" class="col-sm-3 control-label">Translation</label>
-            <div class="col-sm-9">
-              <textarea class="form-control" ></textarea>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="reading" class="col-sm-3 control-label">General Note</label>
-            <div class="col-sm-9">
-              <textarea class="form-control" ></textarea>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="reading" class="col-sm-3 control-label">Specific Note</label>
-            <div class="col-sm-9">
-              <textarea class="form-control" ></textarea>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9 clearfix">
-              <div class="row col-md-5">
-                <button type="submit" class="btn btn-primary btn-block">Save</button>
-              </div>
-              <div class="col-md-5">
-                <button type="submit" class="btn btn-default btn-block">Discard</button>
+            <div class="form-group">
+              <label for="conjugation" class="col-sm-3 control-label">Original Conjugation</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="conjugation" ng-model="annotation.original_conjugation" />
               </div>
             </div>
-          </div>
 
-        </form>
-        <!-- Form End -->
+            <div class="form-group">
+              <label for="definition" class="col-sm-3 control-label">Definition</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="definition" ng-model="annotation.definition" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="reading" class="col-sm-3 control-label">Reading</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="reading" ng-model="annotation.reading" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="reading" class="col-sm-3 control-label">Translation</label>
+              <div class="col-sm-9">
+                <textarea class="form-control" ng-model="annotation.translation" ></textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="reading" class="col-sm-3 control-label">General Note</label>
+              <div class="col-sm-9">
+                <textarea class="form-control" ng-model="annotation.general_note" ></textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="reading" class="col-sm-3 control-label">Specific Note</label>
+              <div class="col-sm-9">
+                <textarea class="form-control" ng-model="annotation.specific_note" ></textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-offset-3 col-sm-9 clearfix">
+                <div class="row col-md-5">
+                  <button type="submit" class="btn btn-primary btn-block" ng-click="create_annotation(annotation);">Save</button>
+                </div>
+                <div class="col-md-5">
+                  <button type="submit" class="btn btn-default btn-block">Discard</button>
+                </div>
+              </div>
+            </div>
+
+          </form>
+          <!-- Form End -->
 
         </div>
       </div>

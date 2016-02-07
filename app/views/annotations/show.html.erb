@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @annotation.user_id %>
+</p>
+
+<p>
+  <strong>Article:</strong>
+  <%= @annotation.article_id %>
+</p>
+
+<p>
+  <strong>Destination language:</strong>
+  <%= @annotation.destination_language %>
+</p>
+
+<p>
+  <strong>Source text:</strong>
+  <%= @annotation.source_text %>
+</p>
+
+<p>
+  <strong>Location start:</strong>
+  <%= @annotation.location_start %>
+</p>
+
+<p>
+  <strong>Location end:</strong>
+  <%= @annotation.location_end %>
+</p>
+
+<p>
+  <strong>Word count:</strong>
+  <%= @annotation.word_count %>
+</p>
+
+<p>
+  <strong>Character count:</strong>
+  <%= @annotation.character_count %>
+</p>
+
+<p>
+  <strong>Annotation category:</strong>
+  <%= @annotation.annotation_category_id %>
+</p>
+
+<p>
+  <strong>Definition:</strong>
+  <%= @annotation.definition %>
+</p>
+
+<p>
+  <strong>Reading:</strong>
+  <%= @annotation.reading %>
+</p>
+
+<p>
+  <strong>Translation:</strong>
+  <%= @annotation.translation %>
+</p>
+
+<p>
+  <strong>Usage note:</strong>
+  <%= @annotation.usage_note %>
+</p>
+
+<p>
+  <strong>Specific note:</strong>
+  <%= @annotation.specific_note %>
+</p>
+
+<p>
+  <strong>Paragraph:</strong>
+  <%= @annotation.paragraph_id %>
+</p>
+
+<%= link_to 'Edit', edit_annotation_path(@annotation) %> |
+<%= link_to 'Back', annotations_path %>

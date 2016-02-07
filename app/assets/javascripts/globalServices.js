@@ -156,10 +156,6 @@
     this.create_article_step1 = function(article, authentication_token){
       // => Fetch Authentication Token
       var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
-
-
-
-
       params_article = {
                           "article": {
                             "title": article.title,
@@ -172,21 +168,21 @@
                           "authentication_token": authentication_token,
                         }
 
-      //if (article.id == ""){
+      if (article.id == ""){
         return $http.post("/articles", params_article)
           .success(function(data, status, header, config) {
             console.log("Service - create article step 1 - Success");
           }).error(function(data, status, header, config){
             console.log("Service - create article step 1 - Error");
           });
-      // }else{
-      //   return $http.put("/articles/"+article.id, params_article)
-      //     .success(function(data, status, header, config) {
-      //       console.log("Service - create article step 1 - Success");
-      //     }).error(function(data, status, header, config){
-      //       console.log("Service - create article step 1 - Error");
-      //     });
-      // }
+      }else{
+        return $http.put("/articles/"+article.id, params_article)
+          .success(function(data, status, header, config) {
+            console.log("Service - update article step 1 - Success");
+          }).error(function(data, status, header, config){
+            console.log("Service - update article step 1 - Error");
+          });
+      }
     };
 
     /*
@@ -213,7 +209,33 @@
           console.log("Service - fetch_annotation_category - Success");
         }).error(function(data, status, header, config){
           console.log("Service - fetch_annotation_category - Error");
-        });      
+        });
+    };
+
+    /*
+    # => Fetch Annotation Categories - Logged In User
+    */
+    this.create_annotation = function(annotation, article_id, authentication_token){
+      params_annotation = {
+                            "annotation": {
+                              "source_text": annotation.source_text,
+                              "original_conjugation": annotation.original_conjugation,
+                              "definition": annotation.definition,
+                              "reading": annotation.reading,
+                              "translation": annotation.translation,
+                              "general_note": annotation.general_note,
+                              "specific_note": annotation.specific_note,
+                              "selected_annotation_category": annotation.selected_annotation_category,
+                              "article_id": article_id,
+                            },                            
+                            "authentication_token": authentication_token,
+                          }
+      return $http.post("/annotations", params_annotation)
+        .success(function(data, status, header, config) {
+          console.log("Service - create annotation - Success");
+        }).error(function(data, status, header, config){
+          console.log("Service - create annotation - Error");
+        });
     };
 
 }]);

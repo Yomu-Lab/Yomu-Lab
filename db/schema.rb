@@ -11,13 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204205115) do
+ActiveRecord::Schema.define(version: 20160206184000) do
 
   create_table "annotation_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.boolean  "status",     limit: 1,   default: true, null: false
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+  end
+
+  create_table "annotations", force: :cascade do |t|
+    t.integer  "user_id",                limit: 4
+    t.integer  "article_id",             limit: 4
+    t.string   "destination_language",   limit: 255
+    t.text     "source_text",            limit: 65535
+    t.integer  "location_start",         limit: 4
+    t.integer  "location_end",           limit: 4
+    t.integer  "word_count",             limit: 4
+    t.integer  "character_count",        limit: 4
+    t.integer  "annotation_category_id", limit: 4
+    t.string   "original_conjugation",   limit: 255
+    t.string   "definition",             limit: 255
+    t.string   "reading",                limit: 255
+    t.text     "translation",            limit: 65535
+    t.text     "usage_note",             limit: 65535
+    t.text     "specific_note",          limit: 65535
+    t.integer  "paragraph_id",           limit: 4
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "articles", force: :cascade do |t|

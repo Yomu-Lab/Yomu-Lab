@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  article_id: 1
+  destination_language: MyString
+  source_text: MyText
+  location_start: 1
+  location_end: 1
+  word_count: 1
+  character_count: 1
+  annotation_category_id: 1
+  definition: MyText
+  reading: MyText
+  translation: MyText
+  usage_note: MyText
+  specific_note: MyText
+  paragraph_id: 1
+
+two:
+  user_id: 1
+  article_id: 1
+  destination_language: MyString
+  source_text: MyText
+  location_start: 1
+  location_end: 1
+  word_count: 1
+  character_count: 1
+  annotation_category_id: 1
+  definition: MyText
+  reading: MyText
+  translation: MyText
+  usage_note: MyText
+  specific_note: MyText
+  paragraph_id: 1

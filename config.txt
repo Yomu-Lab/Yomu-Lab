@@ -1,0 +1,15 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = git@github.com:Yomu-Lab/Yomu-Lab.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+
+[remote "heroku"]
+	url = https://git.heroku.com/yomu-lab-staging.git
+	fetch = +refs/heads/*:refs/remotes/heroku/*
