@@ -34,7 +34,7 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   # => Redirect To Create Article Page
   */
   $scope.redirect_to_create_articles = function(){
-    window.location = "/admin/article_new";
+    window.location = "/admin/create_article_step1";
   };
 
   /*
