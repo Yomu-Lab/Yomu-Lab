@@ -8,7 +8,7 @@
       <table id="dashboardTable" class="table table-bordered">
         <tr>
           <th>No</th>
-          <th>Article</th>
+          <th width="150">Article</th>
           <th>Creator</th>
           <th>Created at</th>
           <th>Updated at</th> 
@@ -18,8 +18,8 @@
         </tr>
         <tr ng-repeat="article in articles">
           <td>{{article.id}}</td> 
-          <td class="pull-left">{{article.title | limitTo: 5}}</td>
-          <td class="pull-left">{{article.creator}}</td>
+          <td>{{article.title | limitTo: 5}}</td>
+          <td>{{article.creator}}</td>
           <td>{{article.created_at | date:'medium'}}</td>
           <td>{{article.updated_at | date:'medium'}}</td>
           <td>{{article.published_date | date:'medium'}}</td> 

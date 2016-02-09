@@ -17,7 +17,7 @@ class AnnotationsController < ApplicationController
 
   def create
     begin
-      annotation = params[:annotation]
+      annotation = params[:annotation_data]
       user_id = User.find_by_authentication_token(params[:authentication_token]).id
 
       check_annotation_exist_or_not = check_annotation_existance(annotation[:article_id], annotation[:selected_annotation_category], annotation[:source_text])
@@ -86,6 +86,31 @@ class AnnotationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to annotations_url, notice: 'Annotation was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def get_annotation
+    if authentication_token_valid(params["authentication_token"])
+      annotation = Annotation.find_by_source_text(params[:annotation][:source_text])
+
+      if annotation.present?
+        @annotation = { 
+          :original_conjugation => annotation.original_conjugation,
+          :definition => annotation.definition,
+          :reading => annotation.reading,
+          :translation => annotation.translation,
+          :usage_note => annotation.usage_note,
+          :specific_note => annotation.specific_note
+        }
+        render  :status => 200, :json => { :annotation => @annotation, :response_code => 200 }
+      else
+        render  :status => 200, :json => { :response_code => 404, :response_message => "Error occured while retrieving annotation meaning." }
+      end
+    else
+      render  :status => 200,
+        :json => {
+          :response_code => 400, :response_message => "Error occured while retrieving annotation meaning."
+        }
     end
   end
 

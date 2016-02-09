@@ -52,6 +52,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
+  def authentication_token_valid(authenticity_token)
+    return true if User.where(authentication_token: authenticity_token).present?
+    return false
+  end
+
 protected
 
   # In Rails 4.2 and above

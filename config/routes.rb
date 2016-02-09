@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
   
+  # => Annotations
   resources :annotations
+  post 'annotations/get_annotation' => 'annotations#get_annotation'
+
+  # => Annotation Category
   resources :annotation_categories
   get 'annotation_categories/get_category_list'
+  
+  # => Admin Controller
   get 'admin/dashboard'
   get 'admin/create_article_step1' => 'admin#create_article_step1'
   get 'admin/create_article_step1/:article_id' => 'admin#create_article_step1'

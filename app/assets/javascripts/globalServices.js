@@ -216,9 +216,10 @@
     # => Fetch Annotation Categories - Logged In User
     */
     this.create_annotation = function(annotation, article_id, authentication_token){
+      var source_text = $("#source_text").val();
       params_annotation = {
-                            "annotation": {
-                              "source_text": annotation.source_text,
+                            "annotation_data": {
+                              "source_text": source_text,
                               "original_conjugation": annotation.original_conjugation,
                               "definition": annotation.definition,
                               "reading": annotation.reading,
@@ -237,6 +238,25 @@
           console.log("Service - create annotation - Error");
         });
     };
+
+
+    this.fetch_data_for_existing_annotation = function(article_id, selected_string){
+
+      var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
+      params_annotation = {
+                    "annotation": {
+                      "source_text": selected_string,
+                      "article_id": article_id,
+                    },                            
+                    "authentication_token": authentication_token.token,
+                  }
+      return $http.post("/annotations/get_annotation", params_annotation)
+        .success(function(data, status, header, config) {
+          console.log("Service - create annotation - Success");
+        }).error(function(data, status, header, config){
+          console.log("Service - create annotation - Error");
+        });                  
+    }
 
 }]);
 

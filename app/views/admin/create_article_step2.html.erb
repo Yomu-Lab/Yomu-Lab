@@ -18,7 +18,7 @@
 
     <div class="col-md-5">
       <div class="col-md-11 col-centered">
-        <h4 id="selectedWord"  >づ蛣䦌姨驚</h4>
+        <h4 id="selectedWord">づ蛣䦌姨驚</h4>
       </div>
     </div>
 
@@ -151,14 +151,40 @@
   </section>
 </section>
 
-<div class="editable"></div>
 <script>
 
-$(document).ready(function() {
-  var editor = new MediumEditor('.editable');
+if(!window.YomuLabAnnotation){
+  YomuLabAnnotation = {};
+}
+
+YomuLabAnnotation.Selector = {};
+// getSelected() was borrowed from CodeToad at
+// http://www.codetoad.com/javascript_get_selected_text.asp
+YomuLabAnnotation.Selector.getSelected = function(){
+  var t = '';
+  if(window.getSelection){
+    t = window.getSelection();
+  }else if(document.getSelection){
+    t = document.getSelection();
+  }else if(document.selection){
+    t = document.selection.createRange().text;
+  }
+  return t;
+}
+
+YomuLabAnnotation.Selector.mouseup = function(){
+  var st = YomuLabAnnotation.Selector.getSelected();
+  if(st!=''){
+    $("#selectedWord").text(st);
+    $("#source_text").val(st);
+    var selected_string = $("#source_text").val();
+    console.log("selected_strin"+selected_string);
+    angular.element(document.getElementById('adminAnnotation')).scope().fetch_data_for_existing_annotation(selected_string);
+  }
+}
+
+$(document).ready(function(){
+  $(document).bind("mouseup", YomuLabAnnotation.Selector.mouseup);
 });
+
 </script>
-
-
-<script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
-<link rel="stylesheet" href="//cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
