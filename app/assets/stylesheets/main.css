@@ -104,7 +104,8 @@
   .alert-success {   
     background: #66be60;
   }
-
+  
+  
 /* ==========================================================================
    2.Hero section
    ========================================================================== */
@@ -1067,6 +1068,16 @@
   /*** Create Article Step 1 ***/  
   #createarticle_step1 .form-control {border-color:#9b9c9d;}
   #createarticle_step1 .form-control:focus {border-color:#36bb4d;} 
+
+  #createarticle_step1 .has-error .form-control {
+    border-color: #c9302c;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  }
+  #createarticle_step1 .has-error .form-control:focus {
+    border-color: #c9302c;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 6px #eba5a3;
+  }
+  
   #createarticle_step1 textarea.form-control {height: 200px; padding-top: 10px}  
   #steps {width: 578px; margin-bottom: 30px}
   #steps .circle {border: 1px solid #66be60; color: #66be60; width: 60px; height: 60px; border-radius: 50%; line-height: 60px; text-align: center; font-size: 28px; margin-bottom: 10px}
@@ -1106,6 +1117,9 @@
   #translationPage .translatedText {color:#f37875; font-size: 13px; font-style: italic;}
   #translationPage .form-control {border-color: #9b9c9d}
   #translationPage textarea {padding: 10px}
+
+  /*** Validation CSS ***/
+  .help-block {margin-bottom: 0; color: #f00; font-size:12px;}
 /* ==========================================================================
    19.Small devices (tablets, 768px and up)
    ========================================================================== */

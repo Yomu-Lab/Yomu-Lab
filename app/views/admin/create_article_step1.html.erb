@@ -6,12 +6,15 @@
       <%= render "admin/article_process_steps" %>
       <!-- Steps - End -->
 
-      <form>
+      <form name="createForm" novalidate>
         <div class="clearfix">
-          <div class="form-group col-md-12">
-            <input type="text" placeholder="Enter your title *" class="form-control" ng-model="article.title" name="title" required="required" />
-            <input type="text" placeholder="" class="form-control" ng-model="article.id" name="id"/>
+        <div class="form-group col-md-12" ng-class="{ 'has-error' : createForm.$submitted && createForm.title.$error.required }">
+            <input type="text" placeholder="Enter your title *" class="form-control" ng-model="article.title" name="title" required/>
+            <input type="text" placeholder="" class="form-control hide" ng-model="article.id" name="id"/>
 
+            <div ng-show="createForm.$submitted || createForm.title.$touched">
+              <div class="help-block" ng-show="createForm.title.$error.required">Article title is required.</div>
+            </div>
           </div>
         </div>
         <div class="clearfix">
@@ -22,17 +25,29 @@
             <input type="text" placeholder="Enter Source URL" class="form-control" ng-model="article.source_url" name="source_url" />
           </div>
           <div class="form-group col-md-4">
-            <input type="text" placeholder="Enter Level" class="form-control" ng-model="article.level" name="level"/>
+          
+            <select class="form-control" ng-model="article.level" name="level">
+            <option value="">Enter Level</option>
+            <option value="N1">N1</option>
+            <option value="N2">N2</option>
+            <option value="N3">N3</option>
+            <option value="N4">N4</option>
+            <option value="N5">N5</option>
+            </select>
           </div>
         </div>
         <div class="clearfix">
-          <div class="form-group col-md-12">
-            <textarea placeholder="Enter Text *" class="form-control" ng-model="article.body" name="body"></textarea>
+          <div class="form-group col-md-12" ng-class="{ 'has-error' : createForm.$submitted && createForm.body.$error.required }">
+            <textarea placeholder="Enter Text *" class="form-control" ng-model="article.body" name="body" required></textarea>
+
+            <div ng-show="createForm.$submitted || createForm.body.$touched">
+              <div class="help-block" ng-show="createForm.body.$error.required">Article content is required.</div>
+            </div>
           </div>
         </div>
         <div class="text-right clearfix">
           <div class="form-group col-md-12">
-            <button type="submit" class="btn btn-primary stepButton" ng-click="submit_article_step_1(article);" >Next &gt;&gt;</button>
+            <button type="submit" ng-click="createForm.$valid && submit_article_step_1(article);" class="btn btn-primary stepButton">Next &gt;&gt;</button>
           </div>
         </div>
       </form>
