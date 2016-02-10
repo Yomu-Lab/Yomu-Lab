@@ -20,9 +20,9 @@ class AnnotationsController < ApplicationController
       annotation = params[:annotation_data]
       user_id = User.find_by_authentication_token(params[:authentication_token]).id
 
-      check_annotation_exist_or_not = check_annotation_existance(annotation[:article_id], annotation[:selected_annotation_category], annotation[:source_text])
+      check_annotation_exist_or_not = check_annotation_existance(annotation[:article_id], annotation[:source_text])
       if check_annotation_exist_or_not
-        existing_annotation = Annotation.find_by_article_id_and_annotation_category_id_and_source_text(annotation[:article_id], annotation[:selected_annotation_category], annotation[:source_text])
+        existing_annotation = Annotation.find_by_article_id_and_source_text(annotation[:article_id], annotation[:source_text])
         existing_annotation.update_attributes(:source_text => annotation[:source_text], 
           :original_conjugation => annotation[:original_conjugation],
           :definition => annotation[:definition],
@@ -100,7 +100,8 @@ class AnnotationsController < ApplicationController
           :reading => annotation.reading,
           :translation => annotation.translation,
           :usage_note => annotation.usage_note,
-          :specific_note => annotation.specific_note
+          :specific_note => annotation.specific_note,
+          :selected_annotation_category => annotation.annotation_category_id,
         }
         render  :status => 200, :json => { :annotation => @annotation, :response_code => 200 }
       else
@@ -116,8 +117,8 @@ class AnnotationsController < ApplicationController
 
 
   # => Check Annotation Exist or Not
-  def check_annotation_existance(article_id, annotation_category_id, source_text)
-    return true if Annotation.find_by_article_id_and_annotation_category_id_and_source_text(article_id, annotation_category_id, source_text).present?
+  def check_annotation_existance(article_id, source_text)
+    return true if Annotation.find_by_article_id_and_source_text(article_id, source_text).present?
     return false
   end
 

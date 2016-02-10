@@ -6,8 +6,6 @@
 yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLabAppLocalStorageService', 'yomuLabAppService', 'Auth', function($scope, $http, $window, yomuLabAppLocalStorageService, yomuLabAppService, Auth) {
 
   $scope.init = function(){
-    console.log("YomuLabsAdminCtrl - init()");
-
     // => Fetch Authentication Token
     var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
 
@@ -21,8 +19,6 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   # => Controller Service To Get Articles List of Logged In Admin User
   */
   $scope.get_articles_list = function(authentication_token){
-    console.log("get_articles_list="+authentication_token);
-
     yomuLabAppService.get_articles_list(authentication_token).then(function(data){
       $scope.articles = angular.fromJson(data.data);
     }, function() {
@@ -144,9 +140,10 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   # => Select Annotation Category While Creating Annotation
   */
   $scope.select_annotation_category = function(category_id){
-    $scope.annotation = {
-      selected_annotation_category: category_id
-    };
+    // $scope.annotation = {
+    //   selected_annotation_category: category_id
+    // };
+    $("#selected_annotation_category").val(category_id);
     $("#annotationForm .annotation_button button").addClass("stepButton");
     $("#annotationForm .annotation_button button#"+category_id).removeClass("stepButton");
   };
@@ -155,13 +152,13 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   # => Select Annotation Category While Creating Annotation
   */
   $scope.create_annotation = function(annotation){
-    console.log(annotation);
     var article_id = $("#article_id").val();
+    var selected_annotation_category = $("#selected_annotation_category").val();
   
     // => Fetch Authentication Token
     var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
 
-    yomuLabAppService.create_annotation(annotation, article_id, authentication_token.token).then(function(data){
+    yomuLabAppService.create_annotation(annotation, article_id, selected_annotation_category, authentication_token.token).then(function(data){
       var success_response = angular.fromJson(data.data);
       $scope.annotation_notification_message_type = "success_box";  
       $scope.annotation_notification_message = success_response.response_message;      
@@ -204,35 +201,44 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   # => Fetch Data For Existing Annotation - Step 2
   */
   $scope.fetch_data_for_existing_annotation = function(selected_string){
-
     var article_id = $("#article_id").val();
-          console.log("String = "+selected_string+ ":: article_id="+article_id);
-
     yomuLabAppService.fetch_data_for_existing_annotation(article_id, selected_string).then(function(data){
       var annotation_data = angular.fromJson(data.data);
-
       if ( annotation_data.response_code == 404 ){
         console.log("Error occured 404");
+        $scope.annotation = "";
+        $("#annotationForm .annotation_button button").addClass("stepButton");
       }else{
         annotation_data = annotation_data.annotation;
-
         $scope.annotation = {
           original_conjugation: annotation_data.original_conjugation,
           definition: annotation_data.definition,
           reading: annotation_data.reading,
           translation: annotation_data.translation,
-          general_note: annotation_data.general_note,
+          general_note: annotation_data.usage_note,
           specific_note: annotation_data.specific_note,
+          selected_annotation_category: annotation_data.selected_annotation_category,
         };
+        /* Activate Annotation Category */
+        //$("#annotationForm .annotation_button button").addClass("stepButton");
+        $("#annotationForm .annotation_button button#"+annotation_data.selected_annotation_category).removeClass("stepButton");
       }
     }, function() {
       console.log("Service give error while fetching the annotation at Step 2 Data.");
       $scope.message_type = "error_box";
       $scope.message_content = "Service give error while fetching the annotation Step 2.";
     });
-
   };
 
+  /*
+  # => Select Annotation Category While Creating Annotation
+  */
+  $scope.discard_annotation_data = function(){
+    $scope.annotation = { };
+    $("#selected_annotation_category").val("");
+    $("#source_text").val("");    
+    $("#annotationForm .annotation_button button").addClass("stepButton");
+  };
 
 }]);
 

@@ -425,3 +425,4 @@ yomu_lab.filter('create_input_box_with_ng_model', function($sce) {
     return $sce.trustAsHtml(new_text);
   }
 });
+

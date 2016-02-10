@@ -51,9 +51,7 @@
     */
     this.register_new_user = function(sign_up_form, prelaunch_ref){
       sign_up_form.prelaunch_ref = prelaunch_ref;
-      return $http.post("/home/register/", sign_up_form)
-        .success(function(data, status) {
-        });      
+      return $http.post("/home/register/", sign_up_form).success(function(data, status) {});      
     };
 
     /*
@@ -171,16 +169,16 @@
       if (article.id == "" || article.id == undefined   ){
         return $http.post("/articles", params_article)
           .success(function(data, status, header, config) {
-            console.log("Service - create article step 1 - Success");
+            //console.log("Service - create article step 1 - Success");
           }).error(function(data, status, header, config){
-            console.log("Service - create article step 1 - Error");
+            //console.log("Service - create article step 1 - Error");
           });
       }else{
         return $http.put("/articles/"+article.id, params_article)
           .success(function(data, status, header, config) {
-            console.log("Service - update article step 1 - Success");
+            //console.log("Service - update article step 1 - Success");
           }).error(function(data, status, header, config){
-            console.log("Service - update article step 1 - Error");
+            //console.log("Service - update article step 1 - Error");
           });
       }
     };
@@ -194,9 +192,9 @@
 
       return $http.get("/articles/get_article_detail/"+article_id)
         .success(function(data, status, header, config) {
-          console.log("Service - fetch article step 1 - Success");
+          //console.log("Service - fetch article step 1 - Success");
         }).error(function(data, status, header, config){
-          console.log("Service - fetch article step 1 - Error");
+          //console.log("Service - fetch article step 1 - Error");
         });      
     };
 
@@ -206,16 +204,16 @@
     this.get_annotation_category = function(article_id){
       return $http.get("/annotation_categories.json")
         .success(function(data, status, header, config) {
-          console.log("Service - fetch_annotation_category - Success");
+          //console.log("Service - fetch_annotation_category - Success");
         }).error(function(data, status, header, config){
-          console.log("Service - fetch_annotation_category - Error");
+          //console.log("Service - fetch_annotation_category - Error");
         });
     };
 
     /*
     # => Fetch Annotation Categories - Logged In User
     */
-    this.create_annotation = function(annotation, article_id, authentication_token){
+    this.create_annotation = function(annotation, article_id, selected_annotation_category, authentication_token){
       var source_text = $("#source_text").val();
       params_annotation = {
                             "annotation_data": {
@@ -226,16 +224,16 @@
                               "translation": annotation.translation,
                               "general_note": annotation.general_note,
                               "specific_note": annotation.specific_note,
-                              "selected_annotation_category": annotation.selected_annotation_category,
+                              "selected_annotation_category": selected_annotation_category,
                               "article_id": article_id,
                             },                            
                             "authentication_token": authentication_token,
                           }
       return $http.post("/annotations", params_annotation)
         .success(function(data, status, header, config) {
-          console.log("Service - create annotation - Success");
+          //console.log("Service - create annotation - Success");
         }).error(function(data, status, header, config){
-          console.log("Service - create annotation - Error");
+          //console.log("Service - create annotation - Error");
         });
     };
 
@@ -252,9 +250,9 @@
                   }
       return $http.post("/annotations/get_annotation", params_annotation)
         .success(function(data, status, header, config) {
-          console.log("Service - create annotation - Success");
+          //console.log("Service - get annotation - Success");
         }).error(function(data, status, header, config){
-          console.log("Service - create annotation - Error");
+          //console.log("Service - get annotation - Error");
         });                  
     }
 
