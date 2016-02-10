@@ -8,9 +8,12 @@
 
       <form name="createForm" novalidate>
         <div class="clearfix">
+
         <div class="form-group col-md-12" ng-class="{ 'has-error' : createForm.$submitted && createForm.title.$error.required }">
             <input type="text" placeholder="Enter your title *" class="form-control" ng-model="article.title" name="title" required/>
             <input type="text" placeholder="" class="form-control hide" ng-model="article.id" name="id"/>
+
+        
 
             <div ng-show="createForm.$submitted || createForm.title.$touched">
               <div class="help-block" ng-show="createForm.title.$error.required">Article title is required.</div>
