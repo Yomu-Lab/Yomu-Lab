@@ -115,6 +115,22 @@ class AnnotationsController < ApplicationController
     end
   end
 
+  def save_translation
+    article_id = params[:translation][:article_id]
+    content_translation = params[:translation][:content_translation]
+    annotation_category_id = (AnnotationCategory.find_by name: 'Translation').id
+    user_id = User.find_by_authentication_token(params[:authentication_token]).id
+    content_translation.each do |content|
+      paragraph_id = content[0].split("_")[1].to_i
+      Annotation.where(article_id: article_id, paragraph_id: paragraph_id, annotation_category_id: annotation_category_id).first_or_initialize do |annotation|
+        annotation.translation = content[1]
+        annotation.user_id = user_id
+        annotation.save!
+      end
+      puts "=================#{content[0]}=====#{content[0].split("_")[1].to_i}============#{content[1]}======================="
+    end
+  end
+
 
   # => Check Annotation Exist or Not
   def check_annotation_existance(article_id, source_text)

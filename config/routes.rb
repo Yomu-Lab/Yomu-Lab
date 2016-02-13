@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # => Annotations
   resources :annotations
   post 'annotations/get_annotation' => 'annotations#get_annotation'
+  post 'annotations/save_translation' => 'annotations#save_translation'
 
   # => Annotation Category
   resources :annotation_categories

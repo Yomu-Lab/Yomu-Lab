@@ -1,4 +1,4 @@
-var yomu_lab = angular.module('yomu_lab', [ 'Devise', 'LocalStorageModule' ]);
+var yomu_lab = angular.module('yomu_lab', [ 'Devise', 'LocalStorageModule']);
 
 var EMAIL_REGEXP = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 var PASSWORD_LENGTH_MINIMUM = 8;
@@ -413,16 +413,31 @@ yomu_lab.filter('newline', function($sce) {
 
 yomu_lab.filter('create_input_box_with_ng_model', function($sce) {
   return function(text) {
-    var new_text="";
-    var text_array = text.split('\n\n');
-    $.each(text_array, function(index, value) {
-      if (value!=""){
-        var paragarph_id = index+1;
-        var translation_input_box = '<div class="form-group"><textarea class="form-control translatedText" ng-model="translation.paragraph_'+paragarph_id+'" id="paragarph_'+paragarph_id+'" placeholder="Enter Translation"></textarea></div>';
-        new_text +=value+translation_input_box;
-      }
-    });
-    return $sce.trustAsHtml(new_text);
+    try {
+      var new_text="";
+      var text_array = text.split('\n\n');
+      $.each(text_array, function(index, value) {
+        if (value!=""){
+          var paragarph_id = index+1;
+          var translation_input_box = '<div class="form-group"><textarea class="form-control translatedText" ng-model="translation.paragraph_'+paragarph_id+'" id="paragarph_'+paragarph_id+'" placeholder="Enter Translation"></textarea></div>';
+          new_text +=value+translation_input_box;
+        }
+      });
+      return $sce.trustAsHtml(new_text);
+    }
+    catch(err) {
+      //catchCode - Block of code to handle errors
+    }
   }
 });
 
+yomu_lab.directive('compile',function($compile, $timeout){
+  return{
+    restrict:'A',
+    link: function(scope,elem,attrs){
+      $timeout(function(){                
+        $compile(elem.contents())(scope);    
+      });
+    }        
+  };
+});

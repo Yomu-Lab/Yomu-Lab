@@ -240,6 +240,22 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
     $("#annotationForm .annotation_button button").addClass("stepButton");
   };
 
+  /*
+  # => Save Translation Data
+  */
+  $scope.save_article_translation = function(translation, article_id){
+    console.log("save_article_translation- start");
+    yomuLabAppService.save_translation(article_id, translation).then(function(data){
+      //var annotation_data = angular.fromJson(data.data);
+      console.log("Save Translation");
+    }, function() {
+      console.log("Service give error while saving article translation.");
+      $scope.message_type = "error_box";
+      $scope.message_content = "Service give error while saving article translation";
+    });
+  };
+
+
 }]);
 
 

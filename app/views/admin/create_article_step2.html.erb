@@ -4,6 +4,7 @@
 <section id="adminAnnotation" ng-controller="YomuLabsAdminCtrl" ng-init="fetch_article_data_at_step2(<%=@article_id %>);response_from_create_article_step1('<%=@response_code %>');">
 
   <!-- Header -->
+  <% if true %>
   <header id="articleHeader" class="clearfix">
     <div class="col-md-7 has-feedback">
       
@@ -23,6 +24,7 @@
     </div>
 
   </header>
+  <% end %>
   <!-- Header - End -->
 
   <section id="adminWrapper">
@@ -35,18 +37,18 @@
 
         <div id="adminArticle" class="col-md-11 col-centered">
 
-          <input type="text" id="article_id" name="article_id" value="{{article.id}}" />
+          <input type="hidden" id="article_id" name="article_id" value="{{article.id}}" />
           
           <header class="clearfix" id="articleInfo">
             <span lang="en" class="pull-left source">Source: <a target="_blank" href="{{article.source_url}}">{{article.source_name}}</a></span>
             <span lang="en" class="pull-right">Level: <a href="#">{{article.level}}</a></span>
           </header>
-
+          <!--
           <header class="clearfix" id="articleInfo">
             <span lang="en" class="pull-left source">Word Count: {{article.word_count}}</span>
             <span lang="en" class="pull-right">Character Count: {{article.character_count}} [{{article.publication_status}}]</span>
-          </header>          
-          
+          </header>
+          -->
           <article id="articleBody">
 
             <h2 lang="ja" id="articleHeading">{{article.title}}</h2>

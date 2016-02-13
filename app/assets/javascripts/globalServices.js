@@ -20,9 +20,9 @@
     # => Service To Hide Response Message From Article
     */
     this.hide_response_message = function(){
-      setInterval( function(){
-        $(".response_message_box").fadeOut(500);
-      }, 5000 );
+      // setInterval( function(){
+      //   $(".response_message_box").fadeOut(500);
+      // }, 5000 );
     };
     /*
     # => Service To Logged In User Data
@@ -237,9 +237,10 @@
         });
     };
 
-
+    /*
+    # => Fetch Annotation For Existing Keywords - Logged In User
+    */
     this.fetch_data_for_existing_annotation = function(article_id, selected_string){
-
       var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
       params_annotation = {
                     "annotation": {
@@ -255,6 +256,29 @@
           //console.log("Service - get annotation - Error");
         });                  
     }
+
+    /*
+    # => Store Translation For  - Logged In User
+    */
+
+    this.save_translation = function(article_id, translation){
+      var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
+      console.log("save_translation");
+      params_translation = {
+                    "translation": {
+                      "content_translation": translation,
+                      "article_id": article_id,
+                    },                            
+                    "authentication_token": authentication_token.token,
+                  }
+      return $http.post("/annotations/save_translation", params_translation)
+        .success(function(data, status, header, config) {
+          //console.log("Service - get annotation - Success");
+        }).error(function(data, status, header, config){
+          //console.log("Service - get annotation - Error");
+        });                  
+    }
+
 
 }]);
 
