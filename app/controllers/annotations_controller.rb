@@ -55,6 +55,10 @@ class AnnotationsController < ApplicationController
           response_message = GlobalMessage::ANNOTATION_NOT_SAVED
         end
       end
+
+      # Set Article Status as Draft
+      set_articles_publication_status(article_id, GlobalConstant::ARTICLE_STATUS_DRAFT)
+
       render :status => 200,
         :json => {
           :response_code => response_code,
@@ -116,18 +120,73 @@ class AnnotationsController < ApplicationController
   end
 
   def save_translation
-    article_id = params[:translation][:article_id]
-    content_translation = params[:translation][:content_translation]
-    annotation_category_id = (AnnotationCategory.find_by name: 'Translation').id
-    user_id = User.find_by_authentication_token(params[:authentication_token]).id
-    content_translation.each do |content|
-      paragraph_id = content[0].split("_")[1].to_i
-      Annotation.where(article_id: article_id, paragraph_id: paragraph_id, annotation_category_id: annotation_category_id).first_or_initialize do |annotation|
-        annotation.translation = content[1]
-        annotation.user_id = user_id
-        annotation.save!
+    begin
+      article_id = params[:translation][:article_id]
+      content_translation = params[:translation][:content_translation]
+      annotation_category_id = (AnnotationCategory.find_by name: 'Translation').id
+      user_id = User.find_by_authentication_token(params[:authentication_token]).id
+
+      # Save Article Title Translation
+      article_title = Annotation.where(:article_id => article_id, :paragraph_id => 0, :annotation_category_id => annotation_category_id ).first_or_initialize
+      article_title.translation = content_translation["title"]
+      article_title.save!
+
+      content_translation["paragraph"].each_with_index do |content, i|
+        if content.present?
+          paragraph_id = i+1
+          article_paragraph = Annotation.where(article_id: article_id, paragraph_id: paragraph_id, annotation_category_id: annotation_category_id).first_or_initialize
+          article_paragraph.translation = content
+          article_paragraph.user_id = user_id
+          article_paragraph.save!      
+        end
       end
-      puts "=================#{content[0]}=====#{content[0].split("_")[1].to_i}============#{content[1]}======================="
+
+      # Set Article Status as Unplublished
+      set_articles_publication_status(article_id, GlobalConstant::ARTICLE_STATUS_UNPUBLISHED)
+      render :status => 200,
+        :json => {
+          :response_code => 200,
+          :response_type => GlobalConstant::RESPONSE_TYPE_SUCCESS,
+          :response_message => GlobalMessage::TRANSLATION_UPDATED
+        }      
+    rescue
+      render  :status => 200,
+        :json => {
+          :response_code => 404, 
+          :response_type => GlobalConstant::RESPONSE_TYPE_ERROR,
+          :response_message => GlobalMessage::TRANSLATION_NOT_SAVED
+        }      
+    end
+  end
+
+  def get_translation
+    article_id = params["translation"]["article_id"]
+    if authentication_token_valid(params[:authentication_token])
+      translation = Annotation.where(:article_id => article_id).where.not(paragraph_id: nil).select('translation','paragraph_id')
+      if translation.present?
+        list = translation.map do |statement|
+          { 
+            :article_id => article_id,
+            :translation => statement.translation,
+            :paragraph_id => statement.paragraph_id
+          }
+        end
+        render :status => 200, :json => { :translation => list.to_json, :response_code => 200 }
+      else
+        render :status => 200, 
+          :json => { 
+            :response_code => 404, 
+            :response_type => GlobalMessage::RESPONSE_TYPE_ERROR,
+            :response_message => "Error occured while retrieving annotation meaning." 
+          }
+      end
+    else
+      render :status => 200,
+        :json => {
+          :response_code => 400, 
+          :response_type => GlobalMessage::RESPONSE_TYPE_ERROR,
+          :response_message => "Error occured while retrieving annotation meaning."
+        }
     end
   end
 
@@ -148,4 +207,11 @@ class AnnotationsController < ApplicationController
     def annotation_params
       params.require(:annotation).permit(:user_id, :article_id, :destination_language, :source_text, :location_start, :location_end, :word_count, :character_count, :annotation_category_id, :original_conjugation, :definition, :reading, :translation, :usage_note, :specific_note, :paragraph_id)
     end
+
+    def set_articles_publication_status(article_id, status_type)
+      article = Article.find_by_id(article_id)
+      article.publication_status = status_type
+      article.save!
+    end
+
 end

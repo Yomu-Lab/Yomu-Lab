@@ -1,6 +1,6 @@
 <div ng-controller="YomuLabsAdminCtrl" >
-  
-    <section id="articleDetails" class="clearfix" ng-init="fetch_article_data_at_step3(<%=@article_id %>);set_translations_scope();">
+  <form>  
+    <section id="articleDetails" class="clearfix" ng-init="fetch_article_data_at_step3(<%=@article_id %>);get_article_translation(<%=@article_id %>);">
       <div class="col-md-6 col-centered">
 
         <!-- Steps - Start -->
@@ -17,8 +17,6 @@
               <!-- <input type="text" id="article_id" value="{{article.id}}" /> -->
               <!-- Article Title & Meaning -->
               <h2 id="articleHeading" lang="ja">{{article.title}}</h2>
-           
-              <form>
               <div class="form-group">
                 <input type="text" class="form-control translatedText" ng-model="translation.title" placeholder="Enter Translation" />
               </div>
@@ -47,5 +45,4 @@
       </div>
     </footer>
   </form>
-
 </div>

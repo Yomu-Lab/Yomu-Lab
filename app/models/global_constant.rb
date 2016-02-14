@@ -47,5 +47,14 @@ module GlobalConstant
 
   # => Response Code
   CODE_200 = "Your changes have been saved successfully."
+  CODE_400 = "Bad Request"
+  CODE_401 = "Unauthorized"
+  CODE_403 = "Forbidden"
+  CODE_404 = "Not Found"
+  CODE_500 = "Internal Server Error"
+
+
+  RESPONSE_TYPE_SUCCESS = "success_box"
+  RESPONSE_TYPE_ERROR = "error_box"
 
 end

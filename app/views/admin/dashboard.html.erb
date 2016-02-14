@@ -24,7 +24,10 @@
           <td>{{article.updated_at | date:'medium'}}</td>
           <td>{{article.published_date | date:'medium'}}</td> 
           <td>{{article.publication_status}}</td>
-          <td><a type="button" class="btn btn-link" href="/admin/create_article_step1/{{article.id}}" >Edit</a></td>
+          <td>
+            <a type="button" class="btn btn-link" href="/admin/create_article_step1/{{article.id}}" >Edit</a> -
+            <a type="button" class="btn btn-link" ng-click="change_article_status(article.id)">Publish</a>
+          </td>
           <!--
           <td><button type="button" class="btn btn-link">Publish</button></td>
           -->

@@ -140,9 +140,6 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   # => Select Annotation Category While Creating Annotation
   */
   $scope.select_annotation_category = function(category_id){
-    // $scope.annotation = {
-    //   selected_annotation_category: category_id
-    // };
     $("#selected_annotation_category").val(category_id);
     $("#annotationForm .annotation_button button").addClass("stepButton");
     $("#annotationForm .annotation_button button#"+category_id).removeClass("stepButton");
@@ -174,8 +171,6 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   # => Fetch Article Data - At Step 3
   */
   $scope.fetch_article_data_at_step3 = function(article_id){
-
-    //this.fetch_annotation_category();
     yomuLabAppService.get_article_step1_data(article_id).then(function(data){
       var article = angular.fromJson(data.data.article);
       $scope.article = {
@@ -205,7 +200,6 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
     yomuLabAppService.fetch_data_for_existing_annotation(article_id, selected_string).then(function(data){
       var annotation_data = angular.fromJson(data.data);
       if ( annotation_data.response_code == 404 ){
-        console.log("Error occured 404");
         $scope.annotation = "";
         $("#annotationForm .annotation_button button").addClass("stepButton");
       }else{
@@ -220,7 +214,6 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
           selected_annotation_category: annotation_data.selected_annotation_category,
         };
         /* Activate Annotation Category */
-        //$("#annotationForm .annotation_button button").addClass("stepButton");
         $("#annotationForm .annotation_button button#"+annotation_data.selected_annotation_category).removeClass("stepButton");
       }
     }, function() {
@@ -246,14 +239,74 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   $scope.save_article_translation = function(translation, article_id){
     console.log("save_article_translation- start");
     yomuLabAppService.save_translation(article_id, translation).then(function(data){
-      //var annotation_data = angular.fromJson(data.data);
-      console.log("Save Translation");
+      var response = angular.fromJson(data.data);
+      $("div.article_message div").addClass(response.response_type);
+      $("div.article_message div span").text(response.response_message);
+      $scope.redirect_to_admin_dashboard();
+
     }, function() {
+      var response = angular.fromJson(data.data);
       console.log("Service give error while saving article translation.");
-      $scope.message_type = "error_box";
-      $scope.message_content = "Service give error while saving article translation";
+      $("div.article_message div").addClass(response.response_type);
+      $("div.article_message div span").text(response.response_message);
     });
   };
+
+  /*
+  # => Get Translation Data
+  */
+  $scope.get_article_translation = function(article_id){
+    yomuLabAppService.get_translation(article_id).then(function(data){
+      var translation_data = angular.fromJson(data.data.translation);
+      $scope.translation={
+        title: "",
+        paragraph: [null],
+      };
+
+      translation_data.forEach( function( statement ) {
+        if(statement.paragraph_id==0){
+          $scope.translation.title = statement.translation;
+        }
+        else{
+          $scope.translation.paragraph.push(statement.translation);
+        }
+      });
+    }, function() {
+      console.log("Service give error while getting article translation.");
+      $scope.message_type = "error_box";
+      $scope.message_content = "Service give error while getting article translation";
+    });
+  };
+
+  /*
+  # => Redirect To Create Article Page
+  */
+  $scope.redirect_to_admin_dashboard = function(){
+    var seconds = 5;
+    setInterval(function () {
+      seconds--;
+      if (seconds == 0) {
+        window.location = "/admin/dashboard";
+      }
+    }, 1000);
+  };
+
+  /*
+  # => Change Article Status To Publish From Unpublished
+  */
+  $scope.change_article_status = function(article_id){
+    yomuLabAppService.set_article_status_as_publish(article_id).then(function(data){
+      var response = angular.fromJson(data.data);
+      $("div.article_message div").addClass(response.response_type);
+      $("div.article_message div span").text(response.response_message);
+      yomuLabAppService.hide_response_message();
+      $scope.init();
+    }, function() {
+      console.log("Service give error while retrieving the article lists.");
+    });
+  };
+
+
 
 
 }]);

@@ -418,8 +418,8 @@ yomu_lab.filter('create_input_box_with_ng_model', function($sce) {
       var text_array = text.split('\n\n');
       $.each(text_array, function(index, value) {
         if (value!=""){
-          var paragarph_id = index+1;
-          var translation_input_box = '<div class="form-group"><textarea class="form-control translatedText" ng-model="translation.paragraph_'+paragarph_id+'" id="paragarph_'+paragarph_id+'" placeholder="Enter Translation"></textarea></div>';
+          var paragraph_id = index+1;
+          var translation_input_box = '<div class="form-group"><textarea class="form-control translatedText" ng-model="translation.paragraph['+paragraph_id+']" id="paragraph_'+paragraph_id+'" placeholder="Enter Translation">{{translation.paragraph['+paragraph_id+']}}</textarea></div>';
           new_text +=value+translation_input_box;
         }
       });

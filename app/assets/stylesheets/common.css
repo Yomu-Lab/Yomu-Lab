@@ -41,3 +41,8 @@
   border: 1px solid #66be60;
   color: #66be60;
 }
+#dashboardTable td{
+  border: 1px solid #ddd;
+  line-height: 1.42857143;
+  vertical-align: top;
+}

@@ -20,9 +20,9 @@
     # => Service To Hide Response Message From Article
     */
     this.hide_response_message = function(){
-      // setInterval( function(){
-      //   $(".response_message_box").fadeOut(500);
-      // }, 5000 );
+      setInterval( function(){
+        $(".response_message_box").fadeOut(500);
+      }, 5000 );
     };
     /*
     # => Service To Logged In User Data
@@ -276,9 +276,45 @@
           //console.log("Service - get annotation - Success");
         }).error(function(data, status, header, config){
           //console.log("Service - get annotation - Error");
-        });                  
+        });
     }
 
+    /*
+    # => Get Translation For  - Logged In User
+    */
+    this.get_translation = function(article_id){
+      var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
+      //console.log("get_translation");
+      params_translation = {
+                    "translation": {
+                      "article_id": article_id,
+                    },                            
+                    "authentication_token": authentication_token.token,
+                  }      
+      return $http.post("/annotations/get_translation", params_translation).success(function(data, status, header, config) {
+          //console.log("Service - get_translation - Success");
+        }).error(function(data, status, header, config){
+          console.log("Service - get_translation - Error");
+        });
+    }
+
+    /*
+    # => Set Article Status As Publish  - Logged In User
+    */
+    this.set_article_status_as_publish = function(article_id){
+      var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
+      params_article = {
+                    "translation": {
+                      "article_id": article_id,
+                    },                            
+                    "authentication_token": authentication_token.token,
+                  }
+      return $http.get("/admin/change_article_status/"+article_id, params_article).success(function(data, status, header, config) {
+          //console.log("Service - get_translation - Success");
+        }).error(function(data, status, header, config){
+          console.log("Service - get_translation - Error");
+        });
+    }
 
 }]);
 
