@@ -316,6 +316,23 @@
         });
     }
 
+    /*
+    # => Set Article Status As Publish  - Logged In User
+    */
+    this.fetch_keyword_for_existing_article = function(article_id){
+      var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
+      params_annotation = {
+                    "annotation": {
+                      "article_id": article_id,
+                    },                            
+                    "authentication_token": authentication_token.token,
+                  }
+      return $http.post("/annotations/get_list_of_existing_annotation", params_annotation).success(function(data, status, header, config) {
+          console.log("Service - fetch_keyword_for_existing_article - Success");
+        }).error(function(data, status, header, config){
+          console.log("Service - fetch_keyword_for_existing_article - Error");
+        });
+    }
 }]);
 
 

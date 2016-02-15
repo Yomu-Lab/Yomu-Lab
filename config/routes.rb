@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post 'annotations/get_annotation' => 'annotations#get_annotation'
   post 'annotations/save_translation' => 'annotations#save_translation'
   post 'annotations/get_translation' => 'annotations#get_translation'  
+  post 'annotations/get_list_of_existing_annotation' => 'annotations#get_list_of_existing_annotation'
 
   # => Annotation Category
   resources :annotation_categories

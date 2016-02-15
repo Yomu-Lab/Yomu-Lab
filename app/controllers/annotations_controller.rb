@@ -190,6 +190,27 @@ class AnnotationsController < ApplicationController
     end
   end
 
+  def get_list_of_existing_annotation
+    keyword_list = Array[]
+    article_id = params["annotation"]["article_id"]
+    if authentication_token_valid(params["authentication_token"])
+      annotation = Annotation.where(:article_id => article_id).where(paragraph_id: nil).select('id', 'location_start', 'source_text')
+      if annotation.present?
+        annotation.each do |keyword|
+          keyword_list << keyword
+        end
+        render  :status => 200, :json => { :keyword_list => keyword_list, :response_code => 200 }
+      else
+        render  :status => 200, :json => { :response_code => 404, :response_message => "Error occured while retrieving keyword list." }
+      end
+    else
+      render  :status => 200,
+        :json => {
+          :response_code => 400, :response_message => "Error occured while retrieving keyword list"
+        }
+    end    
+  end
+
 
   # => Check Annotation Exist or Not
   def check_annotation_existance(article_id, source_text)

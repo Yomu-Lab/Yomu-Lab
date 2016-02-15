@@ -224,6 +224,38 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   };
 
   /*
+  # => Fetch Keyword List Of Article - Step 2
+  */
+  $scope.fetch_keyword_for_existing_article = function(article_id){
+    //var article_id = $("#article_id").val();
+    yomuLabAppService.fetch_keyword_for_existing_article(article_id).then(function(data){
+
+      // var annotation_data = angular.fromJson(data.data);
+      // if ( annotation_data.response_code == 404 ){
+      //   $scope.annotation = "";
+      //   $("#annotationForm .annotation_button button").addClass("stepButton");
+      // }else{
+      //   annotation_data = annotation_data.annotation;
+      //   $scope.annotation = {
+      //     original_conjugation: annotation_data.original_conjugation,
+      //     definition: annotation_data.definition,
+      //     reading: annotation_data.reading,
+      //     translation: annotation_data.translation,
+      //     general_note: annotation_data.usage_note,
+      //     specific_note: annotation_data.specific_note,
+      //     selected_annotation_category: annotation_data.selected_annotation_category,
+      //   };
+      //   /* Activate Annotation Category */
+      //   $("#annotationForm .annotation_button button#"+annotation_data.selected_annotation_category).removeClass("stepButton");
+      // }
+    }, function() {
+      console.log("Service give error while fetching the Keyword List at Step 2 Data.");
+      $scope.message_type = "error_box";
+      $scope.message_content = "Service give error while fetching the Keyword List Step 2.";
+    });
+  };
+
+  /*
   # => Select Annotation Category While Creating Annotation
   */
   $scope.discard_annotation_data = function(){

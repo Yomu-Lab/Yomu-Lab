@@ -1,7 +1,7 @@
 <!-- Create Article -->
 <div id="fakeBg" class="col-md-5"></div>
 
-<section id="adminAnnotation" ng-controller="YomuLabsAdminCtrl" ng-init="fetch_article_data_at_step2(<%=@article_id %>);response_from_create_article_step1('<%=@response_code %>');">
+<section id="adminAnnotation" ng-controller="YomuLabsAdminCtrl" ng-init="fetch_article_data_at_step2(<%=@article_id %>);fetch_keyword_for_existing_article(<%=@article_id %>);response_from_create_article_step1('<%=@response_code %>');">
 
   <!-- Header -->
   <% if true %>
