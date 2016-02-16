@@ -176,7 +176,7 @@ class AnnotationsController < ApplicationController
         render :status => 200, 
           :json => { 
             :response_code => 404, 
-            :response_type => GlobalMessage::RESPONSE_TYPE_ERROR,
+            :response_type => GlobalConstant::RESPONSE_TYPE_ERROR,
             :response_message => "Error occured while retrieving annotation meaning." 
           }
       end
@@ -184,7 +184,7 @@ class AnnotationsController < ApplicationController
       render :status => 200,
         :json => {
           :response_code => 400, 
-          :response_type => GlobalMessage::RESPONSE_TYPE_ERROR,
+          :response_type => GlobalConstant::RESPONSE_TYPE_ERROR,
           :response_message => "Error occured while retrieving annotation meaning."
         }
     end
