@@ -16,7 +16,7 @@ class AnnotationsController < ApplicationController
   end
 
   def create
-    begin
+    #begin
       annotation = params[:annotation_data]
       user_id = User.find_by_authentication_token(params[:authentication_token]).id
 
@@ -64,13 +64,13 @@ class AnnotationsController < ApplicationController
           :response_code => response_code,
           :response_message => response_message
         }     
-    rescue
-      render  :status => 200,
-        :json => {
-          :response_code => 404, 
-          :response_message => GlobalMessage::ANNOTATION_NOT_SAVED
-        }
-    end
+    # rescue
+    #   render  :status => 200,
+    #     :json => {
+    #       :response_code => 404, 
+    #       :response_message => GlobalMessage::ANNOTATION_NOT_SAVED
+    #     }
+    # end
   end
 
   def update
