@@ -41,7 +41,7 @@
         </div>
         <div class="clearfix">
           <div class="form-group col-md-12" ng-class="{ 'has-error' : createForm.$submitted && createForm.body.$error.required }">
-            <textarea placeholder="Enter Text *" class="form-control" ng-model="article.body" name="body" required></textarea>
+            <textarea placeholder="Enter Text *" class="form-control angular-with-newlines" ng-model="article.body" name="body" required></textarea>
 
             <div ng-show="createForm.$submitted || createForm.body.$touched">
               <div class="help-block" ng-show="createForm.body.$error.required">Article content is required.</div>

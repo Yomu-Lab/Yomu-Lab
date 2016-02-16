@@ -157,14 +157,14 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
 
     yomuLabAppService.create_annotation(annotation, article_id, selected_annotation_category, authentication_token.token).then(function(data){
       var success_response = angular.fromJson(data.data);
-      $scope.annotation_notification_message_type = "success_box";  
-      $scope.annotation_notification_message = success_response.response_message;      
+      $scope.message_type = "success_box";  
+      $scope.message_content = success_response.response_message;      
     }, function() {
       console.log("Service give error while creating the annotation.");
-      $scope.annotation_notification_message_type = "error_box";
-      $scope.annotation_notification_message = "Service give error while creating the annotation.";
+      $scope.message_type = "error_box";
+      $scope.message_content = "Service give error while creating the annotation.";
     });
-    $(".annotation_notification.response_message_box").show();
+    $("#articleHeader .response_message_box").show();
   };
 
   /*
@@ -229,25 +229,19 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   $scope.fetch_keyword_for_existing_article = function(article_id){
     //var article_id = $("#article_id").val();
     yomuLabAppService.fetch_keyword_for_existing_article(article_id).then(function(data){
-
-      // var annotation_data = angular.fromJson(data.data);
-      // if ( annotation_data.response_code == 404 ){
-      //   $scope.annotation = "";
-      //   $("#annotationForm .annotation_button button").addClass("stepButton");
-      // }else{
-      //   annotation_data = annotation_data.annotation;
-      //   $scope.annotation = {
-      //     original_conjugation: annotation_data.original_conjugation,
-      //     definition: annotation_data.definition,
-      //     reading: annotation_data.reading,
-      //     translation: annotation_data.translation,
-      //     general_note: annotation_data.usage_note,
-      //     specific_note: annotation_data.specific_note,
-      //     selected_annotation_category: annotation_data.selected_annotation_category,
-      //   };
-      //   /* Activate Annotation Category */
-      //   $("#annotationForm .annotation_button button#"+annotation_data.selected_annotation_category).removeClass("stepButton");
-      // }
+      /*
+      var keyword_annotation = angular.fromJson(data.data.keyword_list);
+      //data = {"keyword_list":[{"id":3,"source_text":"lorem","location_start":2},{"id":4,"source_text":"ipsum","location_start":1}],"response_code":200};
+      var articleData = $("#article_content").html().replace(/\n/g, "").split(" ");
+      $.each(keyword_annotation, function(key,value){
+        console.log("Key="+key+"::Value="+value);
+          if(articleData[value.location_start] == value.source_text){
+            articleData[value.location_start] = "<span style='text-decoration:undeline;color:red;'>" + value.source_text +"</span>";  
+          }
+      });
+      */
+      //return articleData.join(" ");
+      //$scope.article.body = articleData.join(" ");
     }, function() {
       console.log("Service give error while fetching the Keyword List at Step 2 Data.");
       $scope.message_type = "error_box";

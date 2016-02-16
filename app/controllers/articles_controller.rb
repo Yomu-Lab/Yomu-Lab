@@ -26,11 +26,12 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    begin
+    #begin
       @article = Article.new(article_params)
       user = User.find_by_authentication_token(params["authentication_token"]["token"])
       @article.user_id = user.id
-      @article.word_count = WordsCounted.count(params[:article][:body]).token_count
+      @article.word_count = 0
+      # => WordsCounted.count(params[:article][:body]).token_count
       @article.character_count = params[:article][:body].gsub(" ", "").size
       @article.publication_status = GlobalConstant::ARTICLE_STATUS_DRAFT
 
@@ -50,13 +51,13 @@ class ArticlesController < ApplicationController
             :error_message => @article.errors,
           }
       end
-    rescue
-      render  :status => 200,
-        :json => {
-          :response_code => 400, :response_message => GlobalMessage::ARTICLE_ERROR_OCCURED,
-          :error_message => @article.errors,
-        }
-    end
+    # rescue
+    #   render  :status => 200,
+    #     :json => {
+    #       :response_code => 400, :response_message => GlobalMessage::ARTICLE_ERROR_OCCURED,
+    #       :error_message => @article.errors,
+    #     }
+    # end
   end
 
   def update
@@ -73,7 +74,7 @@ class ArticlesController < ApplicationController
       @article.source_name = params[:article][:source_name]
       @article.source_url = params[:article][:source_url]
 
-      @article.word_count = WordsCounted.count(params[:article][:body]).token_count
+      @article.word_count = 0 #WordsCounted.count(params[:article][:body]).token_count
       @article.character_count = params[:article][:body].gsub(" ", "").size
       @article.publication_status = GlobalConstant::ARTICLE_STATUS_DRAFT
 
@@ -134,6 +135,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:id, :auth_token, :user_id, :original_language, :level, :title, :body, :source_name, :source_url, :publication_status, :word_count, :character_count)
+      params.require(:article).permit(:id, :auth_token, :user_id, :original_language, :level, :title, :body, :source_name, :source_url, :publication_status, :word_count, :character_count, :publication_date)
     end
 end

@@ -441,3 +441,9 @@ yomu_lab.directive('compile',function($compile, $timeout){
     }        
   };
 });
+
+// yomu_lab.filter('unsafe', function($sce) {
+//   return function(val) {
+//     return $sce.trustAsHtml(val);
+//   };
+// });

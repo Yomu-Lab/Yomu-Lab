@@ -74,4 +74,4 @@ source "https://rails-assets.org" do
   gem "rails-assets-angular-devise"
 end
 
-gem 'words_counted'
+#gem 'words_counted'

@@ -15,6 +15,37 @@
         </div>
       </div>
 
+      <div class="col-md-6 col-sm-10  col-centered clearfix">
+        <!-- Logo -->
+        <h1 id="logo" class="pull-left">
+          <a href="/"><img class="logo-head" alt="logo" src="/assets/logo_icon_nobg.svg" height="50" width="50" /></a>
+        </h1>
+
+        <aside class="pull-right">
+          <div class="dropdown" id="dropdownMenuTop">
+
+            <!-- Logged In User -->
+            <div class="dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <div class="frame">
+                <img alt="avtar" src="/assets/avtar.jpg" />
+              </div> 
+              Jason
+            </div>
+            <!-- End - Logged In User -->
+
+            <!-- Admin Dropdown -->
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a href="#">Admin</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Settings</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Log Out</a></li>        
+            </ul>
+            <!-- End - Admin Dropdown -->
+
+          </div>
+        </aside> 
+      </div>
     </div>
 
     <div class="col-md-5">
@@ -54,7 +85,7 @@
             <h2 lang="ja" id="articleHeading">{{article.title}}</h2>
 
             <div class="articleContent editable" >
-              <p lang="ja" id="article_content" >{{article.body}}</p>
+              <p lang="ja" id="article_content" class="angular-with-newlines">{{article.body}}</p>
             </div>
 
             <div class="clearfix">

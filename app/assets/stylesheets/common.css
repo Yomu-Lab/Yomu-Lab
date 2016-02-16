@@ -46,3 +46,13 @@
   line-height: 1.42857143;
   vertical-align: top;
 }
+.articleContent textarea.content_body{
+  min-height: 200px !important;
+  width: 100%;
+}
+.articleContent{
+  margin-bottom: 15px;
+}
+.angular-with-newlines {
+  white-space: pre;
+}

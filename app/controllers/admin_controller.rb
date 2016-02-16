@@ -12,6 +12,7 @@ class AdminController < ApplicationController
   def create_article_step2
     @response_code = params[:response_code] if params[:response_code].present?
     @article_id = params[:article_id] if params[:article_id].present?
+    render :layout => "create_article_application"
   end
 
   def create_article_step3
@@ -22,6 +23,8 @@ class AdminController < ApplicationController
     begin
       article = Article.find_by_id(params[:article_id])
       article.publication_status = GlobalConstant::ARTICLE_STATUS_PUBLISHED
+      article.publication_date = Date.today.to_s
+
       article.save!
 
       render :status => 200,

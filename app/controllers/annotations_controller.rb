@@ -57,7 +57,7 @@ class AnnotationsController < ApplicationController
       end
 
       # Set Article Status as Draft
-      set_articles_publication_status(article_id, GlobalConstant::ARTICLE_STATUS_DRAFT)
+      set_articles_publication_status(annotation[:article_id], GlobalConstant::ARTICLE_STATUS_DRAFT)
 
       render :status => 200,
         :json => {
@@ -230,6 +230,7 @@ class AnnotationsController < ApplicationController
     end
 
     def set_articles_publication_status(article_id, status_type)
+      require 'date'
       article = Article.find_by_id(article_id)
       article.publication_status = status_type
       article.save!

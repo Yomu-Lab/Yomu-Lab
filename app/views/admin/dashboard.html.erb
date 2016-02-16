@@ -22,7 +22,7 @@
           <td>{{article.creator}}</td>
           <td>{{article.created_at | date:'medium'}}</td>
           <td>{{article.updated_at | date:'medium'}}</td>
-          <td>{{article.published_date | date:'medium'}}</td> 
+          <td>{{article.publication_date | date:'mediumDate'}}</td> 
           <td>{{article.publication_status}}</td>
           <td>
             <a type="button" class="btn btn-link" href="/admin/create_article_step1/{{article.id}}" >Edit</a> -
