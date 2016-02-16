@@ -26,20 +26,20 @@ test:
 #   username: root
 #   password: root
 
-# # Staging Server
-# production:
-#   adapter: postgresql
-#   database: d5chqt66976jlt
-#   host: ec2-107-21-120-109.compute-1.amazonaws.com
-#   username: twnakipoiqtoww
-#   password: _8TzfhqwF78PBXJ874qOYebg3Q
-#   port: 5432
-
-# Production Server
+# Staging Server
 production:
   adapter: postgresql
-  database: dd9r87va7ke08h
-  host: ec2-54-227-254-152.compute-1.amazonaws.com
-  username: gxqlisfqvfiary
-  password: MSVz2_9V_WUx6NR3gHXqgeU1-D
+  database: d5chqt66976jlt
+  host: ec2-107-21-120-109.compute-1.amazonaws.com
+  username: twnakipoiqtoww
+  password: _8TzfhqwF78PBXJ874qOYebg3Q
   port: 5432
+
+# # Production Server
+# production:
+#   adapter: postgresql
+#   database: dd9r87va7ke08h
+#   host: ec2-54-227-254-152.compute-1.amazonaws.com
+#   username: gxqlisfqvfiary
+#   password: MSVz2_9V_WUx6NR3gHXqgeU1-D
+#   port: 5432
