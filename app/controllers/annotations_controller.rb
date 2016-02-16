@@ -17,35 +17,35 @@ class AnnotationsController < ApplicationController
 
   def create
     #begin
-      annotation = params[:annotation_data]
+      annotation_array = params[:annotation_data]
       user_id = User.find_by_authentication_token(params[:authentication_token]).id
 
-      check_annotation_exist_or_not = check_annotation_existance(annotation[:article_id], annotation[:source_text])
+      check_annotation_exist_or_not = check_annotation_existance(annotation_array[:article_id], annotation_array[:source_text])
       if check_annotation_exist_or_not
-        existing_annotation = Annotation.find_by_article_id_and_source_text(annotation[:article_id], annotation[:source_text])
-        existing_annotation.update_attributes(:source_text => annotation[:source_text], 
-          :original_conjugation => annotation[:original_conjugation],
-          :definition => annotation[:definition],
-          :reading => annotation[:reading],
-          :translation => annotation[:translation],
+        existing_annotation = Annotation.find_by_article_id_and_source_text(annotation_array[:article_id], annotation_array[:source_text])
+        existing_annotation.update_attributes(:source_text => annotation_array[:source_text], 
+          :original_conjugation => annotation_array[:original_conjugation],
+          :definition => annotation_array[:definition],
+          :reading => annotation_array[:reading],
+          :translation => annotation_array[:translation],
           :usage_note => annotation[:general_note],
-          :specific_note => annotation[:specific_note],
-          :annotation_category_id => annotation[:selected_annotation_category],
-          :article_id => annotation[:article_id],
+          :specific_note => annotation_array[:specific_note],
+          :annotation_category_id => annotation_array[:selected_annotation_category],
+          :article_id => annotation_array[:article_id],
           :user_id => user_id )        
           response_code = 200
           response_message = GlobalMessage::ANNOTATION_UPDATED
       else
         @annotation = Annotation.new
-        @annotation.source_text = annotation[:source_text]
-        @annotation.original_conjugation = annotation[:original_conjugation]
-        @annotation.definition = annotation[:definition]
-        @annotation.reading = annotation[:reading]
-        @annotation.translation = annotation[:translation]
-        @annotation.usage_note = annotation[:general_note]
-        @annotation.specific_note = annotation[:specific_note]
-        @annotation.annotation_category_id = annotation[:selected_annotation_category]
-        @annotation.article_id = annotation[:article_id]
+        @annotation.source_text = annotation_array[:source_text]
+        @annotation.original_conjugation = annotation_array[:original_conjugation]
+        @annotation.definition = annotation_array[:definition]
+        @annotation.reading = annotation_array[:reading]
+        @annotation.translation = annotation_array[:translation]
+        @annotation.usage_note = annotation_array[:general_note]
+        @annotation.specific_note = annotation_array[:specific_note]
+        @annotation.annotation_category_id = annotation_array[:selected_annotation_category]
+        @annotation.article_id = annotation_array[:article_id]
         @annotation.user_id = user_id        
         if @annotation.save
           response_code = 200
@@ -57,7 +57,7 @@ class AnnotationsController < ApplicationController
       end
 
       # Set Article Status as Draft
-      set_articles_publication_status(annotation[:article_id], GlobalConstant::ARTICLE_STATUS_DRAFT)
+      set_articles_publication_status(annotation_array[:article_id], GlobalConstant::ARTICLE_STATUS_DRAFT)
 
       render :status => 200,
         :json => {
@@ -230,7 +230,7 @@ class AnnotationsController < ApplicationController
     end
 
     def set_articles_publication_status(article_id, status_type)
-      require 'date'
+      #require 'date'
       article = Article.find_by_id(article_id)
       article.publication_status = status_type
       article.save!
