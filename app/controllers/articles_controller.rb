@@ -36,23 +36,23 @@ class ArticlesController < ApplicationController
       @article.publication_status = GlobalConstant::ARTICLE_STATUS_DRAFT
 
       # => Seperator Between Space
-      @article.body = params[:article][:body].gsub(/[\n]+/, "\n").concat("\n\n");
+      @article.body = params[:article][:body].gsub(/[\n]+/, "\n").concat("\n\n")
 
       if @article.save
-        render  :status => 200,
+        render :status => 200,
           :json => {
             :article => @article, :response_code => 200,
             :response_url => "/admin/create_article_step2/#{@article.id}?response_code=CODE_200"
           }
       else
-        render  :status => 200,
+        render :status => 200,
           :json => {
             :response_code => 400, :response_message => GlobalMessage::ARTICLE_ERROR_OCCURED,
             :error_message => @article.errors,
           }
       end
     rescue
-      render  :status => 200,
+      render :status => 200,
         :json => {
           :response_code => 400, :response_message => GlobalMessage::ARTICLE_ERROR_OCCURED,
           :error_message => @article.errors,
@@ -78,20 +78,20 @@ class ArticlesController < ApplicationController
       @article.publication_status = GlobalConstant::ARTICLE_STATUS_DRAFT
 
       if @article.save
-        render  :status => 200,
+        render :status => 200,
           :json => {
             :article => @article, :response_code => 200,
             :response_url => "/admin/create_article_step2/#{@article.id}?response_code=CODE_200"
           }
       else
-        render  :status => 200,
+        render :status => 200,
           :json => {
             :response_code => 400, :response_message => GlobalMessage::ARTICLE_ERROR_OCCURED,
             :error_message => @article.errors,
           }
       end
     rescue
-      render  :status => 200,
+      render :status => 200,
         :json => {
           :response_code => 400, :response_message => GlobalMessage::ARTICLE_ERROR_OCCURED,
           :error_message => @article.errors,
@@ -120,7 +120,7 @@ class ArticlesController < ApplicationController
   def get_article_detail
     @article = Article.find_by_id(params[:id])
 
-    render  :status => 200,
+    render :status => 200,
       :json => {
         :response_code => 200, :article => @article
       }
