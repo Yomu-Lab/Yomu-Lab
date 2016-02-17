@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+["Translation","Culture"].each do |category|
+	annotation = AnnotationCategory.find_by_name(category)
+	annotation.status = false
+	annotation.save!
+end

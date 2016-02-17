@@ -26,7 +26,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    #begin
+    begin
       @article = Article.new(article_params)
       user = User.find_by_authentication_token(params["authentication_token"]["token"])
       @article.user_id = user.id
@@ -51,26 +51,25 @@ class ArticlesController < ApplicationController
             :error_message => @article.errors,
           }
       end
-    # rescue
-    #   render  :status => 200,
-    #     :json => {
-    #       :response_code => 400, :response_message => GlobalMessage::ARTICLE_ERROR_OCCURED,
-    #       :error_message => @article.errors,
-    #     }
-    # end
+    rescue
+      render  :status => 200,
+        :json => {
+          :response_code => 400, :response_message => GlobalMessage::ARTICLE_ERROR_OCCURED,
+          :error_message => @article.errors,
+        }
+    end
   end
 
   def update
     begin
       @article = Article.find_by_id(params[:article][:id])
-
-      user = User.find_by_authentication_token(params["authentication_token"]["token"])
+      user = User.find_by_authentication_token(params[:authentication_token][:token])
       @article.user_id = user.id
 
       @article.level = params[:article][:level]
       @article.title = params[:article][:title]
       # => Seperator Between Unconstant Space & New Line
-      @article.body = params[:article][:body].gsub!(/[\n]+/, "\n");
+      @article.body = params[:article][:body].gsub!(/[\n]+/, "\n")
       @article.source_name = params[:article][:source_name]
       @article.source_url = params[:article][:source_url]
 
