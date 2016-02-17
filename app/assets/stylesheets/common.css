@@ -56,3 +56,6 @@
 .angular-with-newlines {
   white-space: pre;
 }
+p#article_content{
+  white-space: pre-line;
+}

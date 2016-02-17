@@ -415,7 +415,7 @@ yomu_lab.filter('create_input_box_with_ng_model', function($sce) {
   return function(text) {
     try {
       var new_text="";
-      var text_array = text.split('\n\n');
+      var text_array = text.split('\n');
       $.each(text_array, function(index, value) {
         if (value!=""){
           var paragraph_id = index+1;
@@ -442,8 +442,9 @@ yomu_lab.directive('compile',function($compile, $timeout){
   };
 });
 
-// yomu_lab.filter('unsafe', function($sce) {
-//   return function(val) {
-//     return $sce.trustAsHtml(val);
-//   };
-// });
+yomu_lab.filter("nl2br", function($filter) {
+ return function(data) {
+   if (!data) return data;
+   return data.replace(/\n\r?/g, '<br />');
+ };
+});

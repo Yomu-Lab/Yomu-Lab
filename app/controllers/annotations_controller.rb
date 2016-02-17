@@ -16,7 +16,7 @@ class AnnotationsController < ApplicationController
   end
 
   def create
-    #begin
+    begin
       annotation_array = params[:annotation_data]
       user_id = User.find_by_authentication_token(params[:authentication_token]).id
 
@@ -28,7 +28,7 @@ class AnnotationsController < ApplicationController
           :definition => annotation_array[:definition],
           :reading => annotation_array[:reading],
           :translation => annotation_array[:translation],
-          :usage_note => annotation[:general_note],
+          :usage_note => annotation_array[:general_note],
           :specific_note => annotation_array[:specific_note],
           :annotation_category_id => annotation_array[:selected_annotation_category],
           :article_id => annotation_array[:article_id],
@@ -64,13 +64,13 @@ class AnnotationsController < ApplicationController
           :response_code => response_code,
           :response_message => response_message
         }     
-    # rescue
-    #   render  :status => 200,
-    #     :json => {
-    #       :response_code => 404, 
-    #       :response_message => GlobalMessage::ANNOTATION_NOT_SAVED
-    #     }
-    # end
+    rescue
+      render  :status => 200,
+        :json => {
+          :response_code => 404, 
+          :response_message => GlobalMessage::ANNOTATION_NOT_SAVED
+        }
+    end
   end
 
   def update
@@ -95,7 +95,7 @@ class AnnotationsController < ApplicationController
 
   def get_annotation
     if authentication_token_valid(params["authentication_token"])
-      annotation = Annotation.find_by_source_text(params[:annotation][:source_text])
+      annotation = Annotation.find_by_source_text_and_article_id(params[:annotation][:source_text], params[:annotation][:article_id].to_i)
 
       if annotation.present?
         @annotation = { 
@@ -230,7 +230,6 @@ class AnnotationsController < ApplicationController
     end
 
     def set_articles_publication_status(article_id, status_type)
-      #require 'date'
       article = Article.find_by_id(article_id)
       article.publication_status = status_type
       article.save!

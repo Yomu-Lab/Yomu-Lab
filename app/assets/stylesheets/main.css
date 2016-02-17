@@ -1079,7 +1079,7 @@
   }
   
   #createarticle_step1 textarea.form-control {height: 200px; padding-top: 10px}  
-  #steps {width: 578px; margin-bottom: 30px}
+  #steps {width: 416px; margin-bottom: 30px}
   #steps .circle {border: 1px solid #66be60; color: #66be60; width: 60px; height: 60px; border-radius: 50%; line-height: 60px; text-align: center; font-size: 28px; margin-bottom: 10px}
   #steps .circle.active {background: #66be60; color:#fff;}
   #steps .line {height: 1px; background: #999898; margin: 30px 18px 0 18px; width: 72px; float: left;}

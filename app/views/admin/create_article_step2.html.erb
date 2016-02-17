@@ -15,7 +15,7 @@
         </div>
       </div>
 
-      <div class="col-md-6 col-sm-10  col-centered clearfix">
+      <div class="col-md-10 col-sm-10  col-centered clearfix">
         <!-- Logo -->
         <h1 id="logo" class="pull-left">
           <a href="/"><img class="logo-head" alt="logo" src="/assets/logo_icon_nobg.svg" height="50" width="50" /></a>
@@ -74,18 +74,12 @@
             <span lang="en" class="pull-left source">Source: <a target="_blank" href="{{article.source_url}}">{{article.source_name}}</a></span>
             <span lang="en" class="pull-right">Level: <a href="#">{{article.level}}</a></span>
           </header>
-          <!--
-          <header class="clearfix" id="articleInfo">
-            <span lang="en" class="pull-left source">Word Count: {{article.word_count}}</span>
-            <span lang="en" class="pull-right">Character Count: {{article.character_count}} [{{article.publication_status}}]</span>
-          </header>
-          -->
+
           <article id="articleBody">
 
             <h2 lang="ja" id="articleHeading">{{article.title}}</h2>
-
             <div class="articleContent editable" >
-              <p lang="ja" id="article_content" class="angular-with-newlines">{{article.body}}</p>
+              <p lang="ja" id="article_content">{{ article.body }}</p>
             </div>
 
             <div class="clearfix">
@@ -101,11 +95,13 @@
       <div class="col-md-5 steps_top_padding annotationFormbg">
 
         <!-- Alert Message  -->
+        <% if false %>
         <div class="annotation_notification {{annotation_notification_message_type}} response_message_box" ng-show="message_type == 'success_box' || message_type == 'error_box'">
           <div class="col-md-11 col-centered text-center msgBox">
             <span>{{annotation_notification_message}}</span>
           </div>
         </div>
+        <% end %>
 
         <div id="annotationForm" class="col-md-11 col-centered">
           
@@ -217,7 +213,6 @@ YomuLabAnnotation.Selector.mouseup = function(){
       var selected_string = $("#source_text").val();
       angular.element(document.getElementById('adminAnnotation')).scope().fetch_data_for_existing_annotation(selected_string);
     }
-
   }
 }
 

@@ -199,9 +199,9 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
     var article_id = $("#article_id").val();
     yomuLabAppService.fetch_data_for_existing_annotation(article_id, selected_string).then(function(data){
       var annotation_data = angular.fromJson(data.data);
+      $("#annotationForm .annotation_button button").addClass("stepButton");
       if ( annotation_data.response_code == 404 ){
         $scope.annotation = "";
-        $("#annotationForm .annotation_button button").addClass("stepButton");
       }else{
         annotation_data = annotation_data.annotation;
         $scope.annotation = {
@@ -331,8 +331,6 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
       console.log("Service give error while retrieving the article lists.");
     });
   };
-
-
 
 
 }]);

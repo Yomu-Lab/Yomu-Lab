@@ -36,7 +36,7 @@ class ArticlesController < ApplicationController
       @article.publication_status = GlobalConstant::ARTICLE_STATUS_DRAFT
 
       # => Seperator Between Space
-      @article.body = params[:article][:body].gsub(/[\n]+/, "\n\n").concat("\n\n");
+      @article.body = params[:article][:body].gsub(/[\n]+/, "\n").concat("\n\n");
 
       if @article.save
         render  :status => 200,
@@ -70,7 +70,7 @@ class ArticlesController < ApplicationController
       @article.level = params[:article][:level]
       @article.title = params[:article][:title]
       # => Seperator Between Unconstant Space & New Line
-      @article.body = params[:article][:body].gsub!(/[\n]+/, "\n\n");
+      @article.body = params[:article][:body].gsub!(/[\n]+/, "\n");
       @article.source_name = params[:article][:source_name]
       @article.source_url = params[:article][:source_url]
 
