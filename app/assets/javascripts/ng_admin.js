@@ -288,17 +288,22 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
         title: "",
         paragraph: [null],
       };
-
-      var translation_data_length = translation_data.length;
-      if (translation_data_length != 'undefined'){
-        for (var i = 0, len = translation_data_length; i < len; i++) {
-          if(translation_data[i].paragraph_id==0){
-            $scope.translation.title = translation_data[i].translation;
-          }
-          else{
-            $scope.translation.paragraph.push(translation_data[i].translation);
+      /* Try Catch */
+      try {
+        var translation_data_length = translation_data.length;
+        if (translation_data_length != 'undefined'){
+          for (var i = 0, len = translation_data_length; i < len; i++) {
+            if(translation_data[i].paragraph_id==0){
+              $scope.translation.title = translation_data[i].translation;
+            }
+            else{
+              $scope.translation.paragraph.push(translation_data[i].translation);
+            }
           }
         }
+      }
+      catch(err) {
+        //document.getElementById("demo").innerHTML = err.message;
       }
     }, function() {
       console.log("Service give error while getting article translation.");
