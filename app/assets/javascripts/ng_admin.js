@@ -289,12 +289,15 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
         paragraph: [null],
       };
 
-      for (var i = 0, len = translation_data.length; i < len; i++) {
-        if(translation_data[i].paragraph_id==0){
-          $scope.translation.title = translation_data[i].translation;
-        }
-        else{
-          $scope.translation.paragraph.push(translation_data[i].translation);
+      var translation_data_length = translation_data.length;
+      if (translation_data_length != 'undefined'){
+        for (var i = 0, len = translation_data_length; i < len; i++) {
+          if(translation_data[i].paragraph_id==0){
+            $scope.translation.title = translation_data[i].translation;
+          }
+          else{
+            $scope.translation.paragraph.push(translation_data[i].translation);
+          }
         }
       }
     }, function() {
