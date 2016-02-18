@@ -289,14 +289,14 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
         paragraph: [null],
       };
 
-      translation_data.forEach( function( statement ) {
-        if(statement.paragraph_id==0){
-          $scope.translation.title = statement.translation;
+      for (var i = 0, len = translation_data.length; i < len; i++) {
+        if(translation_data[i].paragraph_id==0){
+          $scope.translation.title = translation_data[i].translation;
         }
         else{
-          $scope.translation.paragraph.push(statement.translation);
+          $scope.translation.paragraph.push(translation_data[i].translation);
         }
-      });
+      }
     }, function() {
       console.log("Service give error while getting article translation.");
       $scope.message_type = "error_box";
