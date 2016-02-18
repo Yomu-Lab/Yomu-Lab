@@ -294,7 +294,7 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
         if (translation_data_length != 'undefined'){
           console.log("translation_data_length="+translation_data_length);
           for (var i = 0, len = translation_data_length; i < len; i++) {
-            console.log("i="+i);
+            console.log("i="+translation_data[i]);
             if(translation_data[i].paragraph_id==0){
               $scope.translation.title = translation_data[i].translation;
             }
