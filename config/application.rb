@@ -24,7 +24,8 @@ module YomuLab
     #config.serve_static_assets = true
     config.active_record.raise_in_transactional_callbacks = true
 
-   #config.assets.initialize_on_precompile = false
+    #config.assets.initialize_on_precompile = false
+    config.action_dispatch.perform_deep_munge = false
 
   end
 end
