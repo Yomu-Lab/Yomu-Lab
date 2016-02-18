@@ -397,21 +397,8 @@ yomu_lab.config(function(AuthProvider) {
 });
 */
 
-yomu_lab.run(['yomuLabAppService', function(yomuLabAppService) {
-  yomuLabAppService.hide_alert_message();
-  yomuLabAppService.hide_response_message();
-}]);
 
-
-yomu_lab.filter('newline', function($sce) {
-  return function(text) {
-    var translation_input_box = '<div class="form-group"><textarea class="form-control translatedText" placeholder="Enter Translation"></textarea></div>';
-    text = text.replace(/\n\n/g, '<br />'+translation_input_box);
-    return $sce.trustAsHtml(text);
-  }
-});
-
-yomu_lab.filter('create_input_box_with_ng_model', function($sce) {
+yomu_lab.filter('create_input_box_with_ng_model', ['$sce', function($sce) {
   return function(text) {
     try {
       var new_text="";
@@ -429,22 +416,21 @@ yomu_lab.filter('create_input_box_with_ng_model', function($sce) {
       //catchCode - Block of code to handle errors
     }
   }
-});
+}]);
 
-yomu_lab.directive('compile',function($compile, $timeout){
+yomu_lab.run(['yomuLabAppService', function(yomuLabAppService) {
+  yomuLabAppService.hide_alert_message();
+  yomuLabAppService.hide_response_message();
+}]);
+
+yomu_lab.directive('compile', ['$compile', '$timeout', function($compile, $timeout){
   return{
     restrict:'A',
     link: function(scope,elem,attrs){
       $timeout(function(){                
-        $compile(elem.contents())(scope);    
+        $compile(elem.contents())(scope);
       });
     }        
   };
-});
+}]);
 
-yomu_lab.filter("nl2br", function($filter) {
- return function(data) {
-   if (!data) return data;
-   return data.replace(/\n\r?/g, '<br />');
- };
-});
