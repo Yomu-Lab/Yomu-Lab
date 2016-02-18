@@ -1,4 +1,7 @@
 class AnnotationsController < ApplicationController
+
+  skip_before_filter :authenticate_user!
+
   before_action :set_annotation, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -33,21 +36,15 @@ class AnnotationsController < ApplicationController
           :annotation_category_id => annotation_array[:selected_annotation_category],
           :article_id => annotation_array[:article_id],
           :user_id => user_id )        
-          response_code = 200
-          response_message = GlobalMessage::ANNOTATION_UPDATED
+        response_code = 200
+        response_message = GlobalMessage::ANNOTATION_UPDATED
       else
-        @annotation = Annotation.new
-        @annotation.source_text = annotation_array[:source_text]
-        @annotation.original_conjugation = annotation_array[:original_conjugation]
-        @annotation.definition = annotation_array[:definition]
-        @annotation.reading = annotation_array[:reading]
-        @annotation.translation = annotation_array[:translation]
-        @annotation.usage_note = annotation_array[:general_note]
-        @annotation.specific_note = annotation_array[:specific_note]
-        @annotation.annotation_category_id = annotation_array[:selected_annotation_category]
-        @annotation.article_id = annotation_array[:article_id].to_i
-        @annotation.user_id = user_id        
-        if @annotation.save
+        new_annotation = Annotation.where(:source_text => annotation_array[:source_text], :article_id => annotation_array[:article_id])
+          .first_or_create!(:original_conjugation => annotation_array[:original_conjugation], :definition => annotation_array[:definition],
+            :reading => annotation_array[:reading], :translation => annotation_array[:translation], :usage_note => annotation_array[:general_note],
+            :specific_note => annotation_array[:specific_note], :annotation_category_id => annotation_array[:selected_annotation_category],
+            :article_id => annotation_array[:article_id].to_i, :user_id => user_id )
+        if new_annotation
           response_code = 200
           response_message = GlobalMessage::ANNOTATION_SAVED
         else
@@ -65,7 +62,7 @@ class AnnotationsController < ApplicationController
           :response_message => response_message
         }     
     rescue
-      render  :status => 200,
+      render :status => 200,
         :json => {
           :response_code => 404, 
           :response_message => GlobalMessage::ANNOTATION_NOT_SAVED
