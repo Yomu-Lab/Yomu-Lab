@@ -273,8 +273,8 @@
                   }
 
 
-                  params_translation.translation["content_translation"].forEach(function(data){
-                    console.log("print = "+data.type);
+                  translation.forEach(function(data){
+                    //console.log("print = "+data.type);
                     console.log("print = "+data);
                   })
 
