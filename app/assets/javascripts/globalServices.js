@@ -274,8 +274,10 @@
 
 
 
-if( Object.prototype.toString.call( translation ) === '[object Array]' ) {
+if( Object.prototype.toString.call( translation.paragraph ) === '[object Array]' ) {
     console.log( '---------------------------Array!' );
+}else{
+  console.log("Entered");
 }
 
 
