@@ -271,27 +271,23 @@
                     },                            
                     "authentication_token": authentication_token.token,
                   }
-
-
-                  translation.paragraph.forEach(function(data){
-                    //  console.log("print = "+data.type);
-                    if(data==null){
-                      console.log("nu;dkvdbgfkntlknmlktym");
-                    }else{
-                    console.log("print = "+data);
-                  }
-                  })
-if( Object.prototype.toString.call( translation.paragraph ) === '[object Array]' ) {
-    console.log( '---------------------------Array!' );
-}else{
-  console.log("Entered");
-}
-
-
-
-                  console.log("params_translation="+params_translation);
-                  console.log("translation="+translation);
       return $http.post("/annotations/save_translation", params_translation)
+        .success(function(data, status, header, config) {
+          //console.log("Service - get annotation - Success");
+        }).error(function(data, status, header, config){
+          //console.log("Service - get annotation - Error");
+        });
+    }
+
+
+    this.save_paragraph_translation = function(translation){
+      var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
+      console.log("save_translation - paragraph");
+      params_translation = {
+                    "translation": translation,
+                    "authentication_token": authentication_token.token,
+                  }                  
+      return $http.post("/annotations/save_paragraph_translation", params_translation)
         .success(function(data, status, header, config) {
           //console.log("Service - get annotation - Success");
         }).error(function(data, status, header, config){
@@ -353,11 +349,6 @@ if( Object.prototype.toString.call( translation.paragraph ) === '[object Array]'
           console.log("Service - fetch_keyword_for_existing_article - Error");
         });
     }
-
-
-
-
-
 }]);
 
 

@@ -264,18 +264,20 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   */
   $scope.save_article_translation = function(translation, article_id){
     console.log("save_article_translation- start");
-    yomuLabAppService.save_translation(article_id, translation).then(function(data){
-      var response = angular.fromJson(data.data);
-      $("div.article_message div").addClass(response.response_type);
-      $("div.article_message div span").text(response.response_message);
-      $scope.redirect_to_admin_dashboard();
+    //$scope.redirect_to_admin_dashboard();
+    window.location = "/admin/dashboard";
+    // yomuLabAppService.save_translation(article_id, translation).then(function(data){
+    //   var response = angular.fromJson(data.data);
+    //   $("div.article_message div").addClass(response.response_type);
+    //   $("div.article_message div span").text(response.response_message);
+    //   $scope.redirect_to_admin_dashboard();
 
-    }, function() {
-      var response = angular.fromJson(data.data);
-      console.log("Service give error while saving article translation.");
-      $("div.article_message div").addClass(response.response_type);
-      $("div.article_message div span").text(response.response_message);
-    });
+    // }, function() {
+    //   var response = angular.fromJson(data.data);
+    //   console.log("Service give error while saving article translation.");
+    //   $("div.article_message div").addClass(response.response_type);
+    //   $("div.article_message div span").text(response.response_message);
+    // });
   };
 
   /*
@@ -292,15 +294,18 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
       //try {
         var translation_data_length = translation_data.length;
         if (translation_data_length != 'undefined'){
-          console.log("translation_data_length="+translation_data_length);
+          //console.log("translation_data_length="+translation_data_length);
           for (var i = 0, len = translation_data_length; i < len; i++) {
-            console.log("i="+translation_data[i]);
+            //console.log("i="+translation_data[i]);
             if(translation_data[i].paragraph_id==0){
               $scope.translation.title = translation_data[i].translation;
             }
             else{
-              console.log("translation_data[i].translation="+translation_data[i].translation);
-              $scope.translation.paragraph.push(translation_data[i].translation);
+              //console.log("translation_data[i].translation="+translation_data[i].translation);
+              //$scope.translation.paragraph.push(translation_data[i].translation);
+              $scope.translation.paragraph[i] = translation_data[i].translation;
+
+              //$("#paragraph_"+translation_data[i].paragraph_id).text(translation_data[i].translation);
             }
           }
         }
@@ -344,13 +349,28 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   };
 
 
-  $scope.doneEditing = function(element){
-    console.log("doneEditing"+element);
+  /*
+  # => Save Translation Data
+  */
+  $scope.store_translation = function(paragraph_id){
+
+    var translation={
+      article_id: $("#article_id").val(),
+      paragraph_id: paragraph_id,
+      paragraph: $('#paragraph_'+paragraph_id).val(),
+    };    
+
+    yomuLabAppService.save_paragraph_translation(translation).then(function(data){
+      var response = angular.fromJson(data.data);
+      $("div.article_message div").addClass(response.response_type);
+      $("div.article_message div span").text(response.response_message);
+    }, function() {
+      var response = angular.fromJson(data.data);
+      console.log("Service give error while saving article translation.");
+      $("div.article_message div").addClass(response.response_type);
+      $("div.article_message div span").text(response.response_message);
+    });
   }
 
 
-
 }]);
-
-
-

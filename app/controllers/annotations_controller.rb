@@ -116,7 +116,7 @@ class AnnotationsController < ApplicationController
     end
   end
 
-  def save_translation
+  def save_title_translation
     #begin
       article_id = params[:translation][:article_id]
       content_translation = params[:translation][:content_translation]
@@ -157,6 +157,39 @@ class AnnotationsController < ApplicationController
     #     }      
     # end
   end
+
+
+  def save_paragraph_translation
+    begin
+      article_id = params[:translation][:article_id]
+      paragraph_id = params[:translation][:paragraph_id]
+      translation_paragraph = params[:translation][:paragraph]
+      annotation_category_id = (AnnotationCategory.find_by name: 'Translation').id
+      user_id = User.find_by_authentication_token(params[:authentication_token]).id
+
+      article_paragraph = Annotation.where(article_id: article_id, paragraph_id: paragraph_id, annotation_category_id: annotation_category_id).first_or_initialize
+      article_paragraph.translation = translation_paragraph
+      article_paragraph.user_id = user_id
+      article_paragraph.save!
+
+      # Set Article Status as Unplublished
+      set_articles_publication_status(article_id, GlobalConstant::ARTICLE_STATUS_UNPUBLISHED)
+      render :status => 200,
+        :json => {
+          :response_code => 200,
+          :response_type => GlobalConstant::RESPONSE_TYPE_SUCCESS,
+          :response_message => GlobalMessage::TRANSLATION_UPDATED
+        }      
+    rescue
+      render  :status => 200,
+        :json => {
+          :response_code => 404, 
+          :response_type => GlobalConstant::RESPONSE_TYPE_ERROR,
+          :response_message => GlobalMessage::TRANSLATION_NOT_SAVED
+        }      
+    end
+  end
+
 
   def get_translation
     article_id = params["translation"]["article_id"]

@@ -14,11 +14,11 @@
         <article id="articleBody" class="translation">
           <!-- Form Start -->
             <div id="translationPage">
-              <!-- <input type="text" id="article_id" value="{{article.id}}" /> -->
+              <input type="hidden" id="article_id" value="{{article.id}}" disabled="" />
               <!-- Article Title & Meaning -->
               <h2 id="articleHeading" lang="ja">{{article.title}}</h2>
               <div class="form-group">
-                <input type="text" class="form-control translatedText" ng-model="translation.title" placeholder="Enter Translation" />
+                <input type="text" class="form-control translatedText" id="paragraph_0" ng-model="translation.title" placeholder="Enter Translation" ng-blur=store_translation("0"); />
               </div>
               <!-- End - Article Title & Meaning §sep§ -->
               <!-- §sep§ as Seperator -->
@@ -42,7 +42,7 @@
             <!--
              <a href="/admin/create_article_step4/{{article.id}}" class="btn btn-primary stepButton pull-right" type="submit">Save &gt;&gt;</a>
              -->
-             <button ng-click="save_article_translation(translation, article.id);" class="btn btn-primary stepButton pull-right" type="submit">Save &gt;&gt;</button>
+             <button ng-click="save_article_translation(article.id);" class="btn btn-primary stepButton pull-right" type="submit">Save &gt;&gt;</button>
           </div>
         </div>
       </div>
