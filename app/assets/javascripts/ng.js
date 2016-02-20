@@ -450,7 +450,7 @@ yomu_lab.directive('myBlur', ['$scope', function ($scope) {
 }]);
 
 // => Highlight
-yomu_lab.filter('highlight', function($sce) {
+yomu_lab.filter('highlight', ['$sce', function($sce) {
   return function(text, phrase) {
     var phrase_length = 0;
     try{
