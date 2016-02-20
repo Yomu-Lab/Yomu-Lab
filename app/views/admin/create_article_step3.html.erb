@@ -1,4 +1,4 @@
-<div ng-controller="YomuLabsAdminCtrl" >
+<div id="create_article_step3" ng-controller="YomuLabsAdminCtrl" >
   <form>  
     <section id="articleDetails" class="clearfix" ng-init="fetch_article_data_at_step3(<%=@article_id %>);get_article_translation(<%=@article_id %>);">
       <div class="col-md-6 col-centered">
@@ -49,3 +49,11 @@
     </footer>
   </form>
 </div>
+
+<script type="text/javascript">
+  
+function store_translation(paragraph_id){
+  console.log("common function");
+  angular.element(document.getElementById('create_article_step3')).scope().store_translation(paragraph_id);
+}
+</script>
