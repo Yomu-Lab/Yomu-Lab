@@ -271,6 +271,8 @@
                     },                            
                     "authentication_token": authentication_token.token,
                   }
+                  console.log("params_translation="+params_translation);
+                  console.log("translation="+translation);
       return $http.post("/annotations/save_translation", params_translation)
         .success(function(data, status, header, config) {
           //console.log("Service - get annotation - Success");
