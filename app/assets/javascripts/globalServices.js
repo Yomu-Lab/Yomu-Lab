@@ -275,7 +275,11 @@
 
                   translation.paragraph.forEach(function(data){
                     //  console.log("print = "+data.type);
+                    if(data==null){
+                      console.log("nu;dkvdbgfkntlknmlktym");
+                    }else{
                     console.log("print = "+data);
+                  }
                   })
 if( Object.prototype.toString.call( translation.paragraph ) === '[object Array]' ) {
     console.log( '---------------------------Array!' );
