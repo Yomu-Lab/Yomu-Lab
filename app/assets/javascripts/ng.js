@@ -469,4 +469,4 @@ yomu_lab.filter('highlight', ['$sce', function($sce) {
     }
     return $sce.trustAsHtml(text)
   };
-});
+}]);
