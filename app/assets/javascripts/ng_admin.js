@@ -302,8 +302,8 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
             }
             else{
               //console.log("translation_data[i].translation="+translation_data[i].translation);
-              //$scope.translation.paragraph.push(translation_data[i].translation);
-              $scope.translation.paragraph[i] = translation_data[i].translation;
+              $scope.translation.paragraph.push(translation_data[i].translation);
+              //$scope.translation.paragraph[i] = translation_data[i].translation;
 
               //$("#paragraph_"+translation_data[i].paragraph_id).text(translation_data[i].translation);
             }
