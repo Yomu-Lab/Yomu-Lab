@@ -271,6 +271,16 @@
                     },                            
                     "authentication_token": authentication_token.token,
                   }
+
+
+                  params_translation.translation["content_translation"].forEach(function(data){
+                    console.log("print = "+data.type);
+                    console.log("print = "+data);
+                  })
+
+
+
+
                   console.log("params_translation="+params_translation);
                   console.log("translation="+translation);
       return $http.post("/annotations/save_translation", params_translation)
