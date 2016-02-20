@@ -286,7 +286,7 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
       var translation_data = angular.fromJson(data.data.translation);
       $scope.translation={
         title: "",
-        paragraph: [null],
+        paragraph: [],
       };
       /* Try Catch */
       //try {
@@ -342,6 +342,12 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
       console.log("Service give error while retrieving the article lists.");
     });
   };
+
+
+  $scope.doneEditing = function(element){
+    console.log("doneEditing"+element);
+  }
+
 
 
 }]);

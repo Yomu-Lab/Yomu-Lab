@@ -406,8 +406,9 @@ yomu_lab.filter('create_input_box_with_ng_model', ['$sce', function($sce) {
       $.each(text_array, function(index, value) {
         if (value!=""){
           var paragraph_id = index+1;
-          var translation_input_box = '<div class="form-group"><textarea class="form-control translatedText" ng-model="translation.paragraph['+paragraph_id+']" id="paragraph_'+paragraph_id+'" placeholder="Enter Translation">{{translation.paragraph['+paragraph_id+']}}</textarea></div>';
-          //var translation_input_box = '<div class="form-group"><textarea class="form-control translatedText" ng-model="$parent.translation.paragraph['+paragraph_id+']" ng-bind-html="translation.paragraph['+paragraph_id+']" id="paragraph_'+paragraph_id+'" placeholder="Enter Translation"></textarea></div>';
+          var translation_input_box = '<div class="form-group"><textarea class="form-control translatedText" ng-model="translation.paragraph['+paragraph_id+']" id="paragraph_'+paragraph_id+'" placeholder="Enter Translation");>{{translation.paragraph['+paragraph_id+']}}</textarea></div>';
+          //var translation_input_box = '<div class="form-group"><textarea class="form-control translatedText" ng-model="translation.paragraph['+paragraph_id+']" id="paragraph_'+paragraph_id+'" placeholder="Enter Translation" ng-blur=doneEditing("paragraph_'+paragraph_id+'");>{{translation.paragraph['+paragraph_id+']}}</textarea></div>';
+          //var translation_input_box = '<div class="form-group"><textarea class="form-control translatedText" ng-model="$parent.translation.paragraph['+paragraph_id+']" ng-bind-html="translation.paragraph['+paragraph_id+']" id="paragraph_'+paragraph_id+'" placeholder="Enter Translation" my-blur="doneEditing()"></textarea></div>';
           new_text +=value+translation_input_box;
         }
       });
@@ -435,3 +436,19 @@ yomu_lab.directive('compile', ['$compile', '$timeout', function($compile, $timeo
   };
 }]);
 
+// => Blur directive
+/*
+yomu_lab.directive('myBlur', ['$scope', function ($scope) {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attr) {
+      element.bind('blur', function () {
+        //apply scope (attributes)
+        scope.$apply(attr.myBlur);
+        //return scope value for focusing to false
+        scope.$eval(attr.myFocus + '=false');
+      });
+    }
+  };
+}]);
+*/
