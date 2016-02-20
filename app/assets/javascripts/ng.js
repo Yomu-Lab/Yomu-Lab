@@ -408,7 +408,7 @@ yomu_lab.filter('create_input_box_with_ng_model', ['$sce', function($sce) {
           var paragraph_id = index+1;
           //var translation_input_box = '<div class="form-group"><textarea class="form-control translatedText" ng-model="translation.paragraph['+paragraph_id+']" id="paragraph_'+paragraph_id+'" placeholder="Enter Translation");>{{translation.paragraph['+paragraph_id+']}}</textarea></div>';
           //var translation_input_box = '<div class="form-group"><textarea class="form-control translatedText" ng-model="translation.paragraph['+paragraph_id+']" id="paragraph_'+paragraph_id+'" placeholder="Enter Translation" ng-blur=doneEditing("paragraph_'+paragraph_id+'");>{{translation.paragraph['+paragraph_id+']}}</textarea></div>';
-          var translation_input_box = '<div class="form-group"><textarea class="form-control translatedText" ng-model="translation.paragraph['+paragraph_id+']" id="paragraph_'+paragraph_id+'" ng-blur=store_translation("'+paragraph_id+'"); placeholder="Enter Translation" ></textarea></div>';
+          var translation_input_box = '<div class="form-group"><textarea class="form-control translatedText" ng-model="translation.paragraph['+paragraph_id+']" id="paragraph_'+paragraph_id+'" my-blur=store_translation("'+paragraph_id+'"); placeholder="Enter Translation" ></textarea></div>';
           new_text +=value+translation_input_box;
         }
       });
@@ -437,7 +437,7 @@ yomu_lab.directive('compile', ['$compile', '$timeout', function($compile, $timeo
 }]);
 
 // => Blur directive
-/*
+
 yomu_lab.directive('myBlur', ['$scope', function ($scope) {
   return {
     restrict: 'A',
@@ -451,4 +451,3 @@ yomu_lab.directive('myBlur', ['$scope', function ($scope) {
     }
   };
 }]);
-*/
