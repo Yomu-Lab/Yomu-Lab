@@ -273,7 +273,10 @@
                   }
 
 
-
+                  translation.paragraph.forEach(function(data){
+                    //  console.log("print = "+data.type);
+                    console.log("print = "+data);
+                  })
 if( Object.prototype.toString.call( translation.paragraph ) === '[object Array]' ) {
     console.log( '---------------------------Array!' );
 }else{
