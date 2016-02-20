@@ -354,6 +354,8 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   */
   $scope.store_translation = function(paragraph_id){
 
+    console.log('Start paragraph saving');
+
     var translation={
       article_id: $("#article_id").val(),
       paragraph_id: paragraph_id,
@@ -362,6 +364,7 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
 
     yomuLabAppService.save_paragraph_translation(translation).then(function(data){
       var response = angular.fromJson(data.data);
+      console.log('end paragraph saving');
       $("div.article_message div").addClass(response.response_type);
       $("div.article_message div span").text(response.response_message);
     }, function() {
