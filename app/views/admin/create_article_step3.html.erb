@@ -42,7 +42,7 @@
             <!--
              <a href="/admin/create_article_step4/{{article.id}}" class="btn btn-primary stepButton pull-right" type="submit">Save &gt;&gt;</a>
              -->
-             <button ng-click="save_article_translation(article.id);" class="btn btn-primary stepButton pull-right" type="submit">Save &gt;&gt;</button>
+             <button ng-click="save_article_translation(article.id);" class="btn btn-primary stepButton pull-right" type="submit">Save &gt;&gt;<i class="fa fa-refresh fa-spin hidden loader"></i></button>
           </div>
         </div>
       </div>
@@ -53,7 +53,6 @@
 <script type="text/javascript">
   
 function store_translation(paragraph_id){
-  console.log("common function");
   angular.element(document.getElementById('create_article_step3')).scope().store_translation(paragraph_id);
 }
 </script>

@@ -116,49 +116,6 @@ class AnnotationsController < ApplicationController
     end
   end
 
-  def save_title_translation
-    #begin
-      article_id = params[:translation][:article_id]
-      content_translation = params[:translation][:content_translation]
-      annotation_category_id = (AnnotationCategory.find_by name: 'Translation').id
-      user_id = User.find_by_authentication_token(params[:authentication_token]).id
-
-      # Save Article Title Translation
-      article_title = Annotation.where(:article_id => article_id, :paragraph_id => 0, :annotation_category_id => annotation_category_id ).first_or_initialize
-      article_title.translation = content_translation["title"]
-      article_title.user_id = user_id
-      article_title.save!
-
-      content_translation["paragraph"].each_with_index do |content, i|
-        if content.present?
-          paragraph_id = i
-          puts "----------------------------#{paragraph_id}------------------#{content}-------------------------------"
-          article_paragraph = Annotation.where(article_id: article_id, paragraph_id: paragraph_id, annotation_category_id: annotation_category_id).first_or_initialize
-          article_paragraph.translation = content
-          article_paragraph.user_id = user_id
-          article_paragraph.save!
-        end
-      end
-
-      # Set Article Status as Unplublished
-      set_articles_publication_status(article_id, GlobalConstant::ARTICLE_STATUS_UNPUBLISHED)
-      render :status => 200,
-        :json => {
-          :response_code => 200,
-          :response_type => GlobalConstant::RESPONSE_TYPE_SUCCESS,
-          :response_message => GlobalMessage::TRANSLATION_UPDATED
-        }      
-    # rescue
-    #   render  :status => 200,
-    #     :json => {
-    #       :response_code => 404, 
-    #       :response_type => GlobalConstant::RESPONSE_TYPE_ERROR,
-    #       :response_message => GlobalMessage::TRANSLATION_NOT_SAVED
-    #     }      
-    # end
-  end
-
-
   def save_paragraph_translation
     begin
       article_id = params[:translation][:article_id]

@@ -59,3 +59,13 @@
 p#article_content{
   white-space: pre-line;
 }
+
+.selected_text_underline, #selected_text_underline{
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: #000 1px solid;
+  color: inherit;
+}
+.display_true{
+  display: inline !important;
+}

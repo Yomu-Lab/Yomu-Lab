@@ -213,8 +213,8 @@
     /*
     # => Fetch Annotation Categories - Logged In User
     */
-    this.create_annotation = function(annotation, article_id, selected_annotation_category, authentication_token){
-      var source_text = $("#source_text").val();
+    this.create_annotation = function(source_text, annotation, article_id, selected_annotation_category, authentication_token){
+      //var source_text = $("#source_text").val();
       params_annotation = {
                             "annotation_data": {
                               "source_text": source_text,
@@ -260,29 +260,9 @@
     /*
     # => Store Translation For  - Logged In User
     */
-
-    this.save_translation = function(article_id, translation){
-      var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
-      console.log("save_translation");
-      params_translation = {
-                    "translation": {
-                      "content_translation": translation,
-                      "article_id": article_id,
-                    },                            
-                    "authentication_token": authentication_token.token,
-                  }
-      return $http.post("/annotations/save_translation", params_translation)
-        .success(function(data, status, header, config) {
-          //console.log("Service - get annotation - Success");
-        }).error(function(data, status, header, config){
-          //console.log("Service - get annotation - Error");
-        });
-    }
-
-
+    
     this.save_paragraph_translation = function(translation){
       var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
-      console.log("save_translation - paragraph");
       params_translation = {
                     "translation": translation,
                     "authentication_token": authentication_token.token,

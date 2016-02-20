@@ -90,8 +90,28 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   $scope.fetch_article_data_at_step2 = function(article_id){
 
     this.fetch_annotation_category();
+    
+
     yomuLabAppService.get_article_step1_data(article_id).then(function(data){
       var article = angular.fromJson(data.data.article);
+      /*
+      # => Fetch Keyword List Of Article - Step 2
+      */
+      yomuLabAppService.fetch_keyword_for_existing_article(article_id).then(function(data){
+        var keyword_annotation = angular.fromJson(data.data.keyword_list);
+        var search = [];
+        $.each(keyword_annotation, function(key,value){
+          console.log("Key="+key+"::Value="+value.source_text );
+          search.push(value.source_text);
+        });
+        $scope.search = search;
+      }, function() {
+        console.log("Service give error while fetching the Keyword List at Step 2 Data.");
+        $scope.message_type = "error_box";
+        $scope.message_content = "Service give error while fetching the Keyword List Step 2.";
+      });
+      /* End */
+
       $scope.article = {
         id: article.id,
         title: article.title,
@@ -151,11 +171,12 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   $scope.create_annotation = function(annotation){
     var article_id = $("#article_id").val();
     var selected_annotation_category = $("#selected_annotation_category").val();
+    var source_text = $("#source_text").val();
   
     // => Fetch Authentication Token
     var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
 
-    yomuLabAppService.create_annotation(annotation, article_id, selected_annotation_category, authentication_token.token).then(function(data){
+    yomuLabAppService.create_annotation(source_text, annotation, article_id, selected_annotation_category, authentication_token.token).then(function(data){
       var success_response = angular.fromJson(data.data);
       $scope.message_type = "success_box";  
       $scope.message_content = success_response.response_message;      
@@ -224,32 +245,6 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   };
 
   /*
-  # => Fetch Keyword List Of Article - Step 2
-  */
-  $scope.fetch_keyword_for_existing_article = function(article_id){
-    //var article_id = $("#article_id").val();
-    yomuLabAppService.fetch_keyword_for_existing_article(article_id).then(function(data){
-      /*
-      var keyword_annotation = angular.fromJson(data.data.keyword_list);
-      //data = {"keyword_list":[{"id":3,"source_text":"lorem","location_start":2},{"id":4,"source_text":"ipsum","location_start":1}],"response_code":200};
-      var articleData = $("#article_content").html().replace(/\n/g, "").split(" ");
-      $.each(keyword_annotation, function(key,value){
-        console.log("Key="+key+"::Value="+value);
-          if(articleData[value.location_start] == value.source_text){
-            articleData[value.location_start] = "<span style='text-decoration:undeline;color:red;'>" + value.source_text +"</span>";  
-          }
-      });
-      */
-      //return articleData.join(" ");
-      //$scope.article.body = articleData.join(" ");
-    }, function() {
-      console.log("Service give error while fetching the Keyword List at Step 2 Data.");
-      $scope.message_type = "error_box";
-      $scope.message_content = "Service give error while fetching the Keyword List Step 2.";
-    });
-  };
-
-  /*
   # => Select Annotation Category While Creating Annotation
   */
   $scope.discard_annotation_data = function(){
@@ -263,21 +258,7 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   # => Save Translation Data
   */
   $scope.save_article_translation = function(translation, article_id){
-    console.log("save_article_translation- start");
-    //$scope.redirect_to_admin_dashboard();
     window.location = "/admin/dashboard";
-    // yomuLabAppService.save_translation(article_id, translation).then(function(data){
-    //   var response = angular.fromJson(data.data);
-    //   $("div.article_message div").addClass(response.response_type);
-    //   $("div.article_message div span").text(response.response_message);
-    //   $scope.redirect_to_admin_dashboard();
-
-    // }, function() {
-    //   var response = angular.fromJson(data.data);
-    //   console.log("Service give error while saving article translation.");
-    //   $("div.article_message div").addClass(response.response_type);
-    //   $("div.article_message div span").text(response.response_message);
-    // });
   };
 
   /*
@@ -294,17 +275,12 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
       //try {
         var translation_data_length = translation_data.length;
         if (translation_data_length != 'undefined'){
-          //console.log("translation_data_length="+translation_data_length);
+          
           for (var i = 0, len = translation_data_length; i < len; i++) {
-            //console.log("i="+translation_data[i]);
             if(translation_data[i].paragraph_id==0){
               $scope.translation.title = translation_data[i].translation;
             }
             else{
-              //console.log("translation_data[i].translation="+translation_data[i].translation);
-              //$scope.translation.paragraph.push(translation_data[i].translation);
-              //$scope.translation.paragraph[i] = translation_data[i].translation;
-
               $("#paragraph_"+translation_data[i].paragraph_id).text(translation_data[i].translation);
             }
           }
@@ -353,27 +329,24 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   # => Save Translation Data
   */
   $scope.store_translation = function(paragraph_id){
-
-    console.log('Start paragraph saving');
-
     var translation={
       article_id: $("#article_id").val(),
       paragraph_id: paragraph_id,
       paragraph: $('#paragraph_'+paragraph_id).val(),
-    };    
+    };
 
     yomuLabAppService.save_paragraph_translation(translation).then(function(data){
       var response = angular.fromJson(data.data);
-      console.log('end paragraph saving');
       $("div.article_message div").addClass(response.response_type);
       $("div.article_message div span").text(response.response_message);
+      $scope.message_type = response.response_type;
+      $scope.message_content = response.response_message;      
     }, function() {
       var response = angular.fromJson(data.data);
       console.log("Service give error while saving article translation.");
       $("div.article_message div").addClass(response.response_type);
       $("div.article_message div span").text(response.response_message);
     });
-  }
-
+  };
 
 }]);

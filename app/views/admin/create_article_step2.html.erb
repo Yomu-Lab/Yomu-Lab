@@ -79,7 +79,8 @@
 
             <h2 lang="ja" id="articleHeading">{{article.title}}</h2>
             <div class="articleContent editable" >
-              <p lang="ja" id="article_content">{{ article.body }}</p>
+              <!-- <p compile lang="ja" id="article_content">{{ article.body | highlight:search }}</p> -->
+              <p compile lang="ja" id="article_content" ng-bind-html="article.body | highlight:search"></p>
             </div>
 
             <div class="clearfix">
@@ -114,7 +115,8 @@
           <!-- Form Start -->
           <form class="form-horizontal">
             <input type="hidden" class="form-control" id="selected_annotation_category" disabled="" />
-            <input type="hidden" class="form-control" id="source_text" ng-model="annotation.source_text" disabled="" />
+            <!-- <input type="hidden" class="form-control" id="source_text" ng-model="annotation.source_text" disabled="" /> -->
+            <input type="hidden" class="form-control" id="source_text" disabled="" />
             <div class="form-group">
               <label for="conjugation" class="col-sm-3 control-label">Original Conjugation</label>
               <div class="col-sm-9">
@@ -190,11 +192,12 @@ YomuLabAnnotation.Selector.getSelected = function(){
   var t = '';
   if(window.getSelection){
     try {
-      if (window.getSelection().anchorNode.parentNode.id == 'article_content'){      
-        t = window.getSelection();
-      }
+      if (window.getSelection().anchorNode.parentNode.id == 'article_content' || window.getSelection().anchorNode.parentNode.id ==  'selected_text_underline'){      
+        t = window.getSelection();        
+      } 
     }
-    catch(err) { }
+    catch(err) {
+     }
   }else if(document.getSelection){
     t = document.getSelection();
   }else if(document.selection){
@@ -211,6 +214,7 @@ YomuLabAnnotation.Selector.mouseup = function(){
       $("#selectedWord").text(st);
       $("#source_text").val(st);
       var selected_string = $("#source_text").val();
+
       angular.element(document.getElementById('adminAnnotation')).scope().fetch_data_for_existing_annotation(selected_string);
     }
   }
@@ -221,3 +225,6 @@ $(document).ready(function(){
 });
 
 </script>
+    <style>
+      .highlighted { background: yellow }
+    </style>
