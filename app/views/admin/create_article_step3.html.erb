@@ -24,9 +24,7 @@
               <!-- §sep§ as Seperator -->
               <div class="articleContent">
                 <p compile lang="ja" ng-bind-html="article.body | create_input_box_with_ng_model"></p>
-                
-<!--       <p compile lang="ja">{{article.body | create_input_box_with_ng_model }}</p> 
- -->                
+                <!-- <p compile lang="ja">{{article.body | create_input_box_with_ng_model }}</p> -->
               </div>
             </div>
           <!-- Form End -->
@@ -39,10 +37,7 @@
         <div class="clearfix">
           <div class="form-group clearfix">
             <a href="/admin/create_article_step2/{{article.id}}" class="btn btn-primary stepButton pull-left" type="submit">&lt;&lt; Previous</a>
-            <!--
-             <a href="/admin/create_article_step4/{{article.id}}" class="btn btn-primary stepButton pull-right" type="submit">Save &gt;&gt;</a>
-             -->
-             <button ng-click="save_article_translation(article.id);" class="btn btn-primary stepButton pull-right" type="submit">Save &gt;&gt;<i class="fa fa-refresh fa-spin hidden loader"></i></button>
+             <button ng-click="save_article_translation(article.id);" class="btn btn-primary stepButton pull-right" type="submit">Save<i class="fa fa-refresh fa-spin hidden loader"></i></button>
           </div>
         </div>
       </div>
@@ -51,7 +46,6 @@
 </div>
 
 <script type="text/javascript">
-  
 function store_translation(paragraph_id){
   angular.element(document.getElementById('create_article_step3')).scope().store_translation(paragraph_id);
 }

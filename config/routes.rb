@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :articles
   get 'articles/get_article_detail/:id' => 'articles#get_article_detail'
+  post 'articles/update_article_body' => 'articles#update_article_body'
   
   resources :home, only: :index do
     collection do

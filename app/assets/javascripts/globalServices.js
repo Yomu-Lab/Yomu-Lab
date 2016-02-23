@@ -214,7 +214,6 @@
     # => Fetch Annotation Categories - Logged In User
     */
     this.create_annotation = function(source_text, annotation, article_id, selected_annotation_category, authentication_token){
-      //var source_text = $("#source_text").val();
       params_annotation = {
                             "annotation_data": {
                               "source_text": source_text,
@@ -329,6 +328,22 @@
           console.log("Service - fetch_keyword_for_existing_article - Error");
         });
     }
+
+
+    this.update_article_body = function(article_body, article_id){
+      var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
+      params_article = {
+                    "article_id": article_id,
+                    "article_body": article_body,                            
+                    "authentication_token": authentication_token.token,
+                  }
+      return $http.post("/articles/update_article_body", params_article).success(function(data, status, header, config) {
+          //console.log("Service - update_article_body - Success");
+        }).error(function(data, status, header, config){
+          console.log("Service - update_article_body - Error");
+        });
+    }
+
 }]);
 
 

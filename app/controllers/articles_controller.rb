@@ -97,7 +97,6 @@ class ArticlesController < ApplicationController
           :error_message => @article.errors,
         }
     end
-
     # respond_to do |format|
     #   if @article.update(article_params)
     #     format.html { redirect_to @article, notice: 'Article was successfully updated.' }
@@ -119,10 +118,20 @@ class ArticlesController < ApplicationController
 
   def get_article_detail
     @article = Article.find_by_id(params[:id])
-
     render :status => 200,
       :json => {
         :response_code => 200, :article => @article
+      }
+  end
+
+  def update_article_body
+    user_id = User.find_by_authentication_token(params[:authentication_token]).id
+    article = Article.find_by_id(params[:article_id].to_i)
+    article_body = params[:article_body].gsub('<span class="selected_text_underline"></span>', '')
+    article.update_attributes(body: params[:article_body], user_id: user_id )
+    render :status => 200,
+      :json => {
+        :response_code => 200,
       }
   end
 

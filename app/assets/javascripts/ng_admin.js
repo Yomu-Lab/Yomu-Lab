@@ -3,7 +3,7 @@
 /*
 * YomuLabsAdminCtrl Controller
 */
-yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLabAppLocalStorageService', 'yomuLabAppService', 'Auth', function($scope, $http, $window, yomuLabAppLocalStorageService, yomuLabAppService, Auth) {
+yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLabAppLocalStorageService', 'yomuLabAppService', 'Auth', '$sce', function($scope, $http, $window, yomuLabAppLocalStorageService, yomuLabAppService, Auth,  $sce) {
 
   $scope.init = function(){
     // => Fetch Authentication Token
@@ -72,7 +72,7 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
         source_url: article.source_url,
         original_language: article.original_language,
         level: article.level,
-        body: article.body,
+        body: $sce.trustAsHtml(article.body),
         publication_status: article.publication_status,
         character_count: article.character_count,
         word_count:  article.word_count
@@ -94,24 +94,6 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
 
     yomuLabAppService.get_article_step1_data(article_id).then(function(data){
       var article = angular.fromJson(data.data.article);
-      /*
-      # => Fetch Keyword List Of Article - Step 2
-      */
-      yomuLabAppService.fetch_keyword_for_existing_article(article_id).then(function(data){
-        var keyword_annotation = angular.fromJson(data.data.keyword_list);
-        var search = [];
-        $.each(keyword_annotation, function(key,value){
-          console.log("Key="+key+"::Value="+value.source_text );
-          search.push(value.source_text);
-        });
-        $scope.search = search;
-      }, function() {
-        console.log("Service give error while fetching the Keyword List at Step 2 Data.");
-        $scope.message_type = "error_box";
-        $scope.message_content = "Service give error while fetching the Keyword List Step 2.";
-      });
-      /* End */
-
       $scope.article = {
         id: article.id,
         title: article.title,
@@ -168,7 +150,7 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   /*
   # => Select Annotation Category While Creating Annotation
   */
-  $scope.create_annotation = function(annotation){
+  $scope.create_annotation = function(article, annotation){
     var article_id = $("#article_id").val();
     var selected_annotation_category = $("#selected_annotation_category").val();
     var source_text = $("#source_text").val();
@@ -178,6 +160,14 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
 
     yomuLabAppService.create_annotation(source_text, annotation, article_id, selected_annotation_category, authentication_token.token).then(function(data){
       var success_response = angular.fromJson(data.data);
+
+      // Update Article Body
+      var article_body = $("p#article_content").html();
+      yomuLabAppService.update_article_body(article_body, article_id).then(function(data){
+        var success_response = angular.fromJson(data.data);
+      }, function() {
+        console.log("Service give error while updating the article content.");
+      });
       $scope.message_type = "success_box";  
       $scope.message_content = success_response.response_message;      
     }, function() {
@@ -186,6 +176,7 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
       $scope.message_content = "Service give error while creating the annotation.";
     });
     $("#articleHeader .response_message_box").show();
+    this.fetch_article_data_at_step2(article_id);
   };
 
   /*

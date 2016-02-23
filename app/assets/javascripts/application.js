@@ -17,6 +17,7 @@
 //= require angular-filter
 //= require angular-cookies
 //= require angular-local-storage
+//= require angular-sanitize
 //= require devise
 //= require retina.min
 //= require tweetie.min

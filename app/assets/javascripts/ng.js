@@ -1,4 +1,4 @@
-var yomu_lab = angular.module('yomu_lab', [ 'Devise', 'LocalStorageModule']);
+var yomu_lab = angular.module('yomu_lab', [ 'Devise', 'LocalStorageModule', 'ngSanitize']);
 
 var EMAIL_REGEXP = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 var PASSWORD_LENGTH_MINIMUM = 8;
