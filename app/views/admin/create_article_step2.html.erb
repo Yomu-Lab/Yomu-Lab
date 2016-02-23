@@ -200,23 +200,25 @@ YomuLabAnnotation.Selector.getSelected = function(){
 
   var selected_text = '';
   if(window.getSelection){
-    //try {
+    try {
       // Condition To Check Selected Keyword Belongs To Specific Div
-      if (window.getSelection().anchorNode.parentNode.id == 'article_content' || window.getSelection().anchorNode.parentNode.id == 'selected_text_underline'){      
+      //if (window.getSelection().anchorNode.parentNode.id == 'article_content' || window.getSelection().anchorNode.parentNode.id == 'selected_text_underline'){
+        if ( window.getSelection().focusNode.parentElement.offsetParent.id == 'articleBody'){
         selected_text = window.getSelection();
-        
-        // Script To Add Underline 
-        if (selected_text.rangeCount){
-          var range = selected_text.getRangeAt(0).cloneRange();
-          range.surroundContents(span);
-          selected_text.removeAllRanges();
-          selected_text.addRange(range);
-        }
-        //console.log("article_content = "+$('#article_content').text());
-      } 
-    // }
-    // catch(err) {
-    //  }
+          
+          // Script To Add Underline 
+          if (selected_text.rangeCount){
+            var range = selected_text.getRangeAt(0).cloneRange();
+            range.surroundContents(span);
+            selected_text.removeAllRanges();
+            selected_text.addRange(range);
+          }
+          console.log("selected_text = "+selected_text);
+          //console.log("article_content = "+$('#article_content').text());
+        } 
+    }
+    catch(err) {
+     }
   }else if(document.getSelection){
     selected_text = document.getSelection();
   }else if(document.selection){

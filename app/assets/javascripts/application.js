@@ -18,6 +18,9 @@
 //= require angular-cookies
 //= require angular-local-storage
 //= require angular-sanitize
+//= require rangy-core
+//= require rangy-selectionsaverestore
+//= require textAngular.min
 //= require devise
 //= require retina.min
 //= require tweetie.min

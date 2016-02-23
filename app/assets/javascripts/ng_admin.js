@@ -72,7 +72,8 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
         source_url: article.source_url,
         original_language: article.original_language,
         level: article.level,
-        body: $sce.trustAsHtml(article.body),
+        body: article.body,
+        //body: article.body,
         publication_status: article.publication_status,
         character_count: article.character_count,
         word_count:  article.word_count
@@ -90,7 +91,6 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   $scope.fetch_article_data_at_step2 = function(article_id){
 
     this.fetch_annotation_category();
-    
 
     yomuLabAppService.get_article_step1_data(article_id).then(function(data){
       var article = angular.fromJson(data.data.article);

@@ -1,4 +1,4 @@
-var yomu_lab = angular.module('yomu_lab', [ 'Devise', 'LocalStorageModule', 'ngSanitize']);
+var yomu_lab = angular.module('yomu_lab', [ 'Devise', 'LocalStorageModule', 'ngSanitize', 'textAngular']);
 
 var EMAIL_REGEXP = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 var PASSWORD_LENGTH_MINIMUM = 8;
@@ -468,5 +468,21 @@ yomu_lab.filter('highlight', ['$sce', function($sce) {
       }
     }
     return $sce.trustAsHtml(text)
+  };
+}]);
+
+yomu_lab.directive('htmlText', ['$scope', function($scope){
+  return {
+    'restrict': 'A',
+    'require': 'ngModel',
+    'link': function(scope,element,attrs,model) {
+      model.$formatters.push(function(val){
+        return val.htmlField;
+      });
+
+      model.$parsers.push(function(val){
+        model.$modelValue.htmlField = val;
+      });
+    } 
   };
 }]);
