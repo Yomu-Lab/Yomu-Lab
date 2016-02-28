@@ -344,6 +344,31 @@
         });
     }
 
+    this.store_language_level = function(selectLanguage){
+      var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
+      params_users = {
+                    "language_level": selectLanguage.language_level,
+                    "authentication_token": authentication_token.token,
+                  }      
+      //console.log('selectLanguage = '+selectLanguage);
+      return $http.post("/home/save_language_level", params_users).success(function(data, status, header, config) {
+          console.log("Service - store language_level - Success");
+        }).error(function(data, status, header, config){
+          console.log("Service - store language_level - Error");
+        });
+    }
+
+    this.check_language_level = function(){
+      var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
+      return $http.post("/home/check_language_level", authentication_token.token).success(function(data, status, header, config) {
+          console.log("Service - store language_level - Success");
+        }).error(function(data, status, header, config){
+          console.log("Service - store language_level - Error");
+        });
+    }
+
+
+
 }]);
 
 

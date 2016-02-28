@@ -263,7 +263,6 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
         //console.log("Service give error while retrieving the user details.");
       });
     }
-
     //  => Message Success
     $scope.message_type = "alert-success";
 
@@ -271,6 +270,24 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
       $scope.referral_count = angular.fromJson(data.data.referral_count);
     }, function() {
       //console.log("Service give error while retrieving the referral_code.");
+    });
+  }
+
+  $scope.submit_language = function(selectLanguage){
+    yomuLabAppService.store_language_level(selectLanguage).then(function(data) {
+      $scope.message_type = "success";
+      $scope.message_box = data.data.response_message;
+      $('.alert').show();
+    }, function() {
+      console.log("Service give error while saving language level.");
+    });
+  }
+
+  $scope.check_language_level = function(token){
+    yomuLabAppService.check_language_level(token).then(function(data) {
+      console.log("check_language_level = "+data);
+    }, function() {
+      console.log("Service give error while checking language level.");
     });
   }
 

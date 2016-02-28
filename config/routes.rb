@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get 'admin/create_article_step3/:article_id' => 'admin#create_article_step3'
   get 'admin/change_article_status/:article_id' => 'admin#change_article_status'
 
+  # => get 'admin/settings' => 'admin#settings'
+
   resources :articles
   get 'articles/get_article_detail/:id' => 'articles#get_article_detail'
   post 'articles/update_article_body' => 'articles#update_article_body'
@@ -39,17 +41,21 @@ Rails.application.routes.draw do
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   resources :home
-  match '/Index'            => "home#index",     via: [:get]
-  match '/Login'            => "home#login",     via: [:get]
-  match '/SignUp'           => "home#sign_up",           via: [:get]
-  match '/ForgotPassword'   => "home#forgot_password",   via: [:get]
+  match '/Index'                => "home#index",     via: [:get]
+  match '/Login'                => "home#login",     via: [:get]
+  match '/SignUp'               => "home#sign_up",           via: [:get]
+  match '/ForgotPassword'       => "home#forgot_password",   via: [:get]
+  match '/ChooseLanguageLevel'  => "home#choose_language_level",   via: [:get]
+  
   
   get 'home/user_details/:authentication_token' => 'home#user_details'
   get 'home/current_user_details/:authentication_token' => 'home#current_user_details'
   post 'home/register' => 'home#register'
   match '/ReconfirmUser' => 'home#reconfirm_user', via: [:get]
   get 'home/current_user_referral_count/:authentication_token' => 'home#current_user_referral_count'
-
+  post 'home/save_language_level' => 'home#save_language_level'
+  get 'home/check_language_level'# => 'home#check_language_level'
+  
   resources :default
   match '/ResetPassword' => 'default#reset_password', via: [:get]
   get 'default/get_user_details_by_reset_password_token/:token' => 'default#get_user_details_by_reset_password_token'

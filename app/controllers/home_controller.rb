@@ -75,7 +75,6 @@ class HomeController < ApplicationController
             }
   end
 
-
   def register
     begin
       check_existing_user = User.find_by_email(params[:email])
@@ -122,5 +121,39 @@ class HomeController < ApplicationController
   def reconfirm_user
     @confirmation_token = params[:confirmation_token]
   end
+
+  def save_language_level
+    if params[:authentication_token].present?
+      current_user = User.where(authentication_token: params[:authentication_token]).first
+      current_user.level = params[:language_level]
+      if current_user.save
+        response_code = 200
+        response_message = "Language level updated successfully."
+      end
+    else
+      response_code = 400
+      response_message = "Error occurred while updating language level."      
+    end
+    render :status => 200,
+          :json => {
+            :response_code => response_code, :response_message => response_message
+          }
+  end
+
+  def check_language_level
+    if params[:authentication_token].present?
+      current_user = User.where(authentication_token: params[:authentication_token]).first
+      language_level = current_user.language_level
+      response_code = 200
+    else
+      response_code = 400
+      response_message = "Error occurred while checking language level."      
+    end
+    render :status => 200,
+          :json => {
+            :response_code => response_code, :language_level => language_level
+          }
+  end
+
 
 end

@@ -26,11 +26,11 @@
 
 	     	<!-- Admin Dropdown -->
 	     	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-	     		<li><a href="#">Admin</a></li>
+	     		<li><a href="/">Admin</a></li>
 	     		<li role="separator" class="divider"></li>
 	     		<li><a href="#">Settings</a></li>
 	     		<li role="separator" class="divider"></li>
-	     		<li><a href="#">Log Out</a></li>        
+	     		<li ng-controller="YomuLabsSignOutCtrl" ><a href="#" ng-click="sign_out();">Log Out</a></li>        
 	   		</ul>
 	   		<!-- End - Admin Dropdown -->
 
