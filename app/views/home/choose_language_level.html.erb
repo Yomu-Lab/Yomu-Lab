@@ -17,18 +17,15 @@
           <p id="errorMsg" class="error small"></p>
           <form>
             <div class="form-group">
-              <select class="form-control" ng-model="selectLanguage.language_level" >
-                <option>Japanese Level</option>
-                <option>N1</option>
-                <option>N2</option>
-                <option>N3</option>
-                <option>N4</option>
-                <option>N5</option>
+
+              <select class="form-control" ng-model="language_level" id="language_level" >
+                <option ng-repeat="language_level in language_options" ng-value="{{language_level}}">{{language_level}}</option>
               </select>
+            
             </div>
 
             <div class="form-group">
-              <button type="submit" ng-click="submit_language(selectLanguage);" class="btn btn-default btn-block submitbtn">Update</button>
+              <button type="submit" ng-click="submit_language();" class="btn btn-default btn-block submitbtn">Update</button>
             </div>
           </form>
         </div>
@@ -36,7 +33,7 @@
 
       <footer id="tellyourfriendsFooter">
         <p class="text-center">You will receive credit for new accounts only. We reserve the right to end the promotion at any time and to disqualify entries suspected of frauds.</p>
-        <p class="text-center"><a href="/admin/dashboard">Admin Dashboard</a></p>
+        <p class="text-center"><a href="/admin/dashboard">Admin Dashboard</a> | <a href="/ChooseLanguageLevel">ChooseLanguageLevel</a></p>
         <br/>
         <p class="text-center">Questions? <a href="#">Email</a> us.</p>
         <p class="text-center" ng-controller="YomuLabsSignOutCtrl">Sign Out? <a href="#" ng-click="sign_out();">Click Here</a></p>

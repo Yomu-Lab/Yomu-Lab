@@ -347,7 +347,7 @@
     this.store_language_level = function(selectLanguage){
       var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
       params_users = {
-                    "language_level": selectLanguage.language_level,
+                    "language_level": selectLanguage,
                     "authentication_token": authentication_token.token,
                   }      
       //console.log('selectLanguage = '+selectLanguage);
@@ -360,8 +360,8 @@
 
     this.check_language_level = function(){
       var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
-      return $http.post("/home/check_language_level", authentication_token.token).success(function(data, status, header, config) {
-          console.log("Service - store language_level - Success");
+      return $http.get("/home/check_language_level/"+authentication_token.token+".json").success(function(data, status, header, config) {
+          //console.log("Service - store language_level - Success");
         }).error(function(data, status, header, config){
           console.log("Service - store language_level - Error");
         });

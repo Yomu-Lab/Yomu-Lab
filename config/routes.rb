@@ -41,12 +41,12 @@ Rails.application.routes.draw do
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   resources :home
-  match '/Index'                => "home#index",     via: [:get]
-  match '/Login'                => "home#login",     via: [:get]
-  match '/SignUp'               => "home#sign_up",           via: [:get]
-  match '/ForgotPassword'       => "home#forgot_password",   via: [:get]
-  match '/ChooseLanguageLevel'  => "home#choose_language_level",   via: [:get]
-  
+  match '/Index'                => "home#index",                  via: [:get]
+  match '/Login'                => "home#login",                  via: [:get]
+  match '/SignUp'               => "home#sign_up",                via: [:get]
+  match '/ForgotPassword'       => "home#forgot_password",        via: [:get]
+  match '/ChooseLanguageLevel'  => "home#choose_language_level",  via: [:get]
+  get 'home/check_language_level/:token'   => 'home#check_language_level'
   
   get 'home/user_details/:authentication_token' => 'home#user_details'
   get 'home/current_user_details/:authentication_token' => 'home#current_user_details'
@@ -54,7 +54,6 @@ Rails.application.routes.draw do
   match '/ReconfirmUser' => 'home#reconfirm_user', via: [:get]
   get 'home/current_user_referral_count/:authentication_token' => 'home#current_user_referral_count'
   post 'home/save_language_level' => 'home#save_language_level'
-  get 'home/check_language_level'# => 'home#check_language_level'
   
   resources :default
   match '/ResetPassword' => 'default#reset_password', via: [:get]

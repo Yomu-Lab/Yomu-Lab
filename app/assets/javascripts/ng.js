@@ -273,7 +273,8 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
     });
   }
 
-  $scope.submit_language = function(selectLanguage){
+  $scope.submit_language = function(){
+    var selectLanguage = $('#language_level').val();
     yomuLabAppService.store_language_level(selectLanguage).then(function(data) {
       $scope.message_type = "success";
       $scope.message_box = data.data.response_message;
@@ -284,12 +285,21 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
   }
 
   $scope.check_language_level = function(token){
+
+    $scope.language_options = ['0', '1', '2', '3', '4', '5'];
+    
     yomuLabAppService.check_language_level(token).then(function(data) {
-      console.log("check_language_level = "+data);
+      //console.log("check_language_level = "+data.data.language_level);
+      $('#language_level').val(data.data.language_level);
+      //$scope.language_level = data.data.language_level;
     }, function() {
       console.log("Service give error while checking language level.");
     });
   }
+
+  //$scope.language_options = ['Japanese Level', 'N1', 'N2', 'N3', 'N4', 'N5'];
+  
+
 
 }]);
 

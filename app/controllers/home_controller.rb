@@ -123,6 +123,8 @@ class HomeController < ApplicationController
   end
 
   def save_language_level
+
+    byebug
     if params[:authentication_token].present?
       current_user = User.where(authentication_token: params[:authentication_token]).first
       current_user.level = params[:language_level]
@@ -141,9 +143,9 @@ class HomeController < ApplicationController
   end
 
   def check_language_level
-    if params[:authentication_token].present?
-      current_user = User.where(authentication_token: params[:authentication_token]).first
-      language_level = current_user.language_level
+    if params[:token].present?
+      current_user = User.find_by_authentication_token(params[:token])
+      language_level = current_user.level
       response_code = 200
     else
       response_code = 400
