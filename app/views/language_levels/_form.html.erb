@@ -1,0 +1,25 @@
+<%= form_for(@language_level) do |f| %>
+  <% if @language_level.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@language_level.errors.count, "error") %> prohibited this language_level from being saved:</h2>
+
+      <ul>
+      <% @language_level.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :language_id %><br>
+    <%= f.number_field :language_id %>
+  </div>
+  <div class="field">
+    <%= f.label :level %><br>
+    <%= f.text_field :level %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

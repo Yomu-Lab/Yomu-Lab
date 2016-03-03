@@ -18,22 +18,22 @@ test:
   username: root
   password: root
 
-# production:
-#   adapter: mysql2
-#   database: yomi_dev
-#   #pool: 5
-#   timeout: 5000
-#   username: root
-#   password: root
+production:
+  adapter: mysql2
+  database: yomi_dev
+  #pool: 5
+  timeout: 5000
+  username: root
+  password: root
 
 # Staging Server
-production:
-  adapter: postgresql
-  database: d5chqt66976jlt
-  host: ec2-107-21-120-109.compute-1.amazonaws.com
-  username: twnakipoiqtoww
-  password: _8TzfhqwF78PBXJ874qOYebg3Q
-  port: 5432
+# production:
+#   adapter: postgresql
+#   database: d5chqt66976jlt
+#   host: ec2-107-21-120-109.compute-1.amazonaws.com
+#   username: twnakipoiqtoww
+#   password: _8TzfhqwF78PBXJ874qOYebg3Q
+#   port: 5432
 
 # # Production Server
 # production:

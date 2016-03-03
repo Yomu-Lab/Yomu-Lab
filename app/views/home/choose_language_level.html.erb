@@ -17,13 +17,15 @@
           <p id="errorMsg" class="error small"></p>
           <form>
             <div class="form-group">
-
               <select class="form-control" ng-model="language_level" id="language_level" >
                 <option ng-repeat="language_level in language_options" ng-value="{{language_level}}">{{language_level}}</option>
               </select>
-            
             </div>
-
+            <div class="form-group">
+              <select class="form-control" ng-model="language_level" id="language_level" >
+                <option ng-repeat="language_level in language_options" ng-value="{{language_level}}">{{language_level}}</option>
+              </select>
+            </div>
             <div class="form-group">
               <button type="submit" ng-click="submit_language();" class="btn btn-default btn-block submitbtn">Update</button>
             </div>

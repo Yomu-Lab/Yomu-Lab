@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :language_levels
+  resources :languages
   # => Annotations
   resources :annotations
   post 'annotations/get_annotation' => 'annotations#get_annotation'
