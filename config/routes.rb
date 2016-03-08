@@ -42,6 +42,9 @@ Rails.application.routes.draw do
 
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
+  get 'users/find_loggedin_user_language' => 'users#find_loggedin_user_language'
+
+
   resources :home
   match '/Index'                => "home#index",                  via: [:get]
   match '/Login'                => "home#login",                  via: [:get]

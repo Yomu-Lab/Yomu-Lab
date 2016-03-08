@@ -358,16 +358,36 @@
         });
     }
 
-    this.check_language_level = function(){
-      var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
-      return $http.get("/home/check_language_level/"+authentication_token.token+".json").success(function(data, status, header, config) {
-          //console.log("Service - store language_level - Success");
-        }).error(function(data, status, header, config){
-          console.log("Service - store language_level - Error");
+    // this.check_language_level = function(){
+    //   var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
+    //   return $http.get("/home/check_language_level/"+authentication_token.token+".json").success(function(data, status, header, config) {
+    //       //console.log("Service - store language_level - Success");
+    //     }).error(function(data, status, header, config){
+    //       console.log("Service - store language_level - Error");
+    //     });
+    // }
+
+    /*
+    # => Show Language
+    */
+    this.show_language = function(){
+      $http.get('/languages.json').then(function(response) {
+          return response.data;
+        }, function(x) {
+          console.log("Show Language - Logged In User - Error ="+x);
         });
     }
 
-
+    /*
+    # => Show Language Level
+    */
+    this.show_language_level = function(){
+      return $http.get('/language_levels.json').then(function(response) {
+          console.log("Show Language Level : "+response.data);
+        }, function(x) {
+          console.log("Show Language Level - Logged In User - Error ="+x);
+        });
+    }
 
 }]);
 

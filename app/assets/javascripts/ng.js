@@ -284,18 +284,44 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
     });
   }
 
-  $scope.check_language_level = function(token){
+  $scope.check_language_level = function(){
+    var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
 
-    $scope.language_options = ['0', '1', '2', '3', '4', '5'];
-    
-    yomuLabAppService.check_language_level(token).then(function(data) {
-      //console.log("check_language_level = "+data.data.language_level);
-      $('#language_level').val(data.data.language_level);
-      //$scope.language_level = data.data.language_level;
+    // => Show All Language
+
+    yomuLabAppService.show_language().then(function(data) {
+      $scope.language = data.response.data;
+      console.log("Show Language : "+data.data);
     }, function() {
-      console.log("Service give error while checking language level.");
+      console.log("Service give error while showing all languages.");
     });
+
+    // => Show All Language Level
+    yomuLabAppService.show_language_level().then(function(data) {
+      $scope.language_level = data.data;
+      console.log("Show Language level : "+data.data);
+    }, function() {
+      console.log("Service give error while showing all languages.");
+    });
+
+    yomuLabAppService.store_language_level(selectLanguage).then(function(data) {
+      $scope.message_type = "success";
+      $scope.message_box = data.data.response_message;
+      $('.alert').show();
+    }, function() {
+      console.log("Service give error while saving language level.");
+    });
+
+
+    // => Set UI Language, Original Language, Target Language, Level
+    $http.get('/users/find_loggedin_user_language/', { params: { token: authentication_token.token } } )
+      .then(function(response) {
+        var language = response.data;
+      }, function(x) {
+        console.log("Find User Language - Logged In User - Error ="+x);
+      });
   }
+
 
   //$scope.language_options = ['Japanese Level', 'N1', 'N2', 'N3', 'N4', 'N5'];
   

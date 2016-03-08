@@ -1,17 +1,16 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  # GET /users/:id.:format
+  before_action :set_loggedin_user, only: [ :find_loggedin_user_language ]
+
   def show
     # authorize! :read, @user
   end
 
-  # GET /users/:id/edit
   def edit
     # authorize! :update, @user
   end
 
-  # PATCH/PUT /users/:id.:format
   def update
     # authorize! :update, @user
     respond_to do |format|
@@ -26,7 +25,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET/PATCH /users/:id/finish_signup
   def finish_signup
     # authorize! :update, @user 
     if request.patch? && params[:user] #&& params[:user][:email]
@@ -40,7 +38,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/:id.:format
   def destroy
     # authorize! :delete, @user
     @user.destroy
@@ -50,7 +47,23 @@ class UsersController < ApplicationController
     end
   end
   
+  def find_loggedin_user_language
+    render :status => 200,
+      :json => {
+        :response_code => 200,
+        :ui_language => @user.ui_language,
+        :original_language => @user.original_language,
+        :target_language => @user.target_language,
+        :level => @user.level
+      }
+  end
+
   private
+
+    def set_loggedin_user
+      @user = User.find_by_authentication_token(params[:token])
+    end
+
     def set_user
       @user = User.find(params[:id])
     end
