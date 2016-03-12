@@ -274,8 +274,10 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
   }
 
   $scope.submit_language = function(){
-    var selectLanguage = $('#language_level').val();
-    yomuLabAppService.store_language_level(selectLanguage).then(function(data) {
+    var language = $('#language').val();
+    var language_level = $('#language_level').val();
+
+    yomuLabAppService.store_language_level(language, language_level).then(function(data) {
       $scope.message_type = "success";
       $scope.message_box = data.data.response_message;
       $('.alert').show();
@@ -285,46 +287,36 @@ yomu_lab.controller('DashboardCtrl', ['$scope', '$http', '$window', 'yomuLabAppL
   }
 
   $scope.check_language_level = function(){
-    var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
-
     // => Show All Language
-
     yomuLabAppService.show_language().then(function(data) {
-      $scope.language = data.response.data;
-      console.log("Show Language : "+data.data);
+      $scope.languages = data.data;
+      //console.log("Show Language : "+data.data);
     }, function() {
       console.log("Service give error while showing all languages.");
     });
 
     // => Show All Language Level
     yomuLabAppService.show_language_level().then(function(data) {
-      $scope.language_level = data.data;
-      console.log("Show Language level : "+data.data);
+      $scope.language_levels = data.data;
+      //console.log("Show Language level : "+data.data);
     }, function() {
       console.log("Service give error while showing all languages.");
     });
 
-    yomuLabAppService.store_language_level(selectLanguage).then(function(data) {
-      $scope.message_type = "success";
-      $scope.message_box = data.data.response_message;
-      $('.alert').show();
-    }, function() {
-      console.log("Service give error while saving language level.");
-    });
+  }
 
+  $scope.set_language = function(){
+    var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
 
     // => Set UI Language, Original Language, Target Language, Level
     $http.get('/users/find_loggedin_user_language/', { params: { token: authentication_token.token } } )
       .then(function(response) {
-        var language = response.data;
+        $("select#language").val(response.data.target_language).prop('selected', true);
+        $("select#language_level").val(response.data.level).prop('selected', true);
       }, function(x) {
         console.log("Find User Language - Logged In User - Error ="+x);
       });
   }
-
-
-  //$scope.language_options = ['Japanese Level', 'N1', 'N2', 'N3', 'N4', 'N5'];
-  
 
 
 }]);

@@ -1,4 +1,4 @@
-<div ng-controller="DashboardCtrl" ng-init="check_language_level();">
+<div ng-controller="DashboardCtrl" ng-init="check_language_level();set_language();">
 
   <div class="alert {{ message_type }} text-center" role="alert">
     <span>{{ message_box }}</span>
@@ -17,13 +17,13 @@
           <p id="errorMsg" class="error small"></p>
           <form>
             <div class="form-group">
-              <select class="form-control" ng-model="language_level" id="language_level" >
-                <option ng-repeat="language_level in language_options" ng-value="{{language_level}}">{{language_level}}</option>
+              <select class="form-control" id="language" ng-options="language.code as language.name for language in languages track by language.code" ng-model="target_language">
+                <option value=""> Select Language </option>
               </select>
             </div>
             <div class="form-group">
-              <select class="form-control" ng-model="language_level" id="language_level" >
-                <option ng-repeat="language_level in language_options" ng-value="{{language_level}}">{{language_level}}</option>
+              <select class="form-control" id="language_level" ng-options="language_level.id as language_level.level for language_level in language_levels track by language_level.id" ng-model="level">
+                <option value=""> Select Language Level </option>
               </select>
             </div>
             <div class="form-group">

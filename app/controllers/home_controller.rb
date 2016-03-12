@@ -123,11 +123,10 @@ class HomeController < ApplicationController
   end
 
   def save_language_level
-
-    byebug
     if params[:authentication_token].present?
       current_user = User.where(authentication_token: params[:authentication_token]).first
-      current_user.level = params[:language_level]
+      current_user.target_language = params[:language]
+      current_user.level = params[:language_level].to_i
       if current_user.save
         response_code = 200
         response_message = "Language level updated successfully."
@@ -156,6 +155,5 @@ class HomeController < ApplicationController
             :response_code => response_code, :language_level => language_level
           }
   end
-
 
 end
