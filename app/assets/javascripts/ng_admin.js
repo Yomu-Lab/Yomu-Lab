@@ -154,29 +154,43 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
     var article_id = $("#article_id").val();
     var selected_annotation_category = $("#selected_annotation_category").val();
     var source_text = $("#source_text").val();
-  
-    // => Fetch Authentication Token
-    var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
 
-    yomuLabAppService.create_annotation(source_text, annotation, article_id, selected_annotation_category, authentication_token.token).then(function(data){
-      var success_response = angular.fromJson(data.data);
+    if ( article_id !="" && selected_annotation_category != "" && source_text != "" && annotation != "" ){
+      // => Fetch Authentication Token
+      var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
 
-      // Update Article Body
-      var article_body = $("p#article_content").html();
-      yomuLabAppService.update_article_body(article_body, article_id).then(function(data){
+      yomuLabAppService.create_annotation(source_text, annotation, article_id, selected_annotation_category, authentication_token.token).then(function(data){
         var success_response = angular.fromJson(data.data);
+
+        // Update Article Body
+        var article_body = $("p#article_content").html();
+        yomuLabAppService.update_article_body(article_body, article_id).then(function(data){
+          var success_response = angular.fromJson(data.data);
+        }, function() {
+          console.log("Service give error while updating the article content.");
+        });
+        $scope.message_type = "success_box";  
+        $scope.message_content = success_response.response_message;      
       }, function() {
-        console.log("Service give error while updating the article content.");
+        console.log("Service give error while creating the annotation.");
+        $scope.message_type = "error_box";
+        $scope.message_content = "Service give error while creating the annotation.";
       });
-      $scope.message_type = "success_box";  
-      $scope.message_content = success_response.response_message;      
-    }, function() {
-      console.log("Service give error while creating the annotation.");
+      $("#articleHeader .response_message_box").show();
+      this.fetch_article_data_at_step2(article_id);
+    }else{
+      var error_message = "";
+      if ( article_id ==""){ error_message = "Required article is missing."; }
+      else if ( selected_annotation_category == "" ){ error_message = "Please select annotation category."; } 
+      else if ( annotation == "" ){ error_message = "Please add definition for selected keywords."; }
+      else if ( source_text == "" ){ error_message = "Please select text from paragraph."; }
       $scope.message_type = "error_box";
-      $scope.message_content = "Service give error while creating the annotation.";
-    });
-    $("#articleHeader .response_message_box").show();
-    this.fetch_article_data_at_step2(article_id);
+      $scope.message_content = error_message;
+      $("#articleHeader .response_message_box").show();
+    }
+    $("#selected_annotation_category").val("");
+    $("#source_text").val("");
+    $("#loader_icon").addClass("hidden");
   };
 
   /*
@@ -303,8 +317,8 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   /*
   # => Change Article Status To Publish From Unpublished
   */
-  $scope.change_article_status = function(article_id){
-    yomuLabAppService.set_article_status_as_publish(article_id).then(function(data){
+  $scope.change_article_status = function(article_id, status){
+    yomuLabAppService.set_article_status(article_id, status).then(function(data){
       var response = angular.fromJson(data.data);
       $("div.article_message div").addClass(response.response_type);
       $("div.article_message div span").text(response.response_message);

@@ -36,3 +36,11 @@
 //= require ng
 //= require ng_admin
 //= require globalServices
+
+
+$(document).ready(function(){
+  $(".loader").addClass("hidden");
+  $(".submitbtn").click(function(){             
+    $(this).find(".loader").removeClass("hidden");
+  });
+});

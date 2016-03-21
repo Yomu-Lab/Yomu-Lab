@@ -61,7 +61,6 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    #byebug
     #begin
       @article = Article.find_by_id(params[:article][:id])
       user = User.find_by_authentication_token(params[:authentication_token][:token])
@@ -129,7 +128,11 @@ class ArticlesController < ApplicationController
     user_id = User.find_by_authentication_token(params[:authentication_token]).id
     article = Article.find_by_id(params[:article_id].to_i)
     article_body = params[:article_body].gsub('<span class="selected_text_underline"></span>', '')
-    article.update_attributes(body: params[:article_body], user_id: user_id )
+
+    article_body = article_body.gsub('<span class="selected_text_underline"><span class="selected_text_underline">', '')
+    article_body = article_body.gsub('</span></span>', '')
+
+    article.update_attributes(body: article_body, user_id: user_id )
     render :status => 200,
       :json => {
         :response_code => 200,

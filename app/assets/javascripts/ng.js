@@ -447,7 +447,8 @@ yomu_lab.filter('create_input_box_with_ng_model', ['$sce', function($sce) {
   return function(text) {
     try {
       var new_text="";
-      var text_array = text.split('\n');
+      //var text_array = text.split('\n');
+      var text_array = text.split('</p><p>');
       $.each(text_array, function(index, value) {
         if (value!=""){
           var paragraph_id = index+1;

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get 'admin/create_article_step1/:article_id' => 'admin#create_article_step1'
   get 'admin/create_article_step2/:article_id' => 'admin#create_article_step2'
   get 'admin/create_article_step3/:article_id' => 'admin#create_article_step3'
-  get 'admin/change_article_status/:article_id' => 'admin#change_article_status'
+  post 'admin/change_article_status/:article_id' => 'admin#change_article_status'
 
   # => get 'admin/settings' => 'admin#settings'
 

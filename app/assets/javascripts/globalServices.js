@@ -59,10 +59,10 @@
     */
     this.get_reset_password_link = function(email){
       login_form = {
-                      "user": {
-                        "email": email
-                      }
-                    }
+        "user": {
+          "email": email
+        }
+      }
       return $http.post("/users/password", login_form)
         .success(function(data, status, header, config) {
         })
@@ -87,12 +87,12 @@
     */
     this.set_new_password_using_token = function(reset_password_token, reset_password_form){
       new_password_details = {
-                                "user": {
-                                  "reset_password_token": reset_password_token,
-                                  "password": reset_password_form.password,
-                                  "password_confirmation": reset_password_form.password_confirmation
-                                }
-                              }
+        "user": {
+          "reset_password_token": reset_password_token,
+          "password": reset_password_form.password,
+          "password_confirmation": reset_password_form.password_confirmation
+        }
+      }
       return $http.put("/users/password/", new_password_details)
         .success(function(data, status, header, config) {
         }).error(function(data, status, header, config){
@@ -140,7 +140,7 @@
     # => Article Listing - Logged In User
     */
     this.get_articles_list = function(authentication_token){
-      console.log("GlobalService = "+authentication_token);
+      //console.log("GlobalService = "+authentication_token);
       return $http.get("/articles.json?authentication_token="+authentication_token)
         .success(function(data, status, header, config) {
         }).error(function(data, status, header, config){
@@ -155,18 +155,18 @@
       // => Fetch Authentication Token
       var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
       params_article = {
-                          "article": {
-                            "title": article.title,
-                            "source_name": article.source_name,
-                            "source_url": article.source_url,
-                            "level": article.level,
-                            "body": article.body,
-                            "id": article.id,
-                          },
-                          "authentication_token": authentication_token,
-                        }
+        "article": {
+          "title": article.title,
+          "source_name": article.source_name,
+          "source_url": article.source_url,
+          "level": article.level,
+          "body": article.body,
+          "id": article.id,
+        },
+        "authentication_token": authentication_token,
+      }
 
-      if (article.id == "" || article.id == undefined   ){
+      if (article.id == "" || article.id == undefined){
         return $http.post("/articles", params_article)
           .success(function(data, status, header, config) {
             //console.log("Service - create article step 1 - Success");
@@ -211,23 +211,23 @@
     };
 
     /*
-    # => Fetch Annotation Categories - Logged In User
+    # => Create Annotation Categories - Logged In User
     */
     this.create_annotation = function(source_text, annotation, article_id, selected_annotation_category, authentication_token){
       params_annotation = {
-                            "annotation_data": {
-                              "source_text": source_text,
-                              "original_conjugation": annotation.original_conjugation,
-                              "definition": annotation.definition,
-                              "reading": annotation.reading,
-                              "translation": annotation.translation,
-                              "general_note": annotation.general_note,
-                              "specific_note": annotation.specific_note,
-                              "selected_annotation_category": selected_annotation_category,
-                              "article_id": article_id,
-                            },                            
-                            "authentication_token": authentication_token,
-                          }
+        "annotation_data": {
+          "source_text": source_text,
+          "original_conjugation": annotation.original_conjugation,
+          "definition": annotation.definition,
+          "reading": annotation.reading,
+          "translation": annotation.translation,
+          "general_note": annotation.general_note,
+          "specific_note": annotation.specific_note,
+          "selected_annotation_category": selected_annotation_category,
+          "article_id": article_id,
+        },
+        "authentication_token": authentication_token,
+      }
       return $http.post("/annotations", params_annotation)
         .success(function(data, status, header, config) {
           //console.log("Service - create annotation - Success");
@@ -242,12 +242,12 @@
     this.fetch_data_for_existing_annotation = function(article_id, selected_string){
       var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
       params_annotation = {
-                    "annotation": {
-                      "source_text": selected_string,
-                      "article_id": article_id,
-                    },                            
-                    "authentication_token": authentication_token.token,
-                  }
+        "annotation": {
+          "source_text": selected_string,
+          "article_id": article_id,
+        },
+        "authentication_token": authentication_token.token,
+      }
       return $http.post("/annotations/get_annotation", params_annotation)
         .success(function(data, status, header, config) {
           //console.log("Service - get annotation - Success");
@@ -263,9 +263,9 @@
     this.save_paragraph_translation = function(translation){
       var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
       params_translation = {
-                    "translation": translation,
-                    "authentication_token": authentication_token.token,
-                  }                  
+        "translation": translation,
+        "authentication_token": authentication_token.token,
+      }
       return $http.post("/annotations/save_paragraph_translation", params_translation)
         .success(function(data, status, header, config) {
           //console.log("Service - get annotation - Success");
@@ -281,11 +281,11 @@
       var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
       //console.log("get_translation");
       params_translation = {
-                    "translation": {
-                      "article_id": article_id,
-                    },                            
-                    "authentication_token": authentication_token.token,
-                  }      
+        "translation": {
+          "article_id": article_id,
+        },
+        "authentication_token": authentication_token.token,
+      }     
       return $http.post("/annotations/get_translation", params_translation).success(function(data, status, header, config) {
           //console.log("Service - get_translation - Success");
         }).error(function(data, status, header, config){
@@ -296,15 +296,16 @@
     /*
     # => Set Article Status As Publish  - Logged In User
     */
-    this.set_article_status_as_publish = function(article_id){
+    this.set_article_status = function(article_id, status){
       var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
       params_article = {
-                    "translation": {
-                      "article_id": article_id,
-                    },                            
-                    "authentication_token": authentication_token.token,
-                  }
-      return $http.get("/admin/change_article_status/"+article_id, params_article).success(function(data, status, header, config) {
+        "translation": {
+          "article_id": article_id,
+          "status": status,
+        },
+        "authentication_token": authentication_token.token,
+      }
+      return $http.post("/admin/change_article_status/"+article_id, params_article).success(function(data, status, header, config) {
           //console.log("Service - get_translation - Success");
         }).error(function(data, status, header, config){
           console.log("Service - get_translation - Error");
@@ -317,13 +318,13 @@
     this.fetch_keyword_for_existing_article = function(article_id){
       var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
       params_annotation = {
-                    "annotation": {
-                      "article_id": article_id,
-                    },                            
-                    "authentication_token": authentication_token.token,
-                  }
+        "annotation": {
+          "article_id": article_id,
+        },
+        "authentication_token": authentication_token.token,
+      }
       return $http.post("/annotations/get_list_of_existing_annotation", params_annotation).success(function(data, status, header, config) {
-          console.log("Service - fetch_keyword_for_existing_article - Success");
+          // console.log("Service - fetch_keyword_for_existing_article - Success");
         }).error(function(data, status, header, config){
           console.log("Service - fetch_keyword_for_existing_article - Error");
         });
@@ -333,12 +334,12 @@
     this.update_article_body = function(article_body, article_id){
       var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
       params_article = {
-                    "article_id": article_id,
-                    "article_body": article_body,                            
-                    "authentication_token": authentication_token.token,
-                  }
+        "article_id": article_id,
+        "article_body": article_body,
+        "authentication_token": authentication_token.token,
+      }
       return $http.post("/articles/update_article_body", params_article).success(function(data, status, header, config) {
-          //console.log("Service - update_article_body - Success");
+          // console.log("Service - update_article_body - Success");
         }).error(function(data, status, header, config){
           console.log("Service - update_article_body - Error");
         });
@@ -347,13 +348,12 @@
     this.store_language_level = function(language, language_level){
       var authentication_token = yomuLabAppLocalStorageService.get_authentication_token();
       params_users = {
-                    "language": language,
-                    "language_level": language_level,
-                    "authentication_token": authentication_token.token,
-                  }      
-      //console.log('selectLanguage = '+selectLanguage);
+        "language": language,
+        "language_level": language_level,
+        "authentication_token": authentication_token.token,
+      }
       return $http.post("/home/save_language_level", params_users).success(function(data, status, header, config) {
-          console.log("Service - store language_level - Success");
+          // console.log("Service - store language_level - Success");
         }).error(function(data, status, header, config){
           console.log("Service - store language_level - Error");
         });

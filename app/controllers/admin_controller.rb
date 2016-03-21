@@ -19,11 +19,12 @@ class AdminController < ApplicationController
     @article_id = params[:article_id] if params[:article_id].present?
   end
 
-  def change_article_status
+  def change_article_status   
     begin
       article = Article.find_by_id(params[:article_id])
-      article.publication_status = GlobalConstant::ARTICLE_STATUS_PUBLISHED
-      article.publication_date = Date.today.to_s
+      article.publication_status = params["translation"]["status"] #GlobalConstant::ARTICLE_STATUS_PUBLISHED
+      article.publication_date = ""
+      article.publication_date = Date.today.to_s if params["translation"]["status"] == GlobalConstant::ARTICLE_STATUS_PUBLISHED
 
       article.save!
 
@@ -41,7 +42,6 @@ class AdminController < ApplicationController
           :response_message => GlobalMessage::ARTICLE_STATUS_UPDATE_ERROR
         }      
     end
-
   end
 
 end

@@ -24,9 +24,12 @@
           <td>{{article.updated_at | date:'medium'}}</td>
           <td>{{article.publication_date | date:'mediumDate'}}</td> 
           <td>{{article.publication_status}}</td>
-          <td>
+          <td ng-show="(article.publication_status === 'Draft' || article.publication_status ==='Unpublished' ) ? true : false">
             <a type="button" class="btn btn-link" href="/admin/create_article_step1/{{article.id}}" >Edit</a> -
-            <a type="button" class="btn btn-link" ng-click="change_article_status(article.id)">Publish</a>
+            <a type="button" class="btn btn-link" ng-click="change_article_status(article.id, 'Published')">Publish</a>
+          </td>
+          <td ng-show="(article.publication_status === 'Published' ) ? true : false">
+            <a type="button" class="btn btn-link" ng-click="change_article_status(article.id, 'Unpublished')">Unpublish</a>
           </td>
           <!--
           <td><button type="button" class="btn btn-link">Publish</button></td>

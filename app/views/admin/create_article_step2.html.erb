@@ -9,7 +9,7 @@
     <div class="col-md-7 has-feedback">
       
       <!-- Alert Message -->
-      <div class="annotSuccess response_message_box" ng-show="message_type == 'success_box'">
+      <div class="annotSuccess response_message_box" ng-show="message_type == 'success_box' || message_type == 'error_box'">
         <div class="col-md-11 col-centered text-center msgBox">
           <span>{{ message_content }}</span>
         </div>
@@ -167,7 +167,7 @@
             <div class="form-group">
               <div class="col-sm-offset-3 col-sm-9 clearfix">
                 <div class="row col-md-5">
-                  <button type="submit" class="btn btn-primary btn-block" ng-click="create_annotation(article, annotation);">Save</button>
+                  <button type="submit" class="btn btn-primary btn-block submitbtn" ng-click="create_annotation(article, annotation);">Save <i id="loader_icon" class="fa fa-refresh fa-spin hidden loader"></i></button>
                 </div>
                 <div class="col-md-5">
                   <button type="submit" class="btn btn-default btn-block" ng-click="discard_annotation_data();">Discard</button>
