@@ -262,8 +262,9 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
   /*
   # => Save Translation Data
   */
-  $scope.save_article_translation = function(translation, article_id){
-    window.location = "/admin/dashboard";
+  $scope.save_article_translation = function(article_id, status){
+    this.change_article_status_to_unpublished_from_draft(article_id, status);
+    //window.location = "/admin/dashboard";
   };
 
   /*
@@ -329,6 +330,20 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
     });
   };
 
+  /*
+  # => Change Article Status To Unpublished From Draft
+  */
+  $scope.change_article_status_to_unpublished_from_draft = function(article_id, status){
+    yomuLabAppService.set_article_status(article_id, status).then(function(data){
+      var response = angular.fromJson(data.data);
+      $("div.article_message div").addClass(response.response_type);
+      $("div.article_message div span").text(response.response_message);
+      yomuLabAppService.hide_response_message();
+      //$scope.init();
+    }, function() {
+      console.log("Service give error while retrieving the article lists.");
+    });
+  };
 
   /*
   # => Save Translation Data
