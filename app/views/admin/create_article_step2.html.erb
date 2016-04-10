@@ -79,11 +79,8 @@
 
             <h2 lang="ja" id="articleHeading">{{article.title}}</h2>
             <div class="articleContent editable" >
-              <!-- <p compile lang="ja" id="article_content">{{ article.body | highlight:search }}</p> -->
-              <!-- <p compile lang="ja" id="article_content" ng-bind-html="article.body | highlight:search"></p> -->
-              
-              <!-- <p compile lang="ja" id="article_content">{{ article.body }}</p> -->
-              <p lang="ja" id="article_content" ng-bind-html="article.body" ></p>
+
+              <p lang="ja" id="article_content" ng-bind-html="trustAsHtml(article.body)" ></p>
 
             </div>
 
@@ -195,30 +192,35 @@ YomuLabAnnotation.Selector = {};
 // http://www.codetoad.com/javascript_get_selected_text.asp
 YomuLabAnnotation.Selector.getSelected = function(){
 
+  var span_id = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for( var i=0; i < 5; i++ )
+    span_id += possible.charAt(Math.floor(Math.random() * possible.length));
+
   var span = document.createElement("span");
   span.className = "selected_text_underline";
+  span.id = span_id;
 
   var selected_text = '';
   if(window.getSelection){
-    try {
+   try {
       // Condition To Check Selected Keyword Belongs To Specific Div
-      //if (window.getSelection().anchorNode.parentNode.id == 'article_content' || window.getSelection().anchorNode.parentNode.id == 'selected_text_underline'){
-        if ( window.getSelection().focusNode.parentElement.offsetParent.id == 'articleBody'){
-        selected_text = window.getSelection();
-          
-          // Script To Add Underline 
-          if (selected_text.rangeCount){
-            var range = selected_text.getRangeAt(0).cloneRange();
-            range.surroundContents(span);
-            selected_text.removeAllRanges();
-            selected_text.addRange(range);
-          }
-          console.log("selected_text = "+selected_text);
-          //console.log("article_content = "+$('#article_content').text());
-        } 
+      if ( window.getSelection().focusNode.parentElement.offsetParent.id == 'articleBody'){
+      selected_text = window.getSelection();
+        
+        // Script To Add Underline 
+        if (selected_text.rangeCount){
+          var range = selected_text.getRangeAt(0).cloneRange();
+          range.surroundContents(span);
+          selected_text.removeAllRanges();
+          selected_text.addRange(range);
+        }
+        console.log("selected_text = "+selected_text);
+      } 
     }
     catch(err) {
-     }
+    }
   }else if(document.getSelection){
     selected_text = document.getSelection();
   }else if(document.selection){
@@ -238,9 +240,39 @@ YomuLabAnnotation.Selector.mouseup = function(){
       angular.element(document.getElementById('adminAnnotation')).scope().fetch_data_for_existing_annotation(selected_string);
     }
   }
+  else{
+    var article_id = $("#article_id").val();
+    angular.element(document.getElementById('adminAnnotation')).scope().fetch_article_data_at_step2(article_id);
+
+  }
 }
 
 $(document).ready(function(){
+
   $(document).bind("mouseup", YomuLabAnnotation.Selector.mouseup);
+  
+  $(document).on('click', '.selected_text_underline', function () {
+    $('#'+this.id).addClass("select_clicked_element");
+    $("#selectedWord").text(this.innerText);
+    $("#source_text").val(this.innerText);
+    var selected_string = $("#source_text").val();
+    angular.element(document.getElementById('adminAnnotation')).scope().fetch_data_for_existing_annotation(this.innerText);
+  });
+
 });
+
 </script>
+
+<style type="text/css">
+  .selected_text_underline, #selected_text_underline{
+    text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: #000 1px solid;
+    color: inherit;
+    cursor: pointer;
+  }
+  .select_clicked_element{
+    background: #66be60 none repeat scroll 0 0;
+    color: #fff;
+  }
+</style>

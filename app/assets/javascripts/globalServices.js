@@ -338,9 +338,11 @@
         "article_body": article_body,
         "authentication_token": authentication_token.token,
       }
-      return $http.post("/articles/update_article_body", params_article).success(function(data, status, header, config) {
+      return $http.post("/articles/update_article_body", params_article)
+        .success(function(data, status, header, config) {
           // console.log("Service - update_article_body - Success");
-        }).error(function(data, status, header, config){
+        })
+        .error(function(data, status, header, config){
           console.log("Service - update_article_body - Error");
         });
     }

@@ -496,6 +496,7 @@ yomu_lab.directive('myBlur', ['$scope', function ($scope) {
 }]);
 
 // => Highlight
+/*
 yomu_lab.filter('highlight', ['$sce', function($sce) {
   return function(text, phrase) {
     var phrase_length = 0;
@@ -508,7 +509,7 @@ yomu_lab.filter('highlight', ['$sce', function($sce) {
 
     for (var i=0; i<phrase_length; i++) {
       if (phrase[i]) {
-        text = text.replace(new RegExp('('+phrase[i]+')', 'gi'),'<span id="selected_text_underline">$1</span>');
+        text = text.replace(new RegExp('('+phrase[i]+')', 'gi'),'<span select-all-on-click id="selected_text_underline" >$1</span>');
       }else{
        // console.log("phrase="+phrase);
       }
@@ -516,7 +517,7 @@ yomu_lab.filter('highlight', ['$sce', function($sce) {
     return $sce.trustAsHtml(text)
   };
 }]);
-
+/*
 yomu_lab.directive('htmlText', ['$scope', function($scope){
   return {
     'restrict': 'A',
@@ -532,3 +533,5 @@ yomu_lab.directive('htmlText', ['$scope', function($scope){
     } 
   };
 }]);
+*/
+

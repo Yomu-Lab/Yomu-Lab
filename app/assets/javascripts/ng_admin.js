@@ -178,7 +178,9 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
       });
       $("#articleHeader .response_message_box").show();
       this.fetch_article_data_at_step2(article_id);
+
     }else{
+
       var error_message = "";
       if ( article_id ==""){ error_message = "Required article is missing."; }
       else if ( selected_annotation_category == "" ){ error_message = "Please select annotation category."; } 
@@ -369,4 +371,10 @@ yomu_lab.controller('YomuLabsAdminCtrl', ['$scope', '$http', '$window', 'yomuLab
     });
   };
 
+
+  $scope.trustAsHtml = function(string) {
+    return $sce.trustAsHtml(string);
+  };
+
 }]);
+
